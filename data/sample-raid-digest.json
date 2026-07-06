@@ -1,0 +1,33 @@
+{
+  "weekEnding": "2026-07-06",
+  "entries": [
+    {
+      "type": "Risk",
+      "title": "Dependency delivery slip",
+      "severity": "High",
+      "owner": "Integration Lead",
+      "nextAction": "Escalate in Wednesday sync"
+    },
+    {
+      "type": "Assumption",
+      "title": "API contract will remain stable",
+      "severity": "Medium",
+      "owner": "Platform PM",
+      "nextAction": "Validate with architecture team"
+    },
+    {
+      "type": "Issue",
+      "title": "Inconsistent source-of-truth updates",
+      "severity": "High",
+      "owner": "Program TPM",
+      "nextAction": "Introduce data quality checkpoint"
+    },
+    {
+      "type": "Dependency",
+      "title": "Shared service release window",
+      "severity": "Medium",
+      "owner": "Shared Services Lead",
+      "nextAction": "Confirm release lock date"
+    }
+  ]
+}

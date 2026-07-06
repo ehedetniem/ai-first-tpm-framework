@@ -18,6 +18,7 @@ This framework helps teams:
 - HTML report samples: `reports/README.md`
 - Report generator setup: `docs/report-generation.md`
 - ADR authoring guide: `docs/adr-instructions.md`
+- AI prompt pack for artifacts: `docs/ai-artifact-pack.md`
 - TPM starter agent concept: `agents/pulse-orchestrator/README.md`
 
 ## Fast report generation
@@ -32,6 +33,9 @@ From repo root:
 Generated outputs:
 - `output/weekly-status-email.html`
 - `output/portfolio-health-chat.html`
+- `output/executive-briefing.html`
+- `output/raid-digest.html`
+- `output/adr-log.html`
 
 ## What this repo contains
 

@@ -1,23 +1,23 @@
-# HTML Report Samples
+# HTML Report Templates
 
-These files are sample HTML artifacts teams can copy and adapt for email or chat channels.
+This folder contains the leadership-themed report templates and supporting CSS used by `scripts/generate_reports.py`.
 
-## Included samples
+## Leadership report pack
+
+- `weekly-status-email-template.html.j2`
+- `portfolio-health-chat-template.html.j2`
+- `executive-briefing-template.html.j2`
+- `raid-digest-template.html.j2`
+- `adr-log-template.html.j2`
+- `_theme.css`
+
+## Optional static examples
 
 - `weekly-status-email-sample.html`
-  - Email-friendly weekly status layout (table-based, conservative styles)
 - `portfolio-health-chat-sample.html`
-  - Chat-ready portfolio snapshot for leadership channels
-
-## How to use
-
-1. Open the sample HTML file in a browser.
-2. Replace placeholder program content with your real data.
-3. Validate all facts and decisions with a human reviewer.
-4. Paste rendered output or HTML source into your communication channel based on policy.
 
 ## Notes
 
-- These are static examples, not generators.
+- Use `docs/report-generation.md` for setup and run instructions.
 - Keep sensitive or confidential data out of externally shared reports.
 - Maintain human-in-the-loop approval before sending.

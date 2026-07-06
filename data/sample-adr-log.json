@@ -1,0 +1,29 @@
+{
+  "weekEnding": "2026-07-06",
+  "decisions": [
+    {
+      "id": "ADR-2026-07-01",
+      "title": "Portfolio reporting cadence standardization",
+      "status": "Accepted",
+      "owner": "Portfolio TPM Lead",
+      "approvedBy": "Director",
+      "approvedAt": "2026-07-01"
+    },
+    {
+      "id": "ADR-2026-07-03",
+      "title": "Escalation protocol for red program risks",
+      "status": "Proposed",
+      "owner": "Program TPM",
+      "approvedBy": "Pending",
+      "approvedAt": "Pending"
+    },
+    {
+      "id": "ADR-2026-07-04",
+      "title": "Artifact quality review gate",
+      "status": "Accepted",
+      "owner": "Operations TPM",
+      "approvedBy": "Sr Manager",
+      "approvedAt": "2026-07-04"
+    }
+  ]
+}

@@ -11,3 +11,9 @@ Thumbs.db
 
 # Local notes
 *.tmp
+
+# Generated artifacts
+output/
+
+# Python cache
+__pycache__/

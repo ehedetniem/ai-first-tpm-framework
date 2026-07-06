@@ -1,0 +1,17 @@
+{
+  "title": "Executive Program Briefing",
+  "weekEnding": "2026-07-06",
+  "owner": "Portfolio TPM Lead",
+  "topWin": "Standardized reporting cadence adopted across all priority programs",
+  "topRisk": "Architecture decision delay in one red program may impact Q3 timeline",
+  "decisionNeeded": "Approve cross-program architecture escalation path by Wednesday",
+  "programSummary": [
+    {"program": "Program A", "health": "Green", "trend": "Improving"},
+    {"program": "Program B", "health": "Amber", "trend": "Stable"},
+    {"program": "Program C", "health": "Red", "trend": "At Risk"}
+  ],
+  "asks": [
+    "Confirm executive sponsor for red program recovery",
+    "Approve revised dependency sequence"
+  ]
+}
