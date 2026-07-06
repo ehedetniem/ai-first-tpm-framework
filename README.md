@@ -20,6 +20,19 @@ This framework helps teams:
 - ADR authoring guide: `docs/adr-instructions.md`
 - TPM starter agent concept: `agents/pulse-orchestrator/README.md`
 
+## Fast report generation
+
+From repo root:
+
+- Windows PowerShell:
+   - `./scripts/run_reports.ps1`
+- macOS/Linux:
+   - `bash ./scripts/run_reports.sh`
+
+Generated outputs:
+- `output/weekly-status-email.html`
+- `output/portfolio-health-chat.html`
+
 ## What this repo contains
 
 - `lifecycle/` - Program phases and gate criteria
