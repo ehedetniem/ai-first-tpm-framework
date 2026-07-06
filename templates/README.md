@@ -19,3 +19,7 @@ Use these templates as your minimum operating set.
 ## Implementation tip
 
 Start with one program for 2 to 4 weeks. Standardize quality and cadence before scaling to the full portfolio.
+
+## Email and chat report samples
+
+If you need formatted communications, see `reports/README.md` for HTML sample reports you can adapt.

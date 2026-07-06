@@ -15,6 +15,7 @@ This framework helps teams:
 - Lifecycle model: `lifecycle/program-lifecycle.md`
 - Governance model: `governance/hitl-governance.md`
 - Core templates: `templates/README.md`
+- HTML report samples: `reports/README.md`
 
 ## What this repo contains
 
@@ -23,6 +24,7 @@ This framework helps teams:
 - `templates/` - Reusable templates for weekly status, ADRs, risk log, and portfolio rollup
 - `upskilling/` - 90-day PM-to-TPM AI upskilling plan
 - `automation/` - Maturity path from manual execution to governed AI assistance
+- `reports/` - Sample HTML reports for email and chat channels
 - `docs/` - Reference narrative and implementation notes
 
 ## Recommended adoption paths

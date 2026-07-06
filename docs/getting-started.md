@@ -40,3 +40,7 @@ After 4 weeks, evaluate:
 - Decision traceability
 - Reporting cycle time
 - Time shifted to higher-value TPM work
+
+## Optional Step 6 - Publish formatted updates
+
+For email or chat-ready formatting, adapt the HTML samples in `reports/README.md`.
