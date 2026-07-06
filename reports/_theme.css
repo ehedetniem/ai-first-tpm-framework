@@ -1,19 +1,21 @@
 :root {
-  --bg: #f4f7fb;
+  --bg: #eef3f9;
   --surface: #ffffff;
-  --surface-soft: #f8fbff;
-  --ink: #101828;
-  --muted: #475467;
-  --line: #dde5ef;
-  --brand: #0b5cab;
-  --brand-soft: #eaf3ff;
+  --surface-soft: #f6f9ff;
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: #d7e1ee;
+  --brand: #0a4f92;
+  --brand-2: #0f6cbd;
+  --brand-soft: #e8f2ff;
   --green: #107c10;
   --green-soft: #e8f6e8;
   --amber: #a05a00;
   --amber-soft: #fff4df;
   --red: #b42318;
   --red-soft: #feeceb;
-  --shadow: 0 6px 24px rgba(16, 24, 40, 0.08);
+  --slate: #334155;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.09);
 }
 
 * {
@@ -22,9 +24,12 @@
 
 body {
   margin: 0;
-  background: radial-gradient(circle at top right, #eaf3ff 0%, var(--bg) 40%, var(--bg) 100%);
+  background:
+    radial-gradient(circle at 8% -5%, #dceeff 0%, rgba(220, 238, 255, 0) 42%),
+    radial-gradient(circle at 110% 15%, #e8efff 0%, rgba(232, 239, 255, 0) 36%),
+    var(--bg);
   color: var(--ink);
-  font-family: Calibri, Segoe UI, Arial, sans-serif;
+  font-family: "Segoe UI", Calibri, "Trebuchet MS", Arial, sans-serif;
   padding: 24px;
 }
 
@@ -39,23 +44,27 @@ body {
 }
 
 .report-header {
-  padding: 20px 26px;
+  padding: 24px 28px;
   border-bottom: 1px solid var(--line);
-  background: linear-gradient(180deg, #ffffff, var(--surface-soft));
+  background:
+    linear-gradient(145deg, rgba(15, 108, 189, 0.06), rgba(10, 79, 146, 0.03) 35%, rgba(255, 255, 255, 0.95) 80%),
+    linear-gradient(180deg, #ffffff, var(--surface-soft));
 }
 
 .report-id {
-  font-family: Consolas, monospace;
+  font-family: Consolas, "Courier New", monospace;
   font-size: 11px;
   letter-spacing: 0.6px;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--brand);
+  font-weight: 700;
   margin-bottom: 8px;
 }
 
 .report-title {
   margin: 0;
-  font-size: 26px;
+  font-size: 30px;
+  letter-spacing: -0.2px;
   line-height: 1.25;
 }
 
@@ -68,15 +77,16 @@ body {
 .meta-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
-  margin-top: 14px;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .meta-item {
-  background: #fff;
+  background: linear-gradient(180deg, #ffffff, #fbfdff);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 10px 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
 }
 
 .meta-label {
@@ -93,15 +103,16 @@ body {
 }
 
 .report-section {
-  padding: 18px 26px;
+  padding: 18px 28px;
 }
 
 .section-title {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  color: var(--brand);
-  border-bottom: 1px solid #cfe0f5;
-  padding-bottom: 6px;
+  margin: 0 0 12px 0;
+  font-size: 17px;
+  color: var(--brand-2);
+  border-bottom: 1px solid #c9dcf3;
+  padding-bottom: 7px;
+  font-weight: 700;
 }
 
 p,
@@ -118,9 +129,10 @@ ul {
 .callout {
   border-left: 4px solid var(--brand);
   background: var(--brand-soft);
-  border-radius: 0 8px 8px 0;
-  padding: 10px 12px;
+  border-radius: 0 10px 10px 0;
+  padding: 12px 14px;
   margin-bottom: 10px;
+  box-shadow: inset 0 0 0 1px rgba(10, 79, 146, 0.05);
 }
 
 .callout.warning {
@@ -141,15 +153,16 @@ ul {
 .kpi-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 12px;
 }
 
 .kpi-item {
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-  padding: 8px 10px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffffff, #f9fcff);
+  padding: 10px 12px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
 }
 
 .kpi-label {
@@ -160,7 +173,7 @@ ul {
 }
 
 .kpi-value {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   margin-top: 2px;
 }
@@ -173,16 +186,16 @@ ul {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   font-size: 13px;
 }
 
 .table th {
   text-align: left;
-  background: var(--brand);
+  background: linear-gradient(180deg, var(--brand-2), var(--brand));
   color: #ffffff;
-  padding: 9px 10px;
+  padding: 10px 11px;
   font-weight: 700;
   font-size: 12px;
   text-transform: uppercase;
@@ -190,7 +203,7 @@ ul {
 }
 
 .table td {
-  padding: 8px 10px;
+  padding: 9px 11px;
   border-top: 1px solid var(--line);
   vertical-align: top;
 }
@@ -202,7 +215,7 @@ ul {
 .badge {
   display: inline-block;
   border-radius: 999px;
-  padding: 2px 9px;
+  padding: 3px 10px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.2px;
@@ -230,7 +243,87 @@ ul {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 12px;
-  padding: 12px 26px;
+  padding: 12px 28px;
+  background: #fafcff;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+}
+
+.stat-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  padding: 12px 13px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
+}
+
+.stat-card .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+
+.stat-card .value {
+  margin-top: 5px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.decision-list {
+  display: grid;
+  gap: 10px;
+}
+
+.decision-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 13px;
+  background: linear-gradient(180deg, #ffffff, #fbfdff);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+.decision-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.decision-id {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  color: var(--slate);
+}
+
+.decision-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.decision-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 8px;
+}
+
+.pill {
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+.pill strong {
+  color: var(--ink);
 }
 
 @media (max-width: 768px) {
@@ -246,6 +339,18 @@ ul {
   }
 
   .report-title {
-    font-size: 22px;
+    font-size: 24px;
+  }
+}
+
+@media print {
+  body {
+    padding: 0;
+    background: #ffffff;
+  }
+
+  .report-shell {
+    box-shadow: none;
+    border-color: #d1d5db;
   }
 }
