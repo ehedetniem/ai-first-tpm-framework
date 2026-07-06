@@ -16,6 +16,9 @@ This framework helps teams:
 - Governance model: `governance/hitl-governance.md`
 - Core templates: `templates/README.md`
 - HTML report samples: `reports/README.md`
+- Report generator setup: `docs/report-generation.md`
+- ADR authoring guide: `docs/adr-instructions.md`
+- TPM starter agent concept: `agents/pulse-orchestrator/README.md`
 
 ## What this repo contains
 
@@ -25,6 +28,9 @@ This framework helps teams:
 - `upskilling/` - 90-day PM-to-TPM AI upskilling plan
 - `automation/` - Maturity path from manual execution to governed AI assistance
 - `reports/` - Sample HTML reports for email and chat channels
+- `scripts/` - Report generation scripts
+- `data/` - Sample input data for report generation
+- `agents/` - Starter agent patterns (for example, Pulse Orchestrator)
 - `docs/` - Reference narrative and implementation notes
 
 ## Recommended adoption paths

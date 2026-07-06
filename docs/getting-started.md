@@ -44,3 +44,11 @@ After 4 weeks, evaluate:
 ## Optional Step 6 - Publish formatted updates
 
 For email or chat-ready formatting, adapt the HTML samples in `reports/README.md`.
+
+## Optional Step 7 - Automate report generation
+
+Use `docs/report-generation.md` to generate HTML reports from JSON inputs.
+
+## Optional Step 8 - Formalize decision records
+
+Use `docs/adr-instructions.md` to standardize ADR creation and approval.

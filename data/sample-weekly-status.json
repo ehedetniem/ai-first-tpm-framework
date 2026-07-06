@@ -1,0 +1,26 @@
+{
+  "program": "AI-First TPM Rollout",
+  "weekEnding": "2026-07-06",
+  "owner": "Program TPM",
+  "health": "Green",
+  "highlights": [
+    "Standardized weekly artifacts across pilot programs",
+    "Published first portfolio rollup with common format",
+    "Captured three decisions using ADR template"
+  ],
+  "risks": [
+    {
+      "risk": "Inconsistent source updates from a dependent team",
+      "owner": "Integration Lead",
+      "mitigation": "Weekly sync and data quality checklist"
+    }
+  ],
+  "decisionsNeeded": [
+    "Approve rollout of portfolio cadence to additional programs"
+  ],
+  "next7Days": [
+    "Close open ADR approvals",
+    "Refresh portfolio rollup",
+    "Publish leadership stakeholder update"
+  ]
+}

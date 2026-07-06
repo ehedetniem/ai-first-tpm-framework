@@ -1,0 +1,31 @@
+{
+  "weekEnding": "2026-07-06",
+  "green": 7,
+  "amber": 3,
+  "red": 1,
+  "total": 11,
+  "rows": [
+    {
+      "program": "Program A",
+      "health": "Green",
+      "risk": "Cross-team dependency delay",
+      "decisionPending": "No"
+    },
+    {
+      "program": "Program B",
+      "health": "Amber",
+      "risk": "Data quality inconsistency",
+      "decisionPending": "Yes"
+    },
+    {
+      "program": "Program C",
+      "health": "Red",
+      "risk": "Unresolved architecture decision",
+      "decisionPending": "Yes"
+    }
+  ],
+  "leadershipAsks": [
+    "Approve unresolved architecture decision by Wednesday",
+    "Assign escalation owner for red program dependencies"
+  ]
+}
