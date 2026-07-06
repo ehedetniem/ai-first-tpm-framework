@@ -8,6 +8,14 @@ This framework helps teams:
 - Shift TPM time from manual synthesis to judgment and alignment
 - Introduce AI safely with human approval gates
 
+## Start here
+
+- Quick onboarding: `docs/getting-started.md`
+- Repo navigation: `docs/repository-map.md`
+- Lifecycle model: `lifecycle/program-lifecycle.md`
+- Governance model: `governance/hitl-governance.md`
+- Core templates: `templates/README.md`
+
 ## What this repo contains
 
 - `lifecycle/` - Program phases and gate criteria
@@ -16,6 +24,23 @@ This framework helps teams:
 - `upskilling/` - 90-day PM-to-TPM AI upskilling plan
 - `automation/` - Maturity path from manual execution to governed AI assistance
 - `docs/` - Reference narrative and implementation notes
+
+## Recommended adoption paths
+
+### Path A: Individual TPM or small team
+
+1. Start with `docs/getting-started.md`.
+2. Use templates in `templates/` for one program.
+3. Run weekly cadence for 4 weeks.
+4. Add ADR discipline and risk review.
+
+### Path B: Portfolio-scale TPM team
+
+1. Align on lifecycle and gate criteria.
+2. Standardize artifact templates across all programs.
+3. Establish HITL approval boundaries.
+4. Roll up program status weekly with portfolio template.
+5. Use maturity model to phase AI adoption.
 
 ## Quickstart
 
@@ -27,6 +52,8 @@ This framework helps teams:
    - Capture decisions in ADR template
    - Refresh risk log and portfolio rollup
 5. Start AI enablement with `automation/maturity-model.md`.
+
+For a practical onboarding flow, use `docs/getting-started.md`.
 
 ## Core model
 
@@ -45,6 +72,12 @@ This framework uses three layers:
 - Humans own approvals, tradeoffs, and accountability.
 
 This is a learning loop, not autopilot.
+
+## Public collaboration and trust
+
+- Contribution guide: `CONTRIBUTING.md`
+- Code of conduct: `CODE_OF_CONDUCT.md`
+- Security policy: `SECURITY.md`
 
 ## Who this is for
 
