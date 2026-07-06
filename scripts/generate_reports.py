@@ -64,11 +64,11 @@ def main():
     )
     theme_css = (root / "reports" / "_theme.css").read_text(encoding="utf-8")
 
-    weekly_template = env.get_template("weekly-status-email-template.html.j2")
-    portfolio_template = env.get_template("portfolio-health-chat-template.html.j2")
-    executive_template = env.get_template("executive-briefing-template.html.j2")
-    raid_template = env.get_template("raid-digest-template.html.j2")
-    adr_template = env.get_template("adr-log-template.html.j2")
+    weekly_template = env.get_template("weekly-status-email-template.html")
+    portfolio_template = env.get_template("portfolio-health-chat-template.html")
+    executive_template = env.get_template("executive-briefing-template.html")
+    raid_template = env.get_template("raid-digest-template.html")
+    adr_template = env.get_template("adr-log-template.html")
 
     weekly_html = weekly_template.render(data=weekly_data, theme_css=theme_css)
     portfolio_html = portfolio_template.render(data=portfolio_data, theme_css=theme_css)

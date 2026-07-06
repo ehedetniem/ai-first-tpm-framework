@@ -4,11 +4,11 @@ This folder contains the leadership-themed report templates and supporting CSS u
 
 ## Leadership report pack
 
-- `weekly-status-email-template.html.j2`
-- `portfolio-health-chat-template.html.j2`
-- `executive-briefing-template.html.j2`
-- `raid-digest-template.html.j2`
-- `adr-log-template.html.j2`
+- `weekly-status-email-template.html`
+- `portfolio-health-chat-template.html`
+- `executive-briefing-template.html`
+- `raid-digest-template.html`
+- `adr-log-template.html`
 - `_theme.css`
 
 ## Optional static examples

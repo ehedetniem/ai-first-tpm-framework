@@ -20,11 +20,11 @@ This repo includes a Python generator for a leadership-ready HTML reporting pack
 
 ## Templates
 
-- `reports/weekly-status-email-template.html.j2`
-- `reports/portfolio-health-chat-template.html.j2`
-- `reports/executive-briefing-template.html.j2`
-- `reports/raid-digest-template.html.j2`
-- `reports/adr-log-template.html.j2`
+- `reports/weekly-status-email-template.html`
+- `reports/portfolio-health-chat-template.html`
+- `reports/executive-briefing-template.html`
+- `reports/raid-digest-template.html`
+- `reports/adr-log-template.html`
 - `reports/_theme.css`
 
 ## Setup
