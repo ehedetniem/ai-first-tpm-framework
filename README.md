@@ -11,7 +11,7 @@ This framework helps teams:
 ## Start here
 
 - Quick onboarding: `docs/getting-started.md`
-- VS Code + GitHub Copilot usage: `docs/getting-started.md#step-0---choose-your-entry-mode-vs-code--github-copilot-recommended`
+- VS Code + GitHub Copilot usage (non-technical PM path): `docs/getting-started.md`
 - Repo navigation: `docs/repository-map.md`
 - Lifecycle model: `lifecycle/program-lifecycle.md`
 - Governance model: `governance/hitl-governance.md`

@@ -1,82 +1,70 @@
-# Getting Started in 30 Minutes
+# Getting Started for Non-Technical PMs (Copilot-First)
 
-Use this guide to adopt the framework quickly.
+This guide is the easiest way to use this framework if you are not a developer.
 
-## Step 0 - Choose your entry mode (VS Code + GitHub Copilot recommended)
+## What is true today
 
-This repo supports three ways to start:
+- You should use VS Code with GitHub Copilot Chat.
+- You do not need a built-in XPO runtime agent to run this framework.
+- The current workflow is automation-first, with human review before publish.
+- You can start from sample data and replace only business content each week.
 
-1. VS Code + GitHub Copilot (recommended)
-- Open the repo in VS Code.
-- Use Copilot Chat to update JSON inputs in `data/`.
-- Run `python scripts/generate_reports.py` and review `output/`.
+## Step 1 - Open the repo in VS Code
 
-2. Script-first (no agent required)
-- Edit templates and data files manually.
-- Run `./scripts/run_reports.ps1` (Windows) or `bash ./scripts/run_reports.sh` (macOS/Linux).
+1. Open VS Code.
+2. Open this repository folder.
+3. Open Copilot Chat.
 
-3. Starter agent pattern
-- Use `agents/pulse-orchestrator/README.md` as a design pattern for your own orchestrator.
+## Step 2 - Start from ready-made samples
 
-Important:
-- There is no built-in `XPO` runtime agent in this repository.
-- Start with scripts and templates first, then add orchestration only if needed.
+Use these files as your starting point:
 
-## Step 1 - Read the operating model
+- `data/sample-weekly-status.json`
+- `data/sample-portfolio-health.json`
+- `data/sample-executive-portfolio-radar.json`
 
-- `lifecycle/program-lifecycle.md`
-- `governance/hitl-governance.md`
-- `automation/maturity-model.md`
+You can keep the same file structure and only change values.
 
-## Step 2 - Stand up your first weekly cycle
+## Step 3 - Ask Copilot to update your weekly signals
 
-Create a working folder in your environment and copy:
-- `templates/weekly-status-template.md`
-- `templates/risk-log-template.md`
-- `templates/portfolio-rollup-template.md`
-- `templates/adr-template.md`
+Paste one of these prompts into Copilot Chat:
 
-## Step 3 - Set accountability once (not a weekly manual task)
+- Update `data/sample-executive-portfolio-radar.json` with this week's anonymized portfolio signals. Keep the same schema.
+- Update `data/sample-weekly-status.json` using these notes and keep field names unchanged.
+- Validate all files in `data/` and fix missing required fields for report generation.
 
-Define and store ownership in your program system of record:
-- Program owner
-- Decision approver(s)
-- Risk owner(s)
-- Reporting owner
+## Step 4 - Ask Copilot to generate reports
 
-In an AI-first flow, this is configured once and reused by generated artifacts.
+Ask Copilot to run one of these:
 
-## Step 4 - Run the automation-first cadence
+- `python scripts/generate_reports.py`
+- `./scripts/run_reports.ps1` (Windows)
 
-Each week, use Copilot + scripts to generate drafts from current signals:
-1. Refresh program data inputs (YAML/JSON/source signals)
-2. Generate report pack (`python scripts/generate_reports.py` or runner scripts)
-3. Review only exceptions, risks, and decision deltas
-4. Approve and publish (HITL gate)
+Generated files appear in `output/`.
 
-This reduces manual artifact writing while preserving human accountability.
+## Step 5 - Review only what matters
 
-## Step 5 - Measure automation outcomes
+Do not rewrite full reports manually. Review these items:
 
-After 2 to 4 cycles, evaluate:
-- Draft-to-publish cycle time
-- % of sections auto-generated without rework
-- Decision traceability and audit quality
-- TPM time shifted from formatting to execution and stakeholder alignment
+- Risks, blockers, and decision asks
+- Any changed KPI numbers
+- Leadership narrative for accuracy and tone
 
-## Optional Step 6 - Publish formatted updates
+After review, publish to your normal channels.
 
-For email or chat-ready formatting, adapt the HTML samples in `reports/README.md`.
+## Step 6 - Reuse this weekly rhythm
 
-## Optional Step 7 - Automate report generation
+Each week, repeat:
 
-Use `docs/report-generation.md` to generate HTML reports from JSON inputs.
+1. Paste fresh notes into Copilot
+2. Update JSON signals
+3. Generate reports
+4. Review deltas
+5. Publish
 
-Suggested Copilot prompts in VS Code:
-- "Update `data/sample-executive-portfolio-radar.json` with this week's anonymized signals and keep schema intact."
-- "Generate reports and refresh samples in `reports/` from `output/`."
-- "Create a weekly status draft from `data/sample-weekly-status.json` and summarize key risks."
+## Where to go next
 
-## Optional Step 8 - Formalize decision records
-
-Use `docs/adr-instructions.md` to standardize ADR creation and approval.
+- Report generation details: `docs/report-generation.md`
+- Report samples: `reports/README.md`
+- Decision records (ADR): `docs/adr-instructions.md`
+- Starter orchestration pattern: `agents/pulse-orchestrator/README.md`
