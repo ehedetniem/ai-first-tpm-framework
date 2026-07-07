@@ -9,7 +9,10 @@
 <body>
   <div class="report-shell">
     <div class="report-header">
-      <div class="report-id">Weekly Report</div>
+      <div class="header-top">
+        <div class="report-id">Weekly Report</div>
+        <button class="theme-toggle" type="button" onclick="toggleTheme()">Switch to Light</button>
+      </div>
       <h1 class="report-title">Weekly Program Status</h1>
       <p class="report-subtitle">Program: {{ data.program }} | Week Ending: {{ data.weekEnding }}</p>
       <div class="meta-grid">
@@ -99,5 +102,27 @@
       Generated with AI-First TPM Framework. Human review required before sending.
     </div>
   </div>
+
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("report-theme") || "dark";
+      applyTheme(savedTheme);
+    })();
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      const button = document.querySelector(".theme-toggle");
+      if (button) {
+        button.textContent = theme === "dark" ? "Switch to Light" : "Switch to Dark";
+      }
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
+      localStorage.setItem("report-theme", next);
+      applyTheme(next);
+    }
+  </script>
 </body>
 </html>
