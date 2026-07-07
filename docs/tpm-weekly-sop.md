@@ -8,7 +8,7 @@ Create leadership-ready updates with a consistent, low-friction process:
 
 1. Use transcript or intake notes as source input
 2. Orchestrate updates with Copilot
-3. Generate reports
+3. Validate and generate reports
 4. Review deltas
 5. Publish with human approval
 
@@ -35,24 +35,40 @@ Recommended archive location:
 
 ## Weekly cadence (per program)
 
-1. Collect source input
-- Export meeting transcript or notes and save under the program slug path.
+### 1) Collect source input
 
-2. Run Copilot orchestration
+- Export meeting transcript or notes and save under the program slug path.
+- Keep one intake stream per program to preserve traceability.
+
+### 2) Run Copilot orchestration
+
 - Use prompt from `docs/copilot-orchestrated-mode.md`.
 - Ensure prompt scope is program-specific (`<program-slug>`).
 
-3. Validate and generate
-- Copilot should validate JSON fields and run report generation.
-- Confirm no missing owners/dates unless marked `TBD`.
+### 3) Validate and generate
 
-4. Review exceptions only
+Run from repo root:
+
+1. `python agents/pulse-orchestrator/pulse.py validate`
+2. `python agents/pulse-orchestrator/pulse.py reports`
+
+Quality checks:
+
+- No missing owners/dates unless marked `TBD`
+- No invented facts
+- No cross-program data leakage in one run
+
+### 4) Review exceptions only
+
+Review only high-signal deltas:
+
 - Risks/blockers
 - Decision asks
 - KPI deltas
 - ADR draft quality (if created)
 
-5. Approve and publish
+### 5) Approve and publish
+
 - Publish only after human review.
 - Archive outputs to dated program folder for traceability.
 
@@ -71,12 +87,14 @@ Do:
 - Keep runs scoped to one program
 - Keep owner/date fields explicit
 - Keep language concise and executive
+- Run validate before every report generation
 
 Don't:
 
 - Mix multiple programs in one run
 - Publish unreviewed drafts
 - Invent missing decision facts
+- Skip archive step
 
 ## Quality gate checklist
 
@@ -86,7 +104,17 @@ Before publish, confirm:
 2. Top risks and blockers are accurate
 3. Decision asks have owners and due dates (or `TBD`)
 4. ADR status and rationale are clear
-5. Outputs archived for audit trail
+5. Validation passed with no blocking errors
+6. Outputs archived for audit trail
+
+## Escalation rules
+
+Escalate to human reviewer immediately if:
+
+- A risk severity changed to High/Critical
+- A decision owner or due date is unknown for an executive ask
+- KPI delta is large and explanation is missing
+- A dependency blocker impacts milestone confidence
 
 ## Source-of-truth note
 
