@@ -10,6 +10,10 @@ Source templates and shared CSS used by `scripts/generate_reports.py` are in `te
 - `../templates/reports/executive-briefing-template.html`
 - `../templates/reports/raid-digest-template.html`
 - `../templates/reports/adr-log-template.html`
+- `../templates/reports/daily-ops-pulse-template.html`
+- `../templates/reports/dependency-critical-path-template.html`
+- `../templates/reports/capacity-milestone-confidence-template.html`
+- `../templates/reports/adoption-change-readout-template.html`
 - `../templates/reports/_theme.css`
 
 These `*-template.html` files are Jinja templates and will show placeholders such as `{{ ... }}` and `{% ... %}` when opened directly.
@@ -22,6 +26,10 @@ Render them first with `python scripts/generate_reports.py`.
 - `executive-briefing-sample.html`
 - `raid-digest-sample.html`
 - `adr-log-sample.html`
+- `daily-ops-pulse-sample.html`
+- `dependency-critical-path-review-sample.html`
+- `capacity-milestone-confidence-sample.html`
+- `adoption-change-readout-sample.html`
 
 ## Notes
 

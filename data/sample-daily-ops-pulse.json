@@ -1,0 +1,27 @@
+{
+  "date": "2026-07-07",
+  "owner": "Portfolio TPM Lead",
+  "blockersOpen": 3,
+  "criticalDue24h": 4,
+  "escalations": 1,
+  "resolvedLast24h": 5,
+  "topBlockers": [
+    {
+      "title": "Portfolio API access pending",
+      "owner": "Platform Eng",
+      "eta": "2026-07-08",
+      "action": "Escalate to service owner for temporary token"
+    },
+    {
+      "title": "Finance extract quality mismatch",
+      "owner": "Data Lead",
+      "eta": "2026-07-09",
+      "action": "Run schema validation + replay latest batch"
+    }
+  ],
+  "todayActions": [
+    "Close QBR metric mapping issue by end of day",
+    "Confirm dependency handshake with upstream platform team",
+    "Publish 4pm leadership pulse in Teams"
+  ]
+}

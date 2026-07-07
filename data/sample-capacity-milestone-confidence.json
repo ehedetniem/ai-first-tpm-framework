@@ -1,0 +1,33 @@
+{
+  "month": "July 2026",
+  "owner": "Program Operations TPM",
+  "capacity": {
+    "planned": 120,
+    "available": 104,
+    "delta": -16
+  },
+  "milestones": [
+    {
+      "name": "Working prototype demo",
+      "date": "2026-07-15",
+      "confidence": "High",
+      "risk": "Mock data only for one module"
+    },
+    {
+      "name": "Portfolio integration GA",
+      "date": "2026-07-28",
+      "confidence": "Medium",
+      "risk": "Dependency on upstream API stabilization"
+    },
+    {
+      "name": "Executive showcase",
+      "date": "2026-07-31",
+      "confidence": "Medium",
+      "risk": "Narrative alignment not finalized"
+    }
+  ],
+  "asks": [
+    "Approve temporary contractor support for 2 weeks",
+    "Prioritize upstream API bug fixes in sprint backlog"
+  ]
+}

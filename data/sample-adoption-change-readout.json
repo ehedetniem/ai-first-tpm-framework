@@ -1,0 +1,23 @@
+{
+  "month": "July 2026",
+  "owner": "Change Management TPM",
+  "kpis": {
+    "activeUsers": 184,
+    "weeklyRetention": 72,
+    "trainingCompletion": 81,
+    "supportTickets": 23
+  },
+  "wins": [
+    "Two pilot teams moved from manual to standardized report cadence",
+    "Leadership now consuming one weekly portfolio digest"
+  ],
+  "frictions": [
+    "Users still unsure when to escalate architecture decisions",
+    "Onboarding docs are spread across too many locations"
+  ],
+  "nextActions": [
+    "Publish one-page escalation playbook",
+    "Consolidate onboarding links into a single landing page",
+    "Run office hours twice next week"
+  ]
+}

@@ -4,6 +4,10 @@ Param(
     [string]$ExecutiveJson = "data/sample-executive-briefing.json",
     [string]$RaidJson = "data/sample-raid-digest.json",
     [string]$AdrJson = "data/sample-adr-log.json",
+    [string]$DailyOpsJson = "data/sample-daily-ops-pulse.json",
+    [string]$DependencyJson = "data/sample-dependency-critical-path.json",
+    [string]$CapacityJson = "data/sample-capacity-milestone-confidence.json",
+    [string]$AdoptionJson = "data/sample-adoption-change-readout.json",
     [string]$OutputDir = "output"
 )
 
@@ -13,6 +17,6 @@ Write-Host "[INFO] Installing dependencies..."
 python -m pip install -r requirements.txt
 
 Write-Host "[INFO] Generating reports..."
-python scripts/generate_reports.py --weekly-json $WeeklyJson --portfolio-json $PortfolioJson --executive-json $ExecutiveJson --raid-json $RaidJson --adr-json $AdrJson --output-dir $OutputDir
+python scripts/generate_reports.py --weekly-json $WeeklyJson --portfolio-json $PortfolioJson --executive-json $ExecutiveJson --raid-json $RaidJson --adr-json $AdrJson --daily-ops-json $DailyOpsJson --dependency-json $DependencyJson --capacity-json $CapacityJson --adoption-json $AdoptionJson --output-dir $OutputDir
 
 Write-Host "[INFO] Done. Check output in '$OutputDir'."

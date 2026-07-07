@@ -36,6 +36,10 @@ Generated outputs:
 - `output/executive-briefing.html`
 - `output/raid-digest.html`
 - `output/adr-log.html`
+- `output/daily-ops-pulse.html`
+- `output/dependency-critical-path-review.html`
+- `output/capacity-milestone-confidence.html`
+- `output/adoption-change-readout.html`
 
 ## What this repo contains
 

@@ -1,0 +1,30 @@
+{
+  "weekEnding": "2026-07-07",
+  "owner": "Cross-Org TPM",
+  "items": [
+    {
+      "dependency": "Fabric Data Agent readiness",
+      "upstreamOwner": "Data Platform",
+      "downstreamImpact": "QBR real-data demo blocked",
+      "targetDate": "2026-07-15",
+      "status": "At Risk",
+      "nextStep": "Daily sync with data platform lead"
+    },
+    {
+      "dependency": "Portfolio module integration",
+      "upstreamOwner": "Portfolio Eng",
+      "downstreamImpact": "Demo narrative incomplete",
+      "targetDate": "2026-07-10",
+      "status": "In Progress",
+      "nextStep": "Finalize API contract by Thursday"
+    },
+    {
+      "dependency": "Security group access",
+      "upstreamOwner": "IT Admin",
+      "downstreamImpact": "Testers blocked from validation",
+      "targetDate": "2026-07-08",
+      "status": "Open",
+      "nextStep": "Submit priority request with manager approval"
+    }
+  ]
+}

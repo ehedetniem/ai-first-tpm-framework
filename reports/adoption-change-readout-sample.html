@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ADR Decision Log</title>
+  <title>Adoption and Change Readout</title>
   <style>:root {
   color-scheme: dark;
   --bg: #07111f;
@@ -441,142 +441,61 @@ html[data-theme=&#34;light&#34;] .table tr:nth-child(even) td {
   <div class="report-shell">
     <div class="report-header">
       <div class="header-top">
-        <div class="report-id">ADR Log</div>
+        <div class="report-id">Adoption Readout</div>
         <button class="theme-toggle" type="button" onclick="toggleTheme()">Switch to Light</button>
       </div>
-      <h1 class="report-title">ADR Decision Log</h1>
-      <p class="report-subtitle">Week Ending: 2026-07-06</p>
-
+      <h1 class="report-title">Adoption and Change Readout</h1>
+      <p class="report-subtitle">Month: July 2026 | Owner: Change Management TPM</p>
       <div class="kpi-row">
-        <div class="kpi-item">
-          <div class="kpi-label">Total Decisions</div>
-          <div class="kpi-value">3</div>
-        </div>
-        <div class="kpi-item">
-          <div class="kpi-label">Accepted</div>
-          <div class="kpi-value green">2</div>
-        </div>
-        <div class="kpi-item">
-          <div class="kpi-label">In Flight</div>
-          <div class="kpi-value amber">1</div>
-        </div>
-        <div class="kpi-item">
-          <div class="kpi-label">Rejected / Superseded</div>
-          <div class="kpi-value red">0</div>
-        </div>
+        <div class="kpi-item"><div class="kpi-label">Active Users</div><div class="kpi-value green">184</div></div>
+        <div class="kpi-item"><div class="kpi-label">Weekly Retention %</div><div class="kpi-value">72</div></div>
+        <div class="kpi-item"><div class="kpi-label">Training Completion %</div><div class="kpi-value">81</div></div>
+        <div class="kpi-item"><div class="kpi-label">Support Tickets</div><div class="kpi-value amber">23</div></div>
       </div>
     </div>
 
-    <div class="report-section">
-      <p class="section-kicker">Governance Signal</p>
-      <div class="signal-grid">
-        <div class="signal-card">
-          <p class="signal-title">Approval Completion</p>
-          <div class="signal-value">66%</div>
-        </div>
-        <div class="signal-card">
-          <p class="signal-title">Pending Approval Metadata</p>
-          <div class="signal-value">1</div>
-          <div class="signal-note">
+    <div class="report-section grid-two">
+      <div>
+        <h2 class="section-title">Wins</h2>
+        <div class="callout success">
+          <ul class="list-compact">
             
-            Action Required
+            <li>Two pilot teams moved from manual to standardized report cadence</li>
             
-          </div>
+            <li>Leadership now consuming one weekly portfolio digest</li>
+            
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h2 class="section-title">Friction Points</h2>
+        <div class="callout critical">
+          <ul class="list-compact">
+            
+            <li>Users still unsure when to escalate architecture decisions</li>
+            
+            <li>Onboarding docs are spread across too many locations</li>
+            
+          </ul>
         </div>
       </div>
     </div>
 
-    
     <div class="report-section">
-      <h2 class="section-title">Action Required</h2>
-      <div class="callout warning">
-        1 decision(s) are missing complete approval metadata. Validate approver and approval date before publication.
-      </div>
-      <ul class="list-compact">
-        
-          <li><strong>ADR-2026-07-03</strong> - Escalation protocol for red program risks (Owner: Program TPM)</li>
-        
-      </ul>
-    </div>
-    
-
-    <div class="report-section">
-      <h2 class="section-title">Decision Summary</h2>
+      <h2 class="section-title">Next Actions</h2>
       <table class="table">
-        <tr><th>ID</th><th>Title</th><th>Status</th><th>Owner</th></tr>
+        <tr><th>Action</th></tr>
         
-        <tr>
-          <td>ADR-2026-07-01</td>
-          <td>Portfolio reporting cadence standardization</td>
-          <td>
-            <span class="status-pill green">Accepted</span>
-          </td>
-          <td>Portfolio TPM Lead</td>
-        </tr>
+        <tr><td>Publish one-page escalation playbook</td></tr>
         
-        <tr>
-          <td>ADR-2026-07-03</td>
-          <td>Escalation protocol for red program risks</td>
-          <td>
-            <span class="status-pill amber">Proposed</span>
-          </td>
-          <td>Program TPM</td>
-        </tr>
+        <tr><td>Consolidate onboarding links into a single landing page</td></tr>
         
-        <tr>
-          <td>ADR-2026-07-04</td>
-          <td>Artifact quality review gate</td>
-          <td>
-            <span class="status-pill green">Accepted</span>
-          </td>
-          <td>Operations TPM</td>
-        </tr>
+        <tr><td>Run office hours twice next week</td></tr>
         
       </table>
     </div>
 
-    <div class="report-section">
-      <h2 class="section-title">Decision Details</h2>
-      <table class="table">
-        <tr><th>ID</th><th>Title</th><th>Status</th><th>Owner</th><th>Approved By</th><th>Approved At</th></tr>
-        
-        <tr>
-          <td>ADR-2026-07-01</td>
-          <td>Portfolio reporting cadence standardization</td>
-          <td>
-            <span class="status-pill green">Accepted</span>
-          </td>
-          <td>Portfolio TPM Lead</td>
-          <td>Director</td>
-          <td>2026-07-01</td>
-        </tr>
-        
-        <tr>
-          <td>ADR-2026-07-03</td>
-          <td>Escalation protocol for red program risks</td>
-          <td>
-            <span class="status-pill amber">Proposed</span>
-          </td>
-          <td>Program TPM</td>
-          <td>Pending</td>
-          <td>Pending</td>
-        </tr>
-        
-        <tr>
-          <td>ADR-2026-07-04</td>
-          <td>Artifact quality review gate</td>
-          <td>
-            <span class="status-pill green">Accepted</span>
-          </td>
-          <td>Operations TPM</td>
-          <td>Sr Manager</td>
-          <td>2026-07-04</td>
-        </tr>
-        
-      </table>
-    </div>
-
-    <div class="report-footer">Generated by AI-First TPM Framework. Confirm all approval metadata before publication.</div>
+    <div class="report-footer">Generated by AI-First TPM Framework. Validate KPI definitions before sharing externally.</div>
   </div>
 
   <script>

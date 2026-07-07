@@ -92,6 +92,26 @@ def main():
         help="Path to ADR log JSON input",
     )
     parser.add_argument(
+        "--daily-ops-json",
+        default="data/sample-daily-ops-pulse.json",
+        help="Path to daily ops pulse JSON input",
+    )
+    parser.add_argument(
+        "--dependency-json",
+        default="data/sample-dependency-critical-path.json",
+        help="Path to dependency critical path JSON input",
+    )
+    parser.add_argument(
+        "--capacity-json",
+        default="data/sample-capacity-milestone-confidence.json",
+        help="Path to capacity and milestone confidence JSON input",
+    )
+    parser.add_argument(
+        "--adoption-json",
+        default="data/sample-adoption-change-readout.json",
+        help="Path to adoption and change readout JSON input",
+    )
+    parser.add_argument(
         "--output-dir",
         default="output",
         help="Output directory for generated HTML files",
@@ -104,6 +124,10 @@ def main():
     executive_data = load_json(root / args.executive_json)
     raid_data = load_json(root / args.raid_json)
     adr_data = prepare_adr_view_model(load_json(root / args.adr_json))
+    daily_ops_data = load_json(root / args.daily_ops_json)
+    dependency_data = load_json(root / args.dependency_json)
+    capacity_data = load_json(root / args.capacity_json)
+    adoption_data = load_json(root / args.adoption_json)
 
     templates_dir = root / "templates" / "reports"
     env = Environment(
@@ -117,12 +141,20 @@ def main():
     executive_template = env.get_template("executive-briefing-template.html")
     raid_template = env.get_template("raid-digest-template.html")
     adr_template = env.get_template("adr-log-template.html")
+    daily_ops_template = env.get_template("daily-ops-pulse-template.html")
+    dependency_template = env.get_template("dependency-critical-path-template.html")
+    capacity_template = env.get_template("capacity-milestone-confidence-template.html")
+    adoption_template = env.get_template("adoption-change-readout-template.html")
 
     weekly_html = weekly_template.render(data=weekly_data, theme_css=theme_css)
     portfolio_html = portfolio_template.render(data=portfolio_data, theme_css=theme_css)
     executive_html = executive_template.render(data=executive_data, theme_css=theme_css)
     raid_html = raid_template.render(data=raid_data, theme_css=theme_css)
     adr_html = adr_template.render(data=adr_data, theme_css=theme_css)
+    daily_ops_html = daily_ops_template.render(data=daily_ops_data, theme_css=theme_css)
+    dependency_html = dependency_template.render(data=dependency_data, theme_css=theme_css)
+    capacity_html = capacity_template.render(data=capacity_data, theme_css=theme_css)
+    adoption_html = adoption_template.render(data=adoption_data, theme_css=theme_css)
 
     output_dir = root / args.output_dir
     write_text(output_dir / "weekly-status-email.html", weekly_html)
@@ -130,6 +162,10 @@ def main():
     write_text(output_dir / "executive-briefing.html", executive_html)
     write_text(output_dir / "raid-digest.html", raid_html)
     write_text(output_dir / "adr-log.html", adr_html)
+    write_text(output_dir / "daily-ops-pulse.html", daily_ops_html)
+    write_text(output_dir / "dependency-critical-path-review.html", dependency_html)
+    write_text(output_dir / "capacity-milestone-confidence.html", capacity_html)
+    write_text(output_dir / "adoption-change-readout.html", adoption_html)
 
     print("Generated:")
     print(f"- {output_dir / 'weekly-status-email.html'}")
@@ -137,6 +173,10 @@ def main():
     print(f"- {output_dir / 'executive-briefing.html'}")
     print(f"- {output_dir / 'raid-digest.html'}")
     print(f"- {output_dir / 'adr-log.html'}")
+    print(f"- {output_dir / 'daily-ops-pulse.html'}")
+    print(f"- {output_dir / 'dependency-critical-path-review.html'}")
+    print(f"- {output_dir / 'capacity-milestone-confidence.html'}")
+    print(f"- {output_dir / 'adoption-change-readout.html'}")
 
 
 if __name__ == "__main__":
