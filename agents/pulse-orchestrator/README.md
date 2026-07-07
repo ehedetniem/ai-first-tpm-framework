@@ -1,46 +1,68 @@
-# Pulse Orchestrator (TPM Starter Agent)
+# Pulse Orchestrator
 
-Pulse Orchestrator is a starter agent concept for teams adopting this framework.
+Pulse Orchestrator is the in-repo TPM agent for the AI-First TPM Framework. It runs today — no external service required.
 
-Purpose:
-- route TPM requests to the right artifact flow
-- preserve decision and risk context
-- enforce human approval boundaries for critical outputs
+## What it does
 
-## Core responsibilities
+- Routes TPM requests (status update, portfolio rollup, ADR drafting, risk review, stakeholder update) to the right artifact flow
+- Extracts signals from meeting transcripts and intake files
+- Updates JSON data files while preserving schema
+- Validates JSON before report generation
+- Generates first-draft artifacts with human-in-the-loop governance enforced
 
-1. Intake and classify requests
-- status update
-- portfolio rollup
-- ADR drafting
-- risk review
-- stakeholder communication
+## How to use it
 
-2. Build context pack
-- latest weekly status
-- open risks
-- pending decisions
-- relevant prior ADRs
+### Option A — CLI (fastest path)
 
-3. Generate first-pass artifacts
-- weekly status draft
-- portfolio summary draft
-- ADR draft
-- leadership communication draft
+```bash
+# Weekly status summary
+python agents/pulse-orchestrator/pulse.py status
 
-4. Apply governance checks
-- identify where human approval is mandatory
-- flag unsupported claims
-- surface missing data before publishing
+# Portfolio health summary
+python agents/pulse-orchestrator/pulse.py portfolio
 
-## Suggested commands (conceptual)
+# Open risks and blockers
+python agents/pulse-orchestrator/pulse.py risks
 
-- `@pulse status [program]`
-- `@pulse portfolio`
-- `@pulse adr [decision-title]`
-- `@pulse risks [program]`
-- `@pulse stakeholder-update [audience]`
+# Generate a new ADR draft
+python agents/pulse-orchestrator/pulse.py adr "Decision title" --program "My Program"
 
-## Implementation note
+# Validate all data JSON files
+python agents/pulse-orchestrator/pulse.py validate
 
-This repository provides process and templates first. You can implement Pulse Orchestrator in the AI platform of your choice using these docs as the control plane.
+# Generate all HTML reports
+python agents/pulse-orchestrator/pulse.py reports
+```
+
+### Option B — GitHub Copilot Chat
+
+1. Open this repo in VS Code with GitHub Copilot Chat.
+2. Start your prompt with:
+   ```
+   Act as Pulse Orchestrator for this repo.
+   See agents/pulse-orchestrator/system-prompt.md for behavior rules.
+   ```
+3. Choose a task playbook from `agents/pulse-orchestrator/playbooks/` and paste the prompt.
+
+## Files in this package
+
+| File | Purpose |
+|---|---|
+| `system-prompt.md` | Agent behavior spec — use as Copilot system prompt |
+| `commands.md` | Full command reference card |
+| `pulse.py` | CLI entrypoint |
+| `validate.py` | JSON schema validation utility |
+| `playbooks/weekly-status.md` | Prompt playbook: weekly status update |
+| `playbooks/portfolio-rollup.md` | Prompt playbook: portfolio rollup |
+| `playbooks/adr-draft.md` | Prompt playbook: ADR draft creation |
+| `playbooks/risk-review.md` | Prompt playbook: risk review |
+| `playbooks/stakeholder-update.md` | Prompt playbook: stakeholder update |
+
+## Governance
+
+All outputs are first drafts. Human approval is required before sharing any artifact externally.
+See `governance/hitl-governance.md`.
+
+## Full documentation
+
+`docs/orchestration-agent.md`
