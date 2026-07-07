@@ -12,6 +12,35 @@
       <div class="report-id">Portfolio Snapshot</div>
       <h1 class="report-title">Portfolio Health Snapshot</h1>
       <p class="report-subtitle">Week Ending: {{ data.weekEnding }} | Audience: Leadership</p>
+
+      <div class="signal-grid">
+        <div class="signal-card">
+          <p class="signal-title">Portfolio Posture</p>
+          <div class="signal-value">
+            {% if data.red > 0 %}
+            Watch
+            {% elif data.amber > 0 %}
+            Stable With Watch Items
+            {% else %}
+            Healthy
+            {% endif %}
+          </div>
+          <div class="signal-note">Red: {{ data.red }} | Amber: {{ data.amber }} | Green: {{ data.green }}</div>
+        </div>
+        <div class="signal-card">
+          <p class="signal-title">Top Watch Program</p>
+          <div class="signal-value">
+            {% set watch = namespace(name='No red/amber programs') %}
+            {% for row in data.rows %}
+              {% set health = row.health|lower %}
+              {% if watch.name == 'No red/amber programs' and (health == 'red' or health == 'amber' or health == 'yellow') %}
+                {% set watch.name = row.program %}
+              {% endif %}
+            {% endfor %}
+            {{ watch.name }}
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="report-section">
@@ -50,10 +79,17 @@
           <td>{{ row.program }}</td>
           <td>
             {% set health = row.health|lower %}
-            <span class="badge {% if health == 'green' %}green{% elif health == 'amber' or health == 'yellow' %}amber{% else %}red{% endif %}">{{ row.health }}</span>
+            <span class="status-pill {% if health == 'green' %}green{% elif health == 'amber' or health == 'yellow' %}amber{% else %}red{% endif %}">{{ row.health }}</span>
           </td>
           <td>{{ row.risk }}</td>
-          <td>{{ row.decisionPending }}</td>
+          <td>
+            {% set pending = row.decisionPending|string|lower %}
+            {% if pending == 'yes' or pending == 'true' %}
+            <span class="status-pill amber">Yes</span>
+            {% else %}
+            <span class="status-pill green">No</span>
+            {% endif %}
+          </td>
         </tr>
         {% endfor %}
       </table>
@@ -62,7 +98,7 @@
     <div class="report-section">
       <h2 class="section-title">Leadership Asks</h2>
       <div class="callout warning">
-        <ul>
+        <ul class="list-compact">
           {% for ask in data.leadershipAsks %}
           <li>{{ ask }}</li>
           {% endfor %}

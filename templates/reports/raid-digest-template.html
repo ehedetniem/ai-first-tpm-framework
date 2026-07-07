@@ -12,6 +12,54 @@
       <div class="report-id">RAID Digest</div>
       <h1 class="report-title">RAID Weekly Digest</h1>
       <p class="report-subtitle">Week Ending: {{ data.weekEnding }}</p>
+
+      {% set ns = namespace(high=0, medium=0, low=0) %}
+      {% for e in data.entries %}
+        {% set sev = e.severity|lower %}
+        {% if sev == 'high' %}
+          {% set ns.high = ns.high + 1 %}
+        {% elif sev == 'medium' %}
+          {% set ns.medium = ns.medium + 1 %}
+        {% else %}
+          {% set ns.low = ns.low + 1 %}
+        {% endif %}
+      {% endfor %}
+
+      <div class="kpi-row">
+        <div class="kpi-item">
+          <div class="kpi-label">Total Entries</div>
+          <div class="kpi-value">{{ data.entries|length }}</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">High Severity</div>
+          <div class="kpi-value red">{{ ns.high }}</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">Medium Severity</div>
+          <div class="kpi-value amber">{{ ns.medium }}</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">Low Severity</div>
+          <div class="kpi-value green">{{ ns.low }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-section">
+      <p class="section-kicker">Top Watch</p>
+      {% if data.entries and data.entries|length > 0 %}
+      <div class="signal-grid">
+        <div class="signal-card">
+          <p class="signal-title">Highest Severity Item</p>
+          <div class="signal-value">{{ data.entries[0].title }}</div>
+          <div class="signal-note">Owner: {{ data.entries[0].owner }}</div>
+        </div>
+        <div class="signal-card">
+          <p class="signal-title">Immediate Next Action</p>
+          <div class="signal-value">{{ data.entries[0].nextAction }}</div>
+        </div>
+      </div>
+      {% endif %}
     </div>
 
     <div class="report-section">
@@ -24,7 +72,7 @@
           <td>{{ e.title }}</td>
           <td>
             {% set sev = e.severity|lower %}
-            <span class="badge {% if sev == 'high' %}red{% elif sev == 'medium' %}amber{% else %}green{% endif %}">{{ e.severity }}</span>
+            <span class="status-pill {% if sev == 'high' %}red{% elif sev == 'medium' %}amber{% else %}green{% endif %}">{{ e.severity }}</span>
           </td>
           <td>{{ e.owner }}</td>
           <td>{{ e.nextAction }}</td>

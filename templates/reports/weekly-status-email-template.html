@@ -21,15 +21,36 @@
           <div class="meta-label">Health</div>
           <div class="meta-value">
             {% set health = data.health|lower %}
-            <span class="badge {% if health == 'green' %}green{% elif health == 'amber' or health == 'yellow' %}amber{% else %}red{% endif %}">{{ data.health }}</span>
+            <span class="status-pill {% if health == 'green' %}green{% elif health == 'amber' or health == 'yellow' %}amber{% else %}red{% endif %}">{{ data.health }}</span>
           </div>
         </div>
       </div>
     </div>
 
     <div class="report-section">
+      <p class="section-kicker">Leadership Signal</p>
+      <div class="signal-grid">
+        <div class="signal-card">
+          <p class="signal-title">Top Win This Week</p>
+          <div class="signal-value">{{ data.highlights[0] if data.highlights and data.highlights|length > 0 else "No update provided" }}</div>
+        </div>
+        <div class="signal-card">
+          <p class="signal-title">Top Watch Item</p>
+          <div class="signal-value">{{ data.risks[0].risk if data.risks and data.risks|length > 0 else "No active blocker reported" }}</div>
+          {% if data.risks and data.risks|length > 0 %}
+          <div class="signal-note">Owner: {{ data.risks[0].owner }}</div>
+          {% endif %}
+        </div>
+        <div class="signal-card">
+          <p class="signal-title">Decision Needed</p>
+          <div class="signal-value">{{ data.decisionsNeeded[0] if data.decisionsNeeded and data.decisionsNeeded|length > 0 else "No decision needed" }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-section">
       <h2 class="section-title">Highlights</h2>
-      <ul>
+      <ul class="list-compact">
         {% for h in data.highlights %}
         <li>{{ h }}</li>
         {% endfor %}
@@ -57,7 +78,7 @@
     <div class="report-section">
       <h2 class="section-title">Decisions Needed</h2>
       <div class="callout warning">
-        <ul>
+        <ul class="list-compact">
           {% for d in data.decisionsNeeded %}
           <li>{{ d }}</li>
           {% endfor %}
@@ -67,7 +88,7 @@
 
     <div class="report-section">
       <h2 class="section-title">Next 7 Days</h2>
-      <ul>
+      <ul class="list-compact">
         {% for n in data.next7Days %}
         <li>{{ n }}</li>
         {% endfor %}

@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ADR Decision Log</title>
   <style>:root {
-  --bg: #f3f6fb;
+  --bg: #eef2f8;
   --surface: #ffffff;
+  --surface-soft: #f7f9fc;
   --ink: #0f172a;
   --muted: #475569;
-  --line: #dbe4f0;
+  --line: #d2dcea;
   --brand: #0b5cab;
   --brand-dark: #083f78;
   --brand-soft: #eaf2ff;
@@ -19,7 +20,8 @@
   --amber-soft: #fff7e8;
   --red: #b42318;
   --red-soft: #fff1f0;
-  --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --blue-soft: #eef4ff;
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 
 * {
@@ -31,7 +33,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: &#34;Segoe UI&#34;, Calibri, Arial, sans-serif;
-  padding: 24px;
+  padding: 28px;
 }
 
 .report-shell {
@@ -39,15 +41,15 @@ body {
   margin: 0 auto;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
 
 .report-header {
-  padding: 22px 26px;
+  padding: 24px 28px;
   border-bottom: 1px solid var(--line);
-  background: linear-gradient(180deg, #ffffff, #f9fcff);
+  background: linear-gradient(180deg, #ffffff, #f4f9ff);
 }
 
 .report-id {
@@ -61,12 +63,12 @@ body {
 
 .report-title {
   margin: 0;
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1.3;
 }
 
 .report-subtitle {
-  margin: 6px 0 0 0;
+  margin: 8px 0 0 0;
   color: var(--muted);
   font-size: 14px;
 }
@@ -74,15 +76,15 @@ body {
 .meta-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
-  margin-top: 14px;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .meta-item {
-  background: #ffffff;
+  background: var(--surface-soft);
   border: 1px solid var(--line);
   border-radius: 10px;
-  padding: 10px 12px;
+  padding: 11px 13px;
 }
 
 .meta-label {
@@ -99,13 +101,22 @@ body {
 }
 
 .report-section {
-  padding: 16px 26px;
+  padding: 18px 28px;
 }
 
 .section-title {
   margin: 0 0 10px 0;
-  font-size: 17px;
+  font-size: 18px;
   color: var(--brand-dark);
+  font-weight: 700;
+}
+
+.section-kicker {
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -124,8 +135,8 @@ ul {
   border-left: 4px solid var(--brand);
   background: var(--brand-soft);
   border-radius: 0 8px 8px 0;
-  padding: 10px 12px;
-  margin-bottom: 10px;
+  padding: 12px 13px;
+  margin-bottom: 11px;
 }
 
 .callout.warning {
@@ -146,15 +157,15 @@ ul {
 .kpi-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .kpi-item {
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #ffffff;
-  padding: 10px 12px;
+  background: var(--surface-soft);
+  padding: 11px 13px;
 }
 
 .kpi-label {
@@ -185,14 +196,14 @@ ul {
 
 .table th {
   text-align: left;
-  background: linear-gradient(180deg, var(--brand), var(--brand-dark));
-  color: #ffffff;
+  background: #edf3fb;
+  color: var(--brand-dark);
   padding: 9px;
   font-weight: 700;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.3px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--line);
 }
 
 .table td {
@@ -202,7 +213,7 @@ ul {
 }
 
 .table tr:nth-child(even) td {
-  background: #f9fcff;
+  background: #f9fbff;
 }
 
 .badge {
@@ -235,8 +246,91 @@ ul {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 12px;
-  padding: 12px 26px;
+  padding: 12px 28px;
   background: #fbfdff;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border: 1px solid transparent;
+}
+
+.status-pill.green {
+  color: var(--green);
+  background: var(--green-soft);
+  border-color: #b8dfd7;
+}
+
+.status-pill.amber {
+  color: var(--amber);
+  background: var(--amber-soft);
+  border-color: #f2d8aa;
+}
+
+.status-pill.red {
+  color: var(--red);
+  background: var(--red-soft);
+  border-color: #f4c6c2;
+}
+
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.signal-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-soft);
+  padding: 12px 13px;
+}
+
+.signal-title {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+}
+
+.signal-value {
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.signal-note {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.list-compact {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.list-compact li {
+  margin-bottom: 4px;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .grid-two {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card-grid {
@@ -289,40 +383,38 @@ ul {
       <div class="report-id">ADR Log</div>
       <h1 class="report-title">ADR Decision Log</h1>
       <p class="report-subtitle">Week Ending: 2026-07-06</p>
-      <div class="meta-grid">
-        <div class="meta-item">
-          <div class="meta-label">Total Decisions</div>
-          <div class="meta-value">3</div>
+
+      <div class="kpi-row">
+        <div class="kpi-item">
+          <div class="kpi-label">Total Decisions</div>
+          <div class="kpi-value">3</div>
         </div>
-        <div class="meta-item">
-          <div class="meta-label">Accepted</div>
-          <div class="meta-value"><span class="badge green">2</span></div>
+        <div class="kpi-item">
+          <div class="kpi-label">Accepted</div>
+          <div class="kpi-value green">2</div>
         </div>
-        <div class="meta-item">
-          <div class="meta-label">In Flight</div>
-          <div class="meta-value"><span class="badge amber">1</span></div>
+        <div class="kpi-item">
+          <div class="kpi-label">In Flight</div>
+          <div class="kpi-value amber">1</div>
         </div>
-        <div class="meta-item">
-          <div class="meta-label">Pending Approval Data</div>
-          <div class="meta-value"><span class="badge amber">1</span></div>
+        <div class="kpi-item">
+          <div class="kpi-label">Rejected / Superseded</div>
+          <div class="kpi-value red">0</div>
         </div>
       </div>
     </div>
 
     <div class="report-section">
-      <h2 class="section-title">Decision Health</h2>
-      <div class="card-grid">
-        <div class="info-card">
-          <div class="label">Approval Completion</div>
-          <div class="value">66%</div>
+      <p class="section-kicker">Governance Signal</p>
+      <div class="signal-grid">
+        <div class="signal-card">
+          <p class="signal-title">Approval Completion</p>
+          <div class="signal-value">66%</div>
         </div>
-        <div class="info-card">
-          <div class="label">Rejected/Superseded</div>
-          <div class="value">0</div>
-        </div>
-        <div class="info-card">
-          <div class="label">Governance Signal</div>
-          <div class="value">
+        <div class="signal-card">
+          <p class="signal-title">Pending Approval Metadata</p>
+          <div class="signal-value">1</div>
+          <div class="signal-note">
             
             Action Required
             
@@ -337,7 +429,7 @@ ul {
       <div class="callout warning">
         1 decision(s) are missing complete approval metadata. Validate approver and approval date before publication.
       </div>
-      <ul>
+      <ul class="list-compact">
         
           <li><strong>ADR-2026-07-03</strong> - Escalation protocol for red program risks (Owner: Program TPM)</li>
         
@@ -354,7 +446,7 @@ ul {
           <td>ADR-2026-07-01</td>
           <td>Portfolio reporting cadence standardization</td>
           <td>
-            <span class="badge green">Accepted</span>
+            <span class="status-pill green">Accepted</span>
           </td>
           <td>Portfolio TPM Lead</td>
         </tr>
@@ -363,7 +455,7 @@ ul {
           <td>ADR-2026-07-03</td>
           <td>Escalation protocol for red program risks</td>
           <td>
-            <span class="badge amber">Proposed</span>
+            <span class="status-pill amber">Proposed</span>
           </td>
           <td>Program TPM</td>
         </tr>
@@ -372,7 +464,7 @@ ul {
           <td>ADR-2026-07-04</td>
           <td>Artifact quality review gate</td>
           <td>
-            <span class="badge green">Accepted</span>
+            <span class="status-pill green">Accepted</span>
           </td>
           <td>Operations TPM</td>
         </tr>
@@ -389,7 +481,7 @@ ul {
           <td>ADR-2026-07-01</td>
           <td>Portfolio reporting cadence standardization</td>
           <td>
-            <span class="badge green">Accepted</span>
+            <span class="status-pill green">Accepted</span>
           </td>
           <td>Portfolio TPM Lead</td>
           <td>Director</td>
@@ -400,7 +492,7 @@ ul {
           <td>ADR-2026-07-03</td>
           <td>Escalation protocol for red program risks</td>
           <td>
-            <span class="badge amber">Proposed</span>
+            <span class="status-pill amber">Proposed</span>
           </td>
           <td>Program TPM</td>
           <td>Pending</td>
@@ -411,7 +503,7 @@ ul {
           <td>ADR-2026-07-04</td>
           <td>Artifact quality review gate</td>
           <td>
-            <span class="badge green">Accepted</span>
+            <span class="status-pill green">Accepted</span>
           </td>
           <td>Operations TPM</td>
           <td>Sr Manager</td>

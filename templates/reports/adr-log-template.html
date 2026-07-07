@@ -12,40 +12,38 @@
       <div class="report-id">ADR Log</div>
       <h1 class="report-title">ADR Decision Log</h1>
       <p class="report-subtitle">Week Ending: {{ data.weekEnding }}</p>
-      <div class="meta-grid">
-        <div class="meta-item">
-          <div class="meta-label">Total Decisions</div>
-          <div class="meta-value">{{ data.summary.total }}</div>
+
+      <div class="kpi-row">
+        <div class="kpi-item">
+          <div class="kpi-label">Total Decisions</div>
+          <div class="kpi-value">{{ data.summary.total }}</div>
         </div>
-        <div class="meta-item">
-          <div class="meta-label">Accepted</div>
-          <div class="meta-value"><span class="badge green">{{ data.summary.accepted }}</span></div>
+        <div class="kpi-item">
+          <div class="kpi-label">Accepted</div>
+          <div class="kpi-value green">{{ data.summary.accepted }}</div>
         </div>
-        <div class="meta-item">
-          <div class="meta-label">In Flight</div>
-          <div class="meta-value"><span class="badge amber">{{ data.summary.proposed }}</span></div>
+        <div class="kpi-item">
+          <div class="kpi-label">In Flight</div>
+          <div class="kpi-value amber">{{ data.summary.proposed }}</div>
         </div>
-        <div class="meta-item">
-          <div class="meta-label">Pending Approval Data</div>
-          <div class="meta-value"><span class="badge {% if data.summary.pending > 0 %}amber{% else %}green{% endif %}">{{ data.summary.pending }}</span></div>
+        <div class="kpi-item">
+          <div class="kpi-label">Rejected / Superseded</div>
+          <div class="kpi-value red">{{ data.summary.rejected }}</div>
         </div>
       </div>
     </div>
 
     <div class="report-section">
-      <h2 class="section-title">Decision Health</h2>
-      <div class="card-grid">
-        <div class="info-card">
-          <div class="label">Approval Completion</div>
-          <div class="value">{{ data.summary.completion }}%</div>
+      <p class="section-kicker">Governance Signal</p>
+      <div class="signal-grid">
+        <div class="signal-card">
+          <p class="signal-title">Approval Completion</p>
+          <div class="signal-value">{{ data.summary.completion }}%</div>
         </div>
-        <div class="info-card">
-          <div class="label">Rejected/Superseded</div>
-          <div class="value">{{ data.summary.rejected }}</div>
-        </div>
-        <div class="info-card">
-          <div class="label">Governance Signal</div>
-          <div class="value">
+        <div class="signal-card">
+          <p class="signal-title">Pending Approval Metadata</p>
+          <div class="signal-value">{{ data.summary.pending }}</div>
+          <div class="signal-note">
             {% if data.summary.pending > 0 %}
             Action Required
             {% else %}
@@ -62,7 +60,7 @@
       <div class="callout warning">
         {{ data.summary.pending }} decision(s) are missing complete approval metadata. Validate approver and approval date before publication.
       </div>
-      <ul>
+      <ul class="list-compact">
         {% for d in data.pendingItems %}
           <li><strong>{{ d.id }}</strong> - {{ d.title }} (Owner: {{ d.owner }})</li>
         {% endfor %}
@@ -79,7 +77,7 @@
           <td>{{ d.id }}</td>
           <td>{{ d.title }}</td>
           <td>
-            <span class="badge {% if d.statusClass == 'green' %}green{% elif d.statusClass == 'amber' %}amber{% else %}red{% endif %}">{{ d.status }}</span>
+            <span class="status-pill {% if d.statusClass == 'green' %}green{% elif d.statusClass == 'amber' %}amber{% else %}red{% endif %}">{{ d.status }}</span>
           </td>
           <td>{{ d.owner }}</td>
         </tr>
@@ -96,7 +94,7 @@
           <td>{{ d.id }}</td>
           <td>{{ d.title }}</td>
           <td>
-            <span class="badge {% if d.statusClass == 'green' %}green{% elif d.statusClass == 'amber' %}amber{% else %}red{% endif %}">{{ d.status }}</span>
+            <span class="status-pill {% if d.statusClass == 'green' %}green{% elif d.statusClass == 'amber' %}amber{% else %}red{% endif %}">{{ d.status }}</span>
           </td>
           <td>{{ d.owner }}</td>
           <td>{{ d.approvedBy }}</td>
