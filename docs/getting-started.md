@@ -36,30 +36,33 @@ Create a working folder in your environment and copy:
 - `templates/portfolio-rollup-template.md`
 - `templates/adr-template.md`
 
-## Step 3 - Define ownership
+## Step 3 - Set accountability once (not a weekly manual task)
 
-For your first program, assign:
+Define and store ownership in your program system of record:
 - Program owner
 - Decision approver(s)
 - Risk owner(s)
-- Weekly status publisher
+- Reporting owner
 
-## Step 4 - Run the cadence
+In an AI-first flow, this is configured once and reused by generated artifacts.
 
-Each week:
-1. Update weekly status
-2. Refresh risk log
-3. Capture decisions in ADRs
-4. Update portfolio rollup
-5. Review AI-generated drafts using HITL checklist
+## Step 4 - Run the automation-first cadence
 
-## Step 5 - Measure progress
+Each week, use Copilot + scripts to generate drafts from current signals:
+1. Refresh program data inputs (YAML/JSON/source signals)
+2. Generate report pack (`python scripts/generate_reports.py` or runner scripts)
+3. Review only exceptions, risks, and decision deltas
+4. Approve and publish (HITL gate)
 
-After 4 weeks, evaluate:
-- Artifact consistency
-- Decision traceability
-- Reporting cycle time
-- Time shifted to higher-value TPM work
+This reduces manual artifact writing while preserving human accountability.
+
+## Step 5 - Measure automation outcomes
+
+After 2 to 4 cycles, evaluate:
+- Draft-to-publish cycle time
+- % of sections auto-generated without rework
+- Decision traceability and audit quality
+- TPM time shifted from formatting to execution and stakeholder alignment
 
 ## Optional Step 6 - Publish formatted updates
 
