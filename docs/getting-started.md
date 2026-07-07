@@ -28,6 +28,8 @@ Practical model:
 2. YAML signal is mapped/exported to JSON report inputs
 3. This repo renders leadership-ready HTML reports
 
+For a concrete field mapping contract, see `docs/report-generation.md` under "Bridge handoff contract example (YAML -> JSON)".
+
 ## Step 1 - Open the repo in VS Code
 
 1. Open VS Code.

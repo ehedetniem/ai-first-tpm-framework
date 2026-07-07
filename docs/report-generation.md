@@ -8,6 +8,37 @@ This repo includes a Python generator for a leadership-ready HTML reporting pack
 - This public repo focuses on the rendering layer: JSON inputs in `data/` to HTML outputs in `output/`.
 - If your team uses YAML upstream, add a mapping/export step that writes the report JSON files before running the generator.
 
+## Bridge handoff contract example (YAML -> JSON)
+
+Use this as a lightweight contract between the bridge owner and report owner.
+
+| YAML source path (example) | JSON target file | JSON field | Notes |
+|---|---|---|---|
+| `program.identity.name` | `data/sample-executive-portfolio-radar.json` | `program.name` | Preserve anonymization policy if required |
+| `program.identity.owner` | `data/sample-executive-portfolio-radar.json` | `program.owner` | Use display name or alias agreed by leadership |
+| `program.health.status` | `data/sample-executive-portfolio-radar.json` | `program.status` | Expected values align to visual badge classes |
+| `program.health.last_updated` | `data/sample-executive-portfolio-radar.json` | `program.updated` | ISO date preferred (`YYYY-MM-DD`) |
+| `program.milestones.completed` + `program.milestones.total` | `data/sample-executive-portfolio-radar.json` | `heroStats.milestonesDone` | Format as `X/Y` |
+| `program.risks.high_count` | `data/sample-executive-portfolio-radar.json` | `heroStats.highRisks` | Numeric string accepted |
+| `program.dependencies.blockers[]` | `data/sample-executive-portfolio-radar.json` | `program.risks[]` where `type=dep` | Flatten with owner + summary |
+| `program.workstreams[]` | `data/sample-executive-portfolio-radar.json` | `program.workstreams[]` | Map status to `g/a/r/p` for color dot |
+| `program.actions.next[]` | `data/sample-executive-portfolio-radar.json` | `program.actions[]` | Keep action text short and decision-oriented |
+
+## Bridge output validation checklist
+
+Before report generation, validate these checks:
+
+1. Required files exist in `data/` for the reports you are generating.
+2. JSON parses successfully (no trailing commas or malformed quotes).
+3. Every array field expected by template loops is present (can be empty, but must exist).
+4. Status values match expected display classes (for example `bdg-g`, `bdg-a`, `bdg-r`).
+5. Date fields use one standard format across all files.
+6. Any anonymized fields are consistently masked across all outputs.
+
+Suggested Copilot prompt for validation:
+
+- "Validate all report JSON files in `data/` against template usage in `templates/reports/`. List missing fields and fix them without changing schema intent."
+
 ## What it generates
 
 - `output/weekly-status-email.html`
