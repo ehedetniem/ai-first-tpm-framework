@@ -12,6 +12,7 @@ This framework helps teams:
 
 - Quick onboarding: `docs/getting-started.md`
 - VS Code + GitHub Copilot usage (non-technical PM path): `docs/getting-started.md`
+- Copilot orchestrated no-code mode: `docs/copilot-orchestrated-mode.md`
 - Repo navigation: `docs/repository-map.md`
 - Lifecycle model: `lifecycle/program-lifecycle.md`
 - Governance model: `governance/hitl-governance.md`
@@ -27,8 +28,8 @@ This framework helps teams:
 Recommended setup for this repo is VS Code with GitHub Copilot Chat enabled.
 
 1. Open this folder in VS Code.
-2. Open `docs/getting-started.md` and follow Step 0 through Step 8.
-3. Use Copilot Chat to update data files in `data/` and generate reports with `python scripts/generate_reports.py`.
+2. Open `docs/getting-started.md` and follow the intake + orchestration steps.
+3. Use Copilot Chat with `docs/copilot-orchestrated-mode.md` to update signals and run report generation.
 4. Review rendered outputs in `output/` and optional samples in `reports/`.
 
 Important:

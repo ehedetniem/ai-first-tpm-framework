@@ -7,7 +7,7 @@ This guide is the easiest way to use this framework if you are not a developer.
 - You should use VS Code with GitHub Copilot Chat.
 - You do not need a built-in XPO runtime agent to run this framework.
 - The current workflow is automation-first, with human review before publish.
-- You can start from sample data and replace only business content each week.
+- Non-technical TPMs should use the orchestrated intake method instead of editing JSON directly.
 
 ## Source of truth (important)
 
@@ -36,23 +36,24 @@ For a concrete field mapping contract, see `docs/report-generation.md` under "Br
 2. Open this repository folder.
 3. Open Copilot Chat.
 
-## Step 2 - Start from ready-made samples
+## Step 2 - Use one intake file (no JSON editing)
 
-Use these files as your starting point:
+1. Open `data/intake/weekly-intake-template.md`.
+2. Save a copy as `data/intake/weekly-intake-YYYY-MM-DD.md`.
+3. Fill the sections in plain language.
 
-- `data/sample-weekly-status.json`
-- `data/sample-portfolio-health.json`
-- `data/sample-executive-portfolio-radar.json`
+## Step 3 - Ask Copilot to orchestrate updates
 
-You can keep the same file structure and only change values.
+Use the runbook and prompt in:
 
-## Step 3 - Ask Copilot to update your weekly signals
+- `docs/copilot-orchestrated-mode.md`
 
-Paste one of these prompts into Copilot Chat:
+Copilot will:
 
-- Update `data/sample-executive-portfolio-radar.json` with this week's anonymized portfolio signals. Keep the same schema.
-- Update `data/sample-weekly-status.json` using these notes and keep field names unchanged.
-- Validate all files in `data/` and fix missing required fields for report generation.
+1. Update required JSON files
+2. Validate schema/fields
+3. Run report generation
+4. Return a short review summary
 
 ## Step 4 - Ask Copilot to generate reports
 
@@ -77,15 +78,15 @@ After review, publish to your normal channels.
 
 Each week, repeat:
 
-1. Paste fresh notes into Copilot
-2. Update JSON signals
-3. Generate reports
-4. Review deltas
-5. Publish
+1. Fill one intake file
+2. Run one orchestration prompt
+3. Review deltas
+4. Publish
 
 ## Where to go next
 
 - Report generation details: `docs/report-generation.md`
+- Orchestrated no-code mode: `docs/copilot-orchestrated-mode.md`
 - Report samples: `reports/README.md`
 - Decision records (ADR): `docs/adr-instructions.md`
 - Starter orchestration pattern: `agents/pulse-orchestrator/README.md`
