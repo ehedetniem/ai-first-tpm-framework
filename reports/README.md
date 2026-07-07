@@ -11,10 +11,16 @@ This folder contains the leadership-themed report templates and supporting CSS u
 - `adr-log-template.html`
 - `_theme.css`
 
+These `*-template.html` files are Jinja templates and will show placeholders such as `{{ ... }}` and `{% ... %}` when opened directly.
+Render them first with `python scripts/generate_reports.py`.
+
 ## Optional static examples
 
 - `weekly-status-email-sample.html`
 - `portfolio-health-chat-sample.html`
+- `executive-briefing-sample.html`
+- `raid-digest-sample.html`
+- `adr-log-sample.html`
 
 ## Notes
 
