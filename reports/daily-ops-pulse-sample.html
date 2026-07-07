@@ -6,6 +6,8 @@
   <title>Daily Ops Pulse</title>
   <style>:root {
   color-scheme: dark;
+  --font-ui: &#34;Segoe UI&#34;, Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: Consolas, &#34;Courier New&#34;, monospace;
   --bg: #07111f;
   --surface: rgba(255, 255, 255, 0.07);
   --surface-soft: rgba(255, 255, 255, 0.11);
@@ -58,10 +60,20 @@ body {
     radial-gradient(circle at 70% 80%, rgba(0, 194, 168, 0.12), transparent 24%),
     linear-gradient(135deg, #050b15 0%, #0a1324 55%, #0f1830 100%);
   color: var(--ink);
-  font-family: &#34;Segoe UI&#34;, Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-ui);
   min-height: 100vh;
   line-height: 1.5;
   padding: 28px;
+}
+
+button,
+input,
+select,
+textarea,
+table,
+th,
+td {
+  font-family: var(--font-ui);
 }
 
 html[data-theme=&#34;light&#34;] body {
