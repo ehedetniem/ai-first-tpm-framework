@@ -15,6 +15,53 @@ def write_text(path: Path, content: str):
     path.write_text(content, encoding="utf-8")
 
 
+def prepare_adr_view_model(adr_data: dict):
+    decisions = adr_data.get("decisions", [])
+    summary = {
+        "total": 0,
+        "accepted": 0,
+        "proposed": 0,
+        "rejected": 0,
+        "pending": 0,
+        "completion": 0,
+    }
+    pending_items = []
+    normalized = []
+
+    for decision in decisions:
+        status = str(decision.get("status", "")).strip().lower()
+        status_class = "red"
+        if status in {"accepted", "approved"}:
+            summary["accepted"] += 1
+            status_class = "green"
+        elif status in {"proposed", "in review"}:
+            summary["proposed"] += 1
+            status_class = "amber"
+        elif status in {"rejected", "superseded"}:
+            summary["rejected"] += 1
+
+        summary["total"] += 1
+        approved_by = str(decision.get("approvedBy", "")).strip()
+        approved_at = str(decision.get("approvedAt", "")).strip()
+        if approved_by.lower() == "pending" or approved_at.lower() == "pending":
+            summary["pending"] += 1
+            pending_items.append(decision)
+
+        normalized.append({**decision, "statusClass": status_class})
+
+    if summary["total"] > 0:
+        summary["completion"] = int(
+            ((summary["total"] - summary["pending"]) * 100) / summary["total"]
+        )
+
+    return {
+        **adr_data,
+        "decisions": normalized,
+        "pendingItems": pending_items,
+        "summary": summary,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Generate TPM HTML reports from JSON inputs."
@@ -56,7 +103,7 @@ def main():
     portfolio_data = load_json(root / args.portfolio_json)
     executive_data = load_json(root / args.executive_json)
     raid_data = load_json(root / args.raid_json)
-    adr_data = load_json(root / args.adr_json)
+    adr_data = prepare_adr_view_model(load_json(root / args.adr_json))
 
     env = Environment(
         loader=FileSystemLoader(str(root / "reports")),

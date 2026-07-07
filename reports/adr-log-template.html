@@ -7,22 +7,6 @@
   <style>{{ theme_css }}</style>
 </head>
 <body>
-  {% set ns = namespace(total=0, accepted=0, proposed=0, rejected=0, pending=0) %}
-  {% for d in data.decisions %}
-    {% set status = d.status|lower %}
-    {% set ns.total = ns.total + 1 %}
-    {% if status == 'accepted' or status == 'approved' %}
-      {% set ns.accepted = ns.accepted + 1 %}
-    {% elif status == 'proposed' or status == 'in review' %}
-      {% set ns.proposed = ns.proposed + 1 %}
-    {% elif status == 'rejected' or status == 'superseded' %}
-      {% set ns.rejected = ns.rejected + 1 %}
-    {% endif %}
-    {% if d.approvedAt == 'Pending' or d.approvedBy == 'Pending' %}
-      {% set ns.pending = ns.pending + 1 %}
-    {% endif %}
-  {% endfor %}
-
   <div class="report-shell">
     <div class="report-header">
       <div class="report-id">ADR Log</div>
@@ -31,60 +15,56 @@
       <div class="meta-grid">
         <div class="meta-item">
           <div class="meta-label">Total Decisions</div>
-          <div class="meta-value">{{ ns.total }}</div>
+          <div class="meta-value">{{ data.summary.total }}</div>
         </div>
         <div class="meta-item">
           <div class="meta-label">Accepted</div>
-          <div class="meta-value"><span class="badge green">{{ ns.accepted }}</span></div>
+          <div class="meta-value"><span class="badge green">{{ data.summary.accepted }}</span></div>
         </div>
         <div class="meta-item">
           <div class="meta-label">In Flight</div>
-          <div class="meta-value"><span class="badge amber">{{ ns.proposed }}</span></div>
+          <div class="meta-value"><span class="badge amber">{{ data.summary.proposed }}</span></div>
         </div>
         <div class="meta-item">
           <div class="meta-label">Pending Approval Data</div>
-          <div class="meta-value"><span class="badge {% if ns.pending > 0 %}amber{% else %}green{% endif %}">{{ ns.pending }}</span></div>
+          <div class="meta-value"><span class="badge {% if data.summary.pending > 0 %}amber{% else %}green{% endif %}">{{ data.summary.pending }}</span></div>
         </div>
       </div>
     </div>
 
     <div class="report-section">
       <h2 class="section-title">Decision Health</h2>
-      <table class="table">
-        <tr>
-          <th>Total</th>
-          <th>Accepted/Approved</th>
-          <th>Proposed/In Review</th>
-          <th>Rejected/Superseded</th>
-          <th>Pending Approval Data</th>
-        </tr>
-        <tr>
-          <td>{{ ns.total }}</td>
-          <td><span class="badge green">{{ ns.accepted }}</span></td>
-          <td><span class="badge amber">{{ ns.proposed }}</span></td>
-          <td><span class="badge red">{{ ns.rejected }}</span></td>
-          <td><span class="badge {% if ns.pending > 0 %}amber{% else %}green{% endif %}">{{ ns.pending }}</span></td>
-        </tr>
-      </table>
-      {% if ns.total > 0 %}
-      {% set completion = ((ns.total - ns.pending) * 100 // ns.total) %}
-      <div class="callout">
-        <strong>Approval Completion:</strong> {{ completion }}%
+      <div class="card-grid">
+        <div class="info-card">
+          <div class="label">Approval Completion</div>
+          <div class="value">{{ data.summary.completion }}%</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Rejected/Superseded</div>
+          <div class="value">{{ data.summary.rejected }}</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Governance Signal</div>
+          <div class="value">
+            {% if data.summary.pending > 0 %}
+            Action Required
+            {% else %}
+            Healthy
+            {% endif %}
+          </div>
+        </div>
       </div>
-      {% endif %}
     </div>
 
-    {% if ns.pending > 0 %}
+    {% if data.summary.pending > 0 %}
     <div class="report-section">
       <h2 class="section-title">Action Required</h2>
       <div class="callout warning">
-        {{ ns.pending }} decision(s) are missing complete approval metadata. Validate approver and approval date before publication.
+        {{ data.summary.pending }} decision(s) are missing complete approval metadata. Validate approver and approval date before publication.
       </div>
       <ul>
-        {% for d in data.decisions %}
-          {% if d.approvedAt == 'Pending' or d.approvedBy == 'Pending' %}
+        {% for d in data.pendingItems %}
           <li><strong>{{ d.id }}</strong> - {{ d.title }} (Owner: {{ d.owner }})</li>
-          {% endif %}
         {% endfor %}
       </ul>
     </div>
@@ -99,8 +79,7 @@
           <td>{{ d.id }}</td>
           <td>{{ d.title }}</td>
           <td>
-            {% set status = d.status|lower %}
-            <span class="badge {% if status == 'accepted' or status == 'approved' %}green{% elif status == 'proposed' or status == 'in review' %}amber{% else %}red{% endif %}">{{ d.status }}</span>
+            <span class="badge {% if d.statusClass == 'green' %}green{% elif d.statusClass == 'amber' %}amber{% else %}red{% endif %}">{{ d.status }}</span>
           </td>
           <td>{{ d.owner }}</td>
         </tr>
@@ -117,8 +96,7 @@
           <td>{{ d.id }}</td>
           <td>{{ d.title }}</td>
           <td>
-            {% set status = d.status|lower %}
-            <span class="badge {% if status == 'accepted' or status == 'approved' %}green{% elif status == 'proposed' or status == 'in review' %}amber{% else %}red{% endif %}">{{ d.status }}</span>
+            <span class="badge {% if d.statusClass == 'green' %}green{% elif d.statusClass == 'amber' %}amber{% else %}red{% endif %}">{{ d.status }}</span>
           </td>
           <td>{{ d.owner }}</td>
           <td>{{ d.approvedBy }}</td>
