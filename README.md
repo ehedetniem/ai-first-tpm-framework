@@ -10,6 +10,8 @@ This framework helps teams:
 
 ## Start here
 
+- **Orchestration agent (new):** `docs/orchestration-agent.md`
+- **Pulse Orchestrator CLI + playbooks:** `agents/pulse-orchestrator/README.md`
 - Quick onboarding: `docs/getting-started.md`
 - TPM Weekly SOP (per-program workflow): `docs/tpm-weekly-sop.md`
 - VS Code + GitHub Copilot usage (non-technical PM path): `docs/getting-started.md`
@@ -22,21 +24,21 @@ This framework helps teams:
 - Report generator setup: `docs/report-generation.md`
 - ADR authoring guide: `docs/adr-instructions.md`
 - AI prompt pack for artifacts: `docs/ai-artifact-pack.md`
-- TPM starter agent concept: `agents/pulse-orchestrator/README.md`
 
 ## Using with VS Code + GitHub Copilot
 
 Recommended setup for this repo is VS Code with GitHub Copilot Chat enabled.
 
 1. Open this folder in VS Code.
-2. Open `docs/getting-started.md` and follow the intake + orchestration steps.
-3. Use Copilot Chat with `docs/copilot-orchestrated-mode.md` to update signals and run report generation.
-4. Review rendered outputs in `output/` and optional samples in `reports/`.
+2. Open `docs/orchestration-agent.md` to understand the Pulse Orchestrator agent.
+3. Run `python agents/pulse-orchestrator/pulse.py status` to see the current program status.
+4. Use a playbook from `agents/pulse-orchestrator/playbooks/` in Copilot Chat to update signals and run report generation.
+5. Review rendered outputs in `output/` and optional samples in `reports/`.
 
 Important:
-- This repo does not include an `XPO` runtime agent.
-- The in-repo starter pattern is `agents/pulse-orchestrator/`.
-- You can run the full framework today without any orchestrator by using templates and scripts directly.
+- The in-repo orchestration agent is `agents/pulse-orchestrator/`.
+- Use `python agents/pulse-orchestrator/pulse.py validate` before every report run.
+- You can run the full framework today without Copilot by using templates, scripts, and the CLI directly.
 
 ## Fast report generation
 
