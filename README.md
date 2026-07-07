@@ -8,32 +8,45 @@ This framework helps teams:
 - Shift TPM time from manual synthesis to judgment and alignment
 - Introduce AI safely with human approval gates
 
-## Start here
+## Start here (non-AI TPM quick path)
 
-- **Orchestration agent (new):** `docs/orchestration-agent.md`
+If you are new to AI tools, follow this exact order:
+
+1. **Quick onboarding (30-45 min):** `docs/getting-started.md`
+2. **First weekly run SOP:** `docs/tpm-weekly-sop.md`
+3. **Orchestration agent workflows:** `docs/orchestration-agent.md`
+4. **Run the CLI status check:** `python agents/pulse-orchestrator/pulse.py status`
+5. **Validate data before report generation:** `python agents/pulse-orchestrator/pulse.py validate`
+
+If you do only one thing today: complete the **Day 1 checklist** in `docs/getting-started.md`.
+
+## Core docs and workflows
+
+- **Orchestration agent (primary):** `docs/orchestration-agent.md`
 - **Pulse Orchestrator CLI + playbooks:** `agents/pulse-orchestrator/README.md`
-- Quick onboarding: `docs/getting-started.md`
-- TPM Weekly SOP (per-program workflow): `docs/tpm-weekly-sop.md`
-- VS Code + GitHub Copilot usage (non-technical PM path): `docs/getting-started.md`
-- Copilot orchestrated no-code mode: `docs/copilot-orchestrated-mode.md`
-- Repo navigation: `docs/repository-map.md`
-- Lifecycle model: `lifecycle/program-lifecycle.md`
-- Governance model: `governance/hitl-governance.md`
-- Core templates: `templates/README.md`
-- HTML report samples: `reports/README.md`
-- Report generator setup: `docs/report-generation.md`
-- ADR authoring guide: `docs/adr-instructions.md`
-- AI prompt pack for artifacts: `docs/ai-artifact-pack.md`
+- **Quick onboarding:** `docs/getting-started.md`
+- **TPM Weekly SOP (per-program workflow):** `docs/tpm-weekly-sop.md`
+- **Copilot orchestrated no-code mode:** `docs/copilot-orchestrated-mode.md`
+- **Repo navigation:** `docs/repository-map.md`
+- **Lifecycle model:** `lifecycle/program-lifecycle.md`
+- **Governance model:** `governance/hitl-governance.md`
+- **Core templates:** `templates/README.md`
+- **HTML report samples:** `reports/README.md`
+- **Report generator setup:** `docs/report-generation.md`
+- **ADR authoring guide:** `docs/adr-instructions.md`
+- **AI prompt pack for artifacts:** `docs/ai-artifact-pack.md`
 
 ## Using with VS Code + GitHub Copilot
 
 Recommended setup for this repo is VS Code with GitHub Copilot Chat enabled.
 
 1. Open this folder in VS Code.
-2. Open `docs/orchestration-agent.md` to understand the Pulse Orchestrator agent.
-3. Run `python agents/pulse-orchestrator/pulse.py status` to see the current program status.
-4. Use a playbook from `agents/pulse-orchestrator/playbooks/` in Copilot Chat to update signals and run report generation.
-5. Review rendered outputs in `output/` and optional samples in `reports/`.
+2. Open `docs/getting-started.md` and complete the Day 1 checklist.
+3. Open `docs/tpm-weekly-sop.md` to understand the repeatable weekly flow.
+4. Run `python agents/pulse-orchestrator/pulse.py status` to see the current program status.
+5. Use a playbook from `agents/pulse-orchestrator/playbooks/` in Copilot Chat.
+6. Run `python agents/pulse-orchestrator/pulse.py validate` before report generation.
+7. Review rendered outputs in `output/` and optional samples in `reports/`.
 
 Important:
 - The in-repo orchestration agent is `agents/pulse-orchestrator/`.
