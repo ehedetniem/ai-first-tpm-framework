@@ -2,6 +2,12 @@
 
 This repo includes a Python generator for a leadership-ready HTML reporting pack.
 
+## Source-of-truth note
+
+- In many TPM implementations, YAML is the operational source of truth and is refreshed by an external bridge from a work tracking system.
+- This public repo focuses on the rendering layer: JSON inputs in `data/` to HTML outputs in `output/`.
+- If your team uses YAML upstream, add a mapping/export step that writes the report JSON files before running the generator.
+
 ## What it generates
 
 - `output/weekly-status-email.html`

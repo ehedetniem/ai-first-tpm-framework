@@ -9,6 +9,25 @@ This guide is the easiest way to use this framework if you are not a developer.
 - The current workflow is automation-first, with human review before publish.
 - You can start from sample data and replace only business content each week.
 
+## Source of truth (important)
+
+Your understanding is correct:
+
+- In your full TPM framework, YAML is the operational source of truth used by downstream artifacts.
+- Those YAML files are typically updated by an external bridge/automation from your work tracking system.
+- This public repo does not include that private bridge implementation.
+
+What this public repo does include:
+
+- Report rendering from JSON in `data/` to HTML in `output/`.
+- A Copilot-first workflow to update JSON safely for weekly publishing.
+
+Practical model:
+
+1. Upstream system updates (external bridge) refresh YAML in your internal environment
+2. YAML signal is mapped/exported to JSON report inputs
+3. This repo renders leadership-ready HTML reports
+
 ## Step 1 - Open the repo in VS Code
 
 1. Open VS Code.
