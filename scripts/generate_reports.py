@@ -112,6 +112,11 @@ def main():
         help="Path to adoption and change readout JSON input",
     )
     parser.add_argument(
+        "--executive-portfolio-radar-json",
+        default="data/sample-executive-portfolio-radar.json",
+        help="Path to executive portfolio radar JSON input",
+    )
+    parser.add_argument(
         "--output-dir",
         default="output",
         help="Output directory for generated HTML files",
@@ -128,6 +133,7 @@ def main():
     dependency_data = load_json(root / args.dependency_json)
     capacity_data = load_json(root / args.capacity_json)
     adoption_data = load_json(root / args.adoption_json)
+    executive_portfolio_radar_data = load_json(root / args.executive_portfolio_radar_json)
 
     templates_dir = root / "templates" / "reports"
     env = Environment(
@@ -145,6 +151,9 @@ def main():
     dependency_template = env.get_template("dependency-critical-path-template.html")
     capacity_template = env.get_template("capacity-milestone-confidence-template.html")
     adoption_template = env.get_template("adoption-change-readout-template.html")
+    executive_portfolio_radar_template = env.get_template(
+        "executive-portfolio-radar-template.html"
+    )
 
     weekly_html = weekly_template.render(data=weekly_data, theme_css=theme_css)
     portfolio_html = portfolio_template.render(data=portfolio_data, theme_css=theme_css)
@@ -155,6 +164,9 @@ def main():
     dependency_html = dependency_template.render(data=dependency_data, theme_css=theme_css)
     capacity_html = capacity_template.render(data=capacity_data, theme_css=theme_css)
     adoption_html = adoption_template.render(data=adoption_data, theme_css=theme_css)
+    executive_portfolio_radar_html = executive_portfolio_radar_template.render(
+        data=executive_portfolio_radar_data
+    )
 
     output_dir = root / args.output_dir
     write_text(output_dir / "weekly-status-email.html", weekly_html)
@@ -166,6 +178,7 @@ def main():
     write_text(output_dir / "dependency-critical-path-review.html", dependency_html)
     write_text(output_dir / "capacity-milestone-confidence.html", capacity_html)
     write_text(output_dir / "adoption-change-readout.html", adoption_html)
+    write_text(output_dir / "executive-portfolio-radar.html", executive_portfolio_radar_html)
 
     print("Generated:")
     print(f"- {output_dir / 'weekly-status-email.html'}")
@@ -177,6 +190,7 @@ def main():
     print(f"- {output_dir / 'dependency-critical-path-review.html'}")
     print(f"- {output_dir / 'capacity-milestone-confidence.html'}")
     print(f"- {output_dir / 'adoption-change-readout.html'}")
+    print(f"- {output_dir / 'executive-portfolio-radar.html'}")
 
 
 if __name__ == "__main__":

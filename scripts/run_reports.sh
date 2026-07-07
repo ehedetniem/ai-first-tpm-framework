@@ -10,7 +10,8 @@ DAILY_OPS_JSON="${6:-data/sample-daily-ops-pulse.json}"
 DEPENDENCY_JSON="${7:-data/sample-dependency-critical-path.json}"
 CAPACITY_JSON="${8:-data/sample-capacity-milestone-confidence.json}"
 ADOPTION_JSON="${9:-data/sample-adoption-change-readout.json}"
-OUTPUT_DIR="${10:-output}"
+EXECUTIVE_PORTFOLIO_RADAR_JSON="${10:-data/sample-executive-portfolio-radar.json}"
+OUTPUT_DIR="${11:-output}"
 
 echo "[INFO] Installing dependencies..."
 python -m pip install -r requirements.txt
@@ -26,6 +27,7 @@ python scripts/generate_reports.py \
   --dependency-json "$DEPENDENCY_JSON" \
   --capacity-json "$CAPACITY_JSON" \
   --adoption-json "$ADOPTION_JSON" \
+  --executive-portfolio-radar-json "$EXECUTIVE_PORTFOLIO_RADAR_JSON" \
   --output-dir "$OUTPUT_DIR"
 
 echo "[INFO] Done. Check output in '$OUTPUT_DIR'."

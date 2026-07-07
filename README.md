@@ -40,6 +40,7 @@ Generated outputs:
 - `output/dependency-critical-path-review.html`
 - `output/capacity-milestone-confidence.html`
 - `output/adoption-change-readout.html`
+- `output/executive-portfolio-radar.html`
 
 ## What this repo contains
 

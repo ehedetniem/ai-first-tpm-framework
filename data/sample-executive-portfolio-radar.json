@@ -1,0 +1,142 @@
+{
+  "author": "TPM Portfolio Office",
+  "weekOf": "Jul 7, 2026",
+  "format": "Executive Portfolio Radar v1",
+  "source": "@portfolioradar",
+  "eyebrow": "Portfolio review ready | data anonymized | leadership sync queued",
+  "titlePrefix": "Executive Portfolio",
+  "titleEmphasis": "Radar",
+  "subtitle": "Anonymized cross-program signal for leadership review. Program identifiers are masked while preserving risk profile, dependency pressure, and near-term action readiness.",
+  "heroStats": {
+    "health": "ON TRACK",
+    "milestonesDone": "14/20",
+    "highRisks": "2",
+    "programsActive": "6",
+    "reviewWindow": "Jul 15 / Jul 29"
+  },
+  "scorecards": [
+    {
+      "value": "Build",
+      "label": "Portfolio Phase",
+      "color": "var(--col-green)"
+    },
+    {
+      "value": "14",
+      "label": "Milestones Completed",
+      "color": "var(--accent1)"
+    },
+    {
+      "value": "2",
+      "label": "High Risks",
+      "color": "var(--col-red)"
+    },
+    {
+      "value": "6",
+      "label": "Programs Active",
+      "color": "var(--accent4)"
+    },
+    {
+      "value": "2",
+      "label": "Executive Decisions Needed",
+      "color": "var(--col-amber)"
+    }
+  ],
+  "section": {
+    "title": "On Track",
+    "subtitle": "Portfolio cluster overview"
+  },
+  "program": {
+    "cardAccent": "var(--col-green)",
+    "name": "Program Cluster Alpha",
+    "status": "ON TRACK",
+    "statusClass": "bdg-g",
+    "owner": "TPM Lead A",
+    "engLead": "Engineering Lead A",
+    "phase": "Build and Coordinate",
+    "updated": "2026-07-07",
+    "ado": "ADO: TPM Health Board | Epic 4021",
+    "workstreams": [
+      {
+        "status": "g",
+        "title": "Leadership readiness package",
+        "detail": "Narrative and KPI definitions reviewed with stakeholders"
+      },
+      {
+        "status": "g",
+        "title": "Dependency triage",
+        "detail": "Cross-team owner map confirmed and escalation path documented"
+      },
+      {
+        "status": "a",
+        "title": "Data fidelity sprint",
+        "detail": "2 of 5 downstream feeds still in stabilization"
+      },
+      {
+        "status": "a",
+        "title": "Demo story alignment",
+        "detail": "Draft complete; executive readout rehearsal pending"
+      },
+      {
+        "status": "p",
+        "title": "Portfolio review",
+        "detail": "Decision checkpoint scheduled for Jul 15"
+      }
+    ],
+    "risks": [
+      {
+        "type": "risk",
+        "label": "Risk - High",
+        "text": "One core dependency remains on provisional data until platform handoff closes.",
+        "owner": "TPM Lead A / Data Platform"
+      },
+      {
+        "type": "risk",
+        "label": "Risk - Medium",
+        "text": "Metric registry alignment may reduce KPI completeness for next review cycle.",
+        "owner": "Reporting Workstream"
+      },
+      {
+        "type": "dep",
+        "label": "Dependency - Blocking",
+        "text": "Shared identity integration must complete before scaling to all program clusters.",
+        "owner": "Identity Platform"
+      }
+    ],
+    "actions": [
+      {
+        "icon": "A",
+        "text": "Finalize executive decision memo for dependency sequencing before Jul 15"
+      },
+      {
+        "icon": "A",
+        "text": "Close data feed stabilization for remaining two upstream sources"
+      },
+      {
+        "icon": "D",
+        "text": "Run portfolio rehearsal with leadership delegates and capture decision notes"
+      }
+    ],
+    "lookingAhead": [
+      {
+        "text": "Portfolio checkpoint | Jul 15",
+        "urgent": true
+      },
+      {
+        "text": "Executive decision gate | Jul 29",
+        "urgent": true
+      },
+      {
+        "text": "Dependency handoff closure | Week 3",
+        "urgent": false
+      },
+      {
+        "text": "Scale-out readiness review | Week 4",
+        "urgent": false
+      }
+    ]
+  },
+  "footer": {
+    "sourcePath": "agents/programstate/programs/portfolio-anonymized.yaml",
+    "preparedBy": "TPM Portfolio Office"
+  }
+}

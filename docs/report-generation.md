@@ -13,6 +13,7 @@ This repo includes a Python generator for a leadership-ready HTML reporting pack
 - `output/dependency-critical-path-review.html`
 - `output/capacity-milestone-confidence.html`
 - `output/adoption-change-readout.html`
+- `output/executive-portfolio-radar.html`
 
 ## Inputs
 
@@ -25,6 +26,7 @@ This repo includes a Python generator for a leadership-ready HTML reporting pack
 - `data/sample-dependency-critical-path.json`
 - `data/sample-capacity-milestone-confidence.json`
 - `data/sample-adoption-change-readout.json`
+- `data/sample-executive-portfolio-radar.json`
 
 ## Templates
 
@@ -37,6 +39,7 @@ This repo includes a Python generator for a leadership-ready HTML reporting pack
 - `templates/reports/dependency-critical-path-template.html`
 - `templates/reports/capacity-milestone-confidence-template.html`
 - `templates/reports/adoption-change-readout-template.html`
+- `templates/reports/executive-portfolio-radar-template.html`
 - `templates/reports/_theme.css`
 
 ## Setup
@@ -58,13 +61,13 @@ From repo root:
 - `python scripts/generate_reports.py`
 
 Optional custom input paths:
-- `python scripts/generate_reports.py --weekly-json data/my-weekly.json --portfolio-json data/my-portfolio.json --executive-json data/my-exec.json --raid-json data/my-raid.json --adr-json data/my-adr.json --daily-ops-json data/my-daily-ops.json --dependency-json data/my-dependencies.json --capacity-json data/my-capacity.json --adoption-json data/my-adoption.json --output-dir output`
+- `python scripts/generate_reports.py --weekly-json data/my-weekly.json --portfolio-json data/my-portfolio.json --executive-json data/my-exec.json --raid-json data/my-raid.json --adr-json data/my-adr.json --daily-ops-json data/my-daily-ops.json --dependency-json data/my-dependencies.json --capacity-json data/my-capacity.json --adoption-json data/my-adoption.json --executive-portfolio-radar-json data/my-exec-portfolio-radar.json --output-dir output`
 
 PowerShell with custom inputs:
-- `./scripts/run_reports.ps1 -WeeklyJson data/my-weekly.json -PortfolioJson data/my-portfolio.json -ExecutiveJson data/my-exec.json -RaidJson data/my-raid.json -AdrJson data/my-adr.json -DailyOpsJson data/my-daily-ops.json -DependencyJson data/my-dependencies.json -CapacityJson data/my-capacity.json -AdoptionJson data/my-adoption.json -OutputDir output`
+- `./scripts/run_reports.ps1 -WeeklyJson data/my-weekly.json -PortfolioJson data/my-portfolio.json -ExecutiveJson data/my-exec.json -RaidJson data/my-raid.json -AdrJson data/my-adr.json -DailyOpsJson data/my-daily-ops.json -DependencyJson data/my-dependencies.json -CapacityJson data/my-capacity.json -AdoptionJson data/my-adoption.json -ExecutivePortfolioRadarJson data/my-exec-portfolio-radar.json -OutputDir output`
 
 Shell with custom inputs:
-- `bash ./scripts/run_reports.sh data/my-weekly.json data/my-portfolio.json data/my-exec.json data/my-raid.json data/my-adr.json data/my-daily-ops.json data/my-dependencies.json data/my-capacity.json data/my-adoption.json output`
+- `bash ./scripts/run_reports.sh data/my-weekly.json data/my-portfolio.json data/my-exec.json data/my-raid.json data/my-adr.json data/my-daily-ops.json data/my-dependencies.json data/my-capacity.json data/my-adoption.json data/my-exec-portfolio-radar.json output`
 
 ## Workflow recommendation
 
