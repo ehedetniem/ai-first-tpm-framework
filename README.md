@@ -11,6 +11,7 @@ This framework helps teams:
 ## Start here
 
 - Quick onboarding: `docs/getting-started.md`
+- VS Code + GitHub Copilot usage: `docs/getting-started.md#step-0---choose-your-entry-mode-vs-code--github-copilot-recommended`
 - Repo navigation: `docs/repository-map.md`
 - Lifecycle model: `lifecycle/program-lifecycle.md`
 - Governance model: `governance/hitl-governance.md`
@@ -20,6 +21,20 @@ This framework helps teams:
 - ADR authoring guide: `docs/adr-instructions.md`
 - AI prompt pack for artifacts: `docs/ai-artifact-pack.md`
 - TPM starter agent concept: `agents/pulse-orchestrator/README.md`
+
+## Using with VS Code + GitHub Copilot
+
+Recommended setup for this repo is VS Code with GitHub Copilot Chat enabled.
+
+1. Open this folder in VS Code.
+2. Open `docs/getting-started.md` and follow Step 0 through Step 8.
+3. Use Copilot Chat to update data files in `data/` and generate reports with `python scripts/generate_reports.py`.
+4. Review rendered outputs in `output/` and optional samples in `reports/`.
+
+Important:
+- This repo does not include an `XPO` runtime agent.
+- The in-repo starter pattern is `agents/pulse-orchestrator/`.
+- You can run the full framework today without any orchestrator by using templates and scripts directly.
 
 ## Fast report generation
 
