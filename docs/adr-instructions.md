@@ -60,3 +60,20 @@ AI can draft a first ADR version, but humans should verify:
 - option framing
 - consequence realism
 - final decision ownership
+
+## Transcript-first ADR prompt (Copilot)
+
+If you have a meeting transcript, use this prompt to draft an ADR quickly:
+
+```text
+Use data/intake/meeting-transcript-YYYY-MM-DD.md as source.
+
+Draft an ADR using templates/adr-template.md style.
+
+Requirements:
+1) Pick the highest-impact decision from the transcript.
+2) Include context, options considered, decision, rationale, consequences, and approvals.
+3) Do not invent facts; mark unknown owners/dates as TBD.
+4) Save file as ADR-YYYY-MM-DD-<short-title>.md.
+5) Return a 5-bullet summary of what decision was captured and why it matters.
+```

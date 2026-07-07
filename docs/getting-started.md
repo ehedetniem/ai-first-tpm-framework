@@ -36,11 +36,18 @@ For a concrete field mapping contract, see `docs/report-generation.md` under "Br
 2. Open this repository folder.
 3. Open Copilot Chat.
 
-## Step 2 - Use one intake file (no JSON editing)
+## Step 2 - Choose your no-code input
+
+Option A (recommended): Transcript-first
+
+1. Save meeting transcript or notes as `data/intake/meeting-transcript-YYYY-MM-DD.md`.
+2. Use transcript orchestration prompt from `docs/copilot-orchestrated-mode.md`.
+
+Option B: Intake file
 
 1. Open `data/intake/weekly-intake-template.md`.
 2. Save a copy as `data/intake/weekly-intake-YYYY-MM-DD.md`.
-3. Fill the sections in plain language.
+3. Fill sections in plain language.
 
 ## Step 3 - Ask Copilot to orchestrate updates
 
@@ -54,6 +61,7 @@ Copilot will:
 2. Validate schema/fields
 3. Run report generation
 4. Return a short review summary
+5. (Transcript mode) Draft ADR(s) from decisions discussed
 
 ## Step 4 - Ask Copilot to generate reports
 

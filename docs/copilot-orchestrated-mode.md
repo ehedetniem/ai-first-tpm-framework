@@ -4,12 +4,51 @@ This is the recommended public-repo workflow for non-technical TPMs.
 
 ## Goal
 
-Use one intake file and one Copilot prompt to:
+Use one source input and one Copilot prompt to:
 
 1. Update report input JSON files
 2. Validate schema and required fields
 3. Run report generation
 4. Summarize key deltas for review
+
+## Option A (recommended) - Transcript-first orchestration
+
+If you have a meeting transcript (or WorkIQ-exported notes), you do not need to fill intake manually.
+
+1. Save transcript or notes to:
+   - `data/intake/meeting-transcript-YYYY-MM-DD.md`
+2. Paste this Copilot prompt:
+
+```text
+Act as Pulse Orchestrator for this repo.
+
+Primary source input:
+- data/intake/meeting-transcript-YYYY-MM-DD.md
+
+Tasks:
+1) Extract decisions, risks, blockers, dependencies, owners, and next actions.
+2) Draft one ADR from the most significant decision and save it using templates/adr-template.md conventions.
+3) Update these files while preserving schema:
+   - data/sample-weekly-status.json
+   - data/sample-portfolio-health.json
+   - data/sample-executive-portfolio-radar.json
+4) Validate updated JSON files against template usage in templates/reports/.
+5) Run report generation using scripts/run_reports.ps1.
+6) Return a short summary:
+   - top 3 wins
+   - top 3 risks/blockers
+   - decision asks
+   - ADR file created
+   - files updated
+
+Constraints:
+- Do not invent owners or dates when missing; mark as TBD.
+- Keep language executive and concise.
+```
+
+## Option B - Intake file orchestration
+
+Use this when transcript quality is poor or unavailable.
 
 ## Step 1 - Fill intake
 
