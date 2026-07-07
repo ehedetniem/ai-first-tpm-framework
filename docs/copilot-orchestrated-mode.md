@@ -16,14 +16,17 @@ Use one source input and one Copilot prompt to:
 If you have a meeting transcript (or WorkIQ-exported notes), you do not need to fill intake manually.
 
 1. Save transcript or notes to:
-   - `data/intake/meeting-transcript-YYYY-MM-DD.md`
+   - `data/intake/<program-slug>/meeting-transcript-YYYY-MM-DD.md`
 2. Paste this Copilot prompt:
 
 ```text
 Act as Pulse Orchestrator for this repo.
 
 Primary source input:
-- data/intake/meeting-transcript-YYYY-MM-DD.md
+- data/intake/<program-slug>/meeting-transcript-YYYY-MM-DD.md
+
+Scope:
+- Update artifacts for <program-slug> only.
 
 Tasks:
 1) Extract decisions, risks, blockers, dependencies, owners, and next actions.
@@ -58,7 +61,7 @@ Copy or edit:
 
 Save as:
 
-- `data/intake/weekly-intake-YYYY-MM-DD.md`
+- `data/intake/<program-slug>/weekly-intake-YYYY-MM-DD.md`
 
 ## Step 2 - Run orchestration prompt in Copilot Chat
 

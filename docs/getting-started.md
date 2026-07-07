@@ -40,14 +40,16 @@ For a concrete field mapping contract, see `docs/report-generation.md` under "Br
 
 Option A (recommended): Transcript-first
 
-1. Save meeting transcript or notes as `data/intake/meeting-transcript-YYYY-MM-DD.md`.
+1. Save meeting transcript or notes as `data/intake/<program-slug>/meeting-transcript-YYYY-MM-DD.md`.
 2. Use transcript orchestration prompt from `docs/copilot-orchestrated-mode.md`.
 
 Option B: Intake file
 
 1. Open `data/intake/weekly-intake-template.md`.
-2. Save a copy as `data/intake/weekly-intake-YYYY-MM-DD.md`.
+2. Save a copy as `data/intake/<program-slug>/weekly-intake-YYYY-MM-DD.md`.
 3. Fill sections in plain language.
+
+Use one intake/transcript stream per program so decisions, risks, and owners remain traceable.
 
 ## Step 3 - Ask Copilot to orchestrate updates
 
