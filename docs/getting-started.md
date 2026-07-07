@@ -2,6 +2,17 @@
 
 This guide is the easiest way to use this framework if you are not a developer.
 
+## Goal for Day 1
+
+By the end of Day 1, you should be able to:
+
+1. Add one intake artifact for one program
+2. Run validation successfully
+3. Generate HTML reports
+4. Review and publish with human approval
+
+If you only follow one document today, follow this one end-to-end.
+
 ## What is true today
 
 - You should use VS Code with GitHub Copilot Chat.
@@ -29,6 +40,16 @@ Practical model:
 3. This repo renders leadership-ready HTML reports
 
 For a concrete field mapping contract, see `docs/report-generation.md` under "Bridge handoff contract example (YAML -> JSON)".
+
+## Day 1 checklist (copy/paste)
+
+- [ ] Open this repo in VS Code
+- [ ] Open Copilot Chat
+- [ ] Create one intake file for one program slug
+- [ ] Run `python agents/pulse-orchestrator/pulse.py validate`
+- [ ] Run `python agents/pulse-orchestrator/pulse.py reports`
+- [ ] Open files in `output/` and review deltas
+- [ ] Publish only after human approval
 
 ## Step 1 - Open the repo in VS Code
 
@@ -65,9 +86,14 @@ Copilot will:
 4. Return a short review summary
 5. (Transcript mode) Draft ADR(s) from decisions discussed
 
-## Step 4 - Ask Copilot to generate reports
+## Step 4 - Run validation and generate reports
 
-Ask Copilot to run one of these:
+Run one at a time from repo root:
+
+1. `python agents/pulse-orchestrator/pulse.py validate`
+2. `python agents/pulse-orchestrator/pulse.py reports`
+
+Fallback commands:
 
 - `python scripts/generate_reports.py`
 - `./scripts/run_reports.ps1` (Windows)
@@ -90,14 +116,23 @@ Each week, repeat:
 
 1. Fill one intake file
 2. Run one orchestration prompt
-3. Review deltas
-4. Publish
+3. Run validate + reports
+4. Review deltas
+5. Publish
+
+## Troubleshooting (quick)
+
+- **Validation fails:** run `python agents/pulse-orchestrator/pulse.py validate` again and fix missing required fields in `data/*.json`.
+- **No report output:** run `python agents/pulse-orchestrator/pulse.py reports` from repo root.
+- **Confusing prompt behavior:** use the exact prompts in `agents/pulse-orchestrator/playbooks/`.
+- **Unclear ownership or dates:** use `TBD` instead of guessing.
 
 ## Where to go next
 
+- Weekly operating procedure (SOP): `docs/tpm-weekly-sop.md`
+- Orchestration agent guide: `docs/orchestration-agent.md`
 - Report generation details: `docs/report-generation.md`
 - Orchestrated no-code mode: `docs/copilot-orchestrated-mode.md`
-- Weekly operating procedure: `docs/tpm-weekly-sop.md`
 - Report samples: `reports/README.md`
 - Decision records (ADR): `docs/adr-instructions.md`
 - Starter orchestration pattern: `agents/pulse-orchestrator/README.md`
