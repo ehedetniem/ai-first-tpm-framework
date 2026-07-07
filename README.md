@@ -11,6 +11,7 @@ This framework helps teams:
 ## Start here
 
 - Quick onboarding: `docs/getting-started.md`
+- TPM Weekly SOP (per-program workflow): `docs/tpm-weekly-sop.md`
 - VS Code + GitHub Copilot usage (non-technical PM path): `docs/getting-started.md`
 - Copilot orchestrated no-code mode: `docs/copilot-orchestrated-mode.md`
 - Repo navigation: `docs/repository-map.md`

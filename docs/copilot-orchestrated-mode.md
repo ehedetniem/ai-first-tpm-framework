@@ -70,7 +70,10 @@ Paste this prompt (replace `YYYY-MM-DD` first):
 ```text
 Act as Pulse Orchestrator for this repo.
 
-Use `data/intake/weekly-intake-YYYY-MM-DD.md` as the source input.
+Use `data/intake/<program-slug>/weekly-intake-YYYY-MM-DD.md` as the source input.
+
+Scope:
+- Update artifacts for <program-slug> only.
 
 Tasks:
 1) Update these files with this week's signals while preserving schema:
@@ -100,6 +103,11 @@ Review outputs in:
 Optional distribution-ready samples in:
 
 - `reports/`
+
+Recommended for per-program traceability:
+
+- Copy outputs to a dated, program-specific archive path after each run, for example:
+   - `reports/archive/<program-slug>/2026-07-07/executive-portfolio-radar.html`
 
 ## Notes
 

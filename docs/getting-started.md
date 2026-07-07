@@ -97,6 +97,7 @@ Each week, repeat:
 
 - Report generation details: `docs/report-generation.md`
 - Orchestrated no-code mode: `docs/copilot-orchestrated-mode.md`
+- Weekly operating procedure: `docs/tpm-weekly-sop.md`
 - Report samples: `reports/README.md`
 - Decision records (ADR): `docs/adr-instructions.md`
 - Starter orchestration pattern: `agents/pulse-orchestrator/README.md`
