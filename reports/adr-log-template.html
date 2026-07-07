@@ -5,246 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ADR Decision Log</title>
   <style>{{ theme_css }}</style>
-  <style>
-    .adr-hero {
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-      background:
-        linear-gradient(140deg, rgba(10, 79, 146, 0.13), rgba(15, 108, 189, 0.07) 45%, rgba(255, 255, 255, 0.96) 80%),
-        linear-gradient(180deg, #ffffff, var(--surface-soft));
-    }
-
-    .adr-hero::after {
-      content: "";
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      right: -120px;
-      top: -130px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(15, 108, 189, 0.18), rgba(15, 108, 189, 0));
-      pointer-events: none;
-    }
-
-    .hero-subgrid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 12px;
-      margin-top: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-panel {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.82);
-      padding: 10px 12px;
-      backdrop-filter: blur(1px);
-    }
-
-    .hero-panel h3 {
-      margin: 0 0 6px 0;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--muted);
-    }
-
-    .hero-panel p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .kpi-dashboard {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-    }
-
-    .kpi-tile {
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: linear-gradient(180deg, #ffffff, #f8fbff);
-      padding: 12px 13px;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .kpi-tile::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--brand), var(--brand-2));
-    }
-
-    .kpi-tile.good::before {
-      background: linear-gradient(90deg, #0d7a20, #1f9f3a);
-    }
-
-    .kpi-tile.warn::before {
-      background: linear-gradient(90deg, #a05a00, #ca7a00);
-    }
-
-    .kpi-tile.bad::before {
-      background: linear-gradient(90deg, #b42318, #d13a2f);
-    }
-
-    .kpi-tile .label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.45px;
-      color: var(--muted);
-    }
-
-    .kpi-tile .value {
-      font-size: 32px;
-      font-weight: 700;
-      margin-top: 6px;
-      line-height: 1;
-      color: var(--ink);
-    }
-
-    .kpi-tile.good .value {
-      color: var(--green);
-    }
-
-    .kpi-tile.warn .value {
-      color: var(--amber);
-    }
-
-    .kpi-tile.bad .value {
-      color: var(--red);
-    }
-
-    .approval-meter {
-      margin-top: 8px;
-      height: 8px;
-      width: 100%;
-      background: #e6edf7;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .approval-meter .fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--brand-2), var(--brand));
-    }
-
-    .queue-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .queue-item {
-      border: 1px solid #f1d5a2;
-      background: linear-gradient(180deg, #fffaf1, #fff5e7);
-      border-radius: 10px;
-      padding: 10px 12px;
-    }
-
-    .queue-item .head {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      align-items: center;
-      margin-bottom: 4px;
-    }
-
-    .queue-item .id {
-      font-family: Consolas, "Courier New", monospace;
-      font-size: 12px;
-      color: #915300;
-    }
-
-    .queue-item .title {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 700;
-      color: #6a3f00;
-    }
-
-    .queue-item .meta {
-      font-size: 12px;
-      color: #80520a;
-      margin-top: 6px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .meta-pill {
-      border-radius: 999px;
-      border: 1px solid #edcc95;
-      background: #fff;
-      padding: 2px 8px;
-    }
-
-    .decision-grid {
-      display: grid;
-      gap: 12px;
-    }
-
-    .decision-card {
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: linear-gradient(180deg, #ffffff, #fafcff);
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
-      overflow: hidden;
-    }
-
-    .decision-card .top {
-      padding: 10px 13px;
-      background: #f7fbff;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .decision-card .id {
-      font-family: Consolas, "Courier New", monospace;
-      font-size: 12px;
-      color: var(--slate);
-    }
-
-    .decision-card .body {
-      padding: 11px 13px 13px 13px;
-    }
-
-    .decision-card .title {
-      margin: 0 0 8px 0;
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    .decision-card .meta {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
-      gap: 8px;
-      font-size: 12px;
-    }
-
-    .decision-card .meta div {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 7px 8px;
-      background: #fff;
-    }
-
-    @media (max-width: 860px) {
-      .hero-subgrid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
   {% set ns = namespace(total=0, accepted=0, proposed=0, rejected=0, pending=0) %}
@@ -264,10 +24,10 @@
   {% endfor %}
 
   <div class="report-shell">
-    <div class="report-header adr-hero">
+    <div class="report-header">
       <div class="report-id">ADR Log</div>
       <h1 class="report-title">ADR Decision Log</h1>
-      <p class="report-subtitle">Week Ending: {{ data.weekEnding }} | Decision governance snapshot for leadership review</p>
+      <p class="report-subtitle">Week Ending: {{ data.weekEnding }}</p>
       <div class="meta-grid">
         <div class="meta-item">
           <div class="meta-label">Total Decisions</div>
@@ -286,101 +46,70 @@
           <div class="meta-value"><span class="badge {% if ns.pending > 0 %}amber{% else %}green{% endif %}">{{ ns.pending }}</span></div>
         </div>
       </div>
-      <div class="hero-subgrid">
-        <div class="hero-panel">
-          <h3>What This Report Tells You</h3>
-          <p>Decision quality, approval latency, and governance readiness across active ADRs. Use this to spot unresolved calls before they become delivery blockers.</p>
-        </div>
-        <div class="hero-panel">
-          <h3>Immediate Attention</h3>
-          <p>
-            {% if ns.pending > 0 %}
-            {{ ns.pending }} decision(s) are missing complete approval metadata.
-            {% else %}
-            Approval metadata is complete for all current records.
-            {% endif %}
-          </p>
-        </div>
-      </div>
     </div>
 
     <div class="report-section">
       <h2 class="section-title">Decision Health</h2>
-      <div class="kpi-dashboard">
-        <div class="kpi-tile good">
-          <div class="label">Accepted / Approved</div>
-          <div class="value">{{ ns.accepted }}</div>
-        </div>
-        <div class="kpi-tile warn">
-          <div class="label">Proposed / In Review</div>
-          <div class="value">{{ ns.proposed }}</div>
-        </div>
-        <div class="kpi-tile bad">
-          <div class="label">Rejected / Superseded</div>
-          <div class="value">{{ ns.rejected }}</div>
-        </div>
-        <div class="kpi-tile">
-          <div class="label">Approval Completion</div>
-          {% if ns.total > 0 %}
-          {% set completion = ((ns.total - ns.pending) * 100 // ns.total) %}
-          {% else %}
-          {% set completion = 0 %}
-          {% endif %}
-          <div class="value">{{ completion }}%</div>
-          <div class="approval-meter"><div class="fill" style="width: {{ completion }}%;"></div></div>
-        </div>
+      <table class="table">
+        <tr>
+          <th>Total</th>
+          <th>Accepted/Approved</th>
+          <th>Proposed/In Review</th>
+          <th>Rejected/Superseded</th>
+          <th>Pending Approval Data</th>
+        </tr>
+        <tr>
+          <td>{{ ns.total }}</td>
+          <td><span class="badge green">{{ ns.accepted }}</span></td>
+          <td><span class="badge amber">{{ ns.proposed }}</span></td>
+          <td><span class="badge red">{{ ns.rejected }}</span></td>
+          <td><span class="badge {% if ns.pending > 0 %}amber{% else %}green{% endif %}">{{ ns.pending }}</span></td>
+        </tr>
+      </table>
+      {% if ns.total > 0 %}
+      {% set completion = ((ns.total - ns.pending) * 100 // ns.total) %}
+      <div class="callout">
+        <strong>Approval Completion:</strong> {{ completion }}%
       </div>
+      {% endif %}
     </div>
 
     {% if ns.pending > 0 %}
     <div class="report-section">
-      <h2 class="section-title">Priority Queue</h2>
-      <div class="queue-list">
+      <h2 class="section-title">Action Required</h2>
+      <div class="callout warning">
+        {{ ns.pending }} decision(s) are missing complete approval metadata. Validate approver and approval date before publication.
+      </div>
+      <ul>
         {% for d in data.decisions %}
           {% if d.approvedAt == 'Pending' or d.approvedBy == 'Pending' %}
-          <div class="queue-item">
-            <div class="head">
-              <div class="id">{{ d.id }}</div>
-              <span class="badge amber">Needs Approval Data</span>
-            </div>
-            <p class="title">{{ d.title }}</p>
-            <div class="meta">
-              <span class="meta-pill">Owner: {{ d.owner }}</span>
-              <span class="meta-pill">Approver: {{ d.approvedBy }}</span>
-              <span class="meta-pill">Approved At: {{ d.approvedAt }}</span>
-            </div>
-          </div>
+          <li><strong>{{ d.id }}</strong> - {{ d.title }} (Owner: {{ d.owner }})</li>
           {% endif %}
         {% endfor %}
-      </div>
+      </ul>
     </div>
     {% endif %}
 
     <div class="report-section">
-      <h2 class="section-title">Decision Records</h2>
-      <div class="decision-grid">
+      <h2 class="section-title">Decision Summary</h2>
+      <table class="table">
+        <tr><th>ID</th><th>Title</th><th>Status</th><th>Owner</th></tr>
         {% for d in data.decisions %}
-        {% set status = d.status|lower %}
-        <div class="decision-card">
-          <div class="top">
-            <div class="id">{{ d.id }}</div>
+        <tr>
+          <td>{{ d.id }}</td>
+          <td>{{ d.title }}</td>
+          <td>
+            {% set status = d.status|lower %}
             <span class="badge {% if status == 'accepted' or status == 'approved' %}green{% elif status == 'proposed' or status == 'in review' %}amber{% else %}red{% endif %}">{{ d.status }}</span>
-          </div>
-          <div class="body">
-            <p class="title">{{ d.title }}</p>
-            <div class="meta">
-              <div><strong>Owner:</strong> {{ d.owner }}</div>
-              <div><strong>Approved By:</strong> {{ d.approvedBy }}</div>
-              <div><strong>Approved At:</strong> {{ d.approvedAt }}</div>
-            </div>
-          </div>
-        </div>
+          </td>
+          <td>{{ d.owner }}</td>
+        </tr>
         {% endfor %}
-      </div>
+      </table>
     </div>
 
     <div class="report-section">
-      <h2 class="section-title">Decision Table</h2>
+      <h2 class="section-title">Decision Details</h2>
       <table class="table">
         <tr><th>ID</th><th>Title</th><th>Status</th><th>Owner</th><th>Approved By</th><th>Approved At</th></tr>
         {% for d in data.decisions %}
