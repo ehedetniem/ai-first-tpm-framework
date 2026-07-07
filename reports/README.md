@@ -1,15 +1,16 @@
 # HTML Report Templates
 
-This folder contains the leadership-themed report templates and supporting CSS used by `scripts/generate_reports.py`.
+This folder contains rendered sample HTML reports.
+Source templates and shared CSS used by `scripts/generate_reports.py` are in `templates/reports/`.
 
 ## Leadership report pack
 
-- `weekly-status-email-template.html`
-- `portfolio-health-chat-template.html`
-- `executive-briefing-template.html`
-- `raid-digest-template.html`
-- `adr-log-template.html`
-- `_theme.css`
+- `../templates/reports/weekly-status-email-template.html`
+- `../templates/reports/portfolio-health-chat-template.html`
+- `../templates/reports/executive-briefing-template.html`
+- `../templates/reports/raid-digest-template.html`
+- `../templates/reports/adr-log-template.html`
+- `../templates/reports/_theme.css`
 
 These `*-template.html` files are Jinja templates and will show placeholders such as `{{ ... }}` and `{% ... %}` when opened directly.
 Render them first with `python scripts/generate_reports.py`.

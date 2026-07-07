@@ -105,11 +105,12 @@ def main():
     raid_data = load_json(root / args.raid_json)
     adr_data = prepare_adr_view_model(load_json(root / args.adr_json))
 
+    templates_dir = root / "templates" / "reports"
     env = Environment(
-        loader=FileSystemLoader(str(root / "reports")),
+        loader=FileSystemLoader(str(templates_dir)),
         autoescape=select_autoescape(["html", "xml"]),
     )
-    theme_css = (root / "reports" / "_theme.css").read_text(encoding="utf-8")
+    theme_css = (templates_dir / "_theme.css").read_text(encoding="utf-8")
 
     weekly_template = env.get_template("weekly-status-email-template.html")
     portfolio_template = env.get_template("portfolio-health-chat-template.html")
