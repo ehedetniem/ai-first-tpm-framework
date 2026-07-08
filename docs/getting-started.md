@@ -2,6 +2,8 @@
 
 This guide is the easiest way to use this framework if you are not a developer.
 
+The goal is simple: start from the work you already do, not from a technical toolchain. If you have a transcript, notes, a risk discussion, or a decision thread, that is enough to begin.
+
 ## Goal for Day 1
 
 By the end of Day 1, you should be able to:
@@ -19,6 +21,11 @@ If you only follow one document today, follow this one end-to-end.
 - You do not need a built-in XPO runtime agent to run this framework.
 - The current workflow is automation-first, with human review before publish.
 - Non-technical TPMs should use Copilot orchestration instead of editing JSON directly.
+
+In practice, this means:
+- you bring the raw signal
+- Copilot turns it into structure
+- you review judgment, risk, and message quality
 
 ## Source of truth (important)
 
@@ -71,7 +78,7 @@ Option B: Intake file
 2. Save a copy as `data/intake/<program-slug>/weekly-intake-YYYY-MM-DD.md`.
 3. Fill sections in plain language.
 
-Use one intake/transcript stream per program so decisions, risks, and owners remain traceable.
+Use one intake or transcript stream per program so decisions, risks, and owners remain traceable.
 
 ## Step 3 - Choose your operating mode
 
@@ -122,7 +129,7 @@ Do not rewrite full reports manually. Review these items:
 - Any changed KPI numbers
 - Leadership narrative for accuracy and tone
 
-After review, publish to your normal channels.
+After review, publish to your normal channels. The goal is not to polish every sentence by hand. The goal is to spend your time on judgment, clarity, and decision quality.
 
 ## Step 6 - Reuse this weekly rhythm
 
@@ -133,6 +140,8 @@ Each week, repeat:
 3. Run validate + reports only if Copilot did not already run them for you
 4. Review deltas
 5. Publish
+
+Over time, the motion should feel lighter: fewer manual rewrites, faster status synthesis, and more TPM attention on decisions and execution.
 
 ## Troubleshooting (quick)
 

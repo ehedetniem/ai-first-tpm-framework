@@ -2,6 +2,8 @@
 
 If you are new to AI tools, this page gets you from zero to first report in about 10 minutes.
 
+You do not need to learn a new system before you get value. Start with one program, one transcript or one intake note, and let the repo show you the workflow.
+
 ## What you will do
 
 1. Open the repo in VS Code
@@ -9,6 +11,8 @@ If you are new to AI tools, this page gets you from zero to first report in abou
 3. Run validation
 4. Generate reports
 5. Review and publish with human approval
+
+This first run is meant to build confidence, not perfection.
 
 ## 10-minute checklist
 

@@ -2,7 +2,11 @@
 
 A practical operating system for Technical Program Management teams moving from manual reporting to AI-enabled execution.
 
-The intended experience is language-first:
+The intended experience is language-first.
+
+Instead of starting with spreadsheets, status-chasing, or manual report writing, a TPM starts with the conversation that already happened: a meeting transcript, a set of notes, a decision that needs to be captured, or a blocker that needs to be escalated.
+
+From there:
 - TPMs bring transcripts, notes, and decisions into GitHub Copilot Chat
 - Copilot drafts artifacts, updates structured inputs, and runs report generation
 - CLI commands remain available as a backup path, not the primary user experience
@@ -24,7 +28,7 @@ If you are new to AI tools, follow this exact order:
 5. **Run the CLI status check:** `python agents/pulse-orchestrator/pulse.py status --program-slug <program-slug>`
 6. **Validate data before report generation:** `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
 
-If you do only one thing today: complete the **10-minute checklist** in `docs/start-in-10-minutes.md`.
+If you do only one thing today, complete the **10-minute checklist** in `docs/start-in-10-minutes.md`.
 
 ## Core docs and workflows
 
@@ -46,6 +50,11 @@ If you do only one thing today: complete the **10-minute checklist** in `docs/st
 ## Using with VS Code + GitHub Copilot
 
 Recommended setup for this repo is VS Code with GitHub Copilot Chat enabled.
+
+Think of this as a transition path:
+- first, learn the weekly rhythm
+- next, let Copilot do the first pass
+- finally, use CLI only when you need verification or backup
 
 1. Open this folder in VS Code.
 2. Open `docs/start-in-10-minutes.md` for your first successful run.

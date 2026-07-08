@@ -17,6 +17,8 @@ Create leadership-ready updates with a consistent, low-friction process:
 4. Review deltas
 5. Publish with human approval
 
+The operating principle is that TPMs should not spend the week retyping status. They should spend the week driving clarity, surfacing risk, and improving the decisions that move a program forward.
+
 ## Scope
 
 - One run per program (`<program-slug>`)
@@ -74,6 +76,8 @@ Review only high-signal deltas:
 - Decision asks
 - KPI deltas
 - ADR draft quality (if created)
+
+If nothing material changed, the review should be fast. If something important changed, the review should focus on meaning, ownership, and consequences.
 
 ### 5) Approve and publish
 
