@@ -49,7 +49,7 @@ Before publishing an ADR, confirm:
 
 ## Sample naming and indexing pattern
 
-- Keep ADRs in `data/adrs/` (recommended in this repo)
+- Keep ADRs in `data/adrs/`
 - Prefix with date for sortability
 - Add a simple index file mapping ADR titles to status
 
