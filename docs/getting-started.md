@@ -18,7 +18,7 @@ If you only follow one document today, follow this one end-to-end.
 - You should use VS Code with GitHub Copilot Chat.
 - You do not need a built-in XPO runtime agent to run this framework.
 - The current workflow is automation-first, with human review before publish.
-- Non-technical TPMs should use the orchestrated intake method instead of editing JSON directly.
+- Non-technical TPMs should use Copilot orchestration instead of editing JSON directly.
 
 ## Source of truth (important)
 
@@ -30,13 +30,14 @@ Your understanding is correct:
 
 What this public repo does include:
 
-- Report rendering from JSON in `data/` to HTML in `output/`.
+- A public per-program workflow and a separate portfolio aggregation workflow.
+- Report rendering from structured JSON to HTML in `output/`.
 - A Copilot-first workflow to update JSON safely for weekly publishing.
 
 Practical model:
 
 1. Upstream system updates (external bridge) refresh YAML in your internal environment
-2. YAML signal is mapped/exported to JSON report inputs
+2. YAML signal is mapped/exported into either program-scoped or portfolio-scoped JSON inputs
 3. This repo renders leadership-ready HTML reports
 
 For a concrete field mapping contract, see `docs/report-generation.md` under "Bridge handoff contract example (YAML -> JSON)".
@@ -46,8 +47,8 @@ For a concrete field mapping contract, see `docs/report-generation.md` under "Br
 - [ ] Open this repo in VS Code
 - [ ] Open Copilot Chat
 - [ ] Create one intake file for one program slug
-- [ ] Run `python agents/pulse-orchestrator/pulse.py validate`
-- [ ] Run `python agents/pulse-orchestrator/pulse.py reports`
+- [ ] Run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
+- [ ] Run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>`
 - [ ] Open files in `output/` and review deltas
 - [ ] Publish only after human approval
 
@@ -72,7 +73,20 @@ Option B: Intake file
 
 Use one intake/transcript stream per program so decisions, risks, and owners remain traceable.
 
-## Step 3 - Ask Copilot to orchestrate updates
+## Step 3 - Choose your operating mode
+
+Per-program mode:
+
+- Use one `<program-slug>` only
+- Target inputs under `data/programs/<program-slug>/`
+- Write outputs to a dated program folder
+
+Portfolio aggregation mode:
+
+- Use rollup inputs under `data/portfolio/`
+- Generate leadership-ready cross-program outputs
+
+## Step 4 - Ask Copilot to orchestrate updates
 
 Use the runbook and prompt in:
 
@@ -86,19 +100,19 @@ Copilot will:
 4. Return a short review summary
 5. (Transcript mode) Draft ADR(s) from decisions discussed
 
-## Step 4 - Run validation and generate reports
+CLI is backup only. In the normal flow, Copilot should run generation for you.
 
-Run one at a time from repo root:
+If you need to run the backup commands yourself:
 
-1. `python agents/pulse-orchestrator/pulse.py validate`
-2. `python agents/pulse-orchestrator/pulse.py reports`
+Per-program mode:
 
-Fallback commands:
+1. `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
+2. `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>`
 
-- `python scripts/generate_reports.py`
-- `./scripts/run_reports.ps1` (Windows)
+Portfolio mode:
 
-Generated files appear in `output/`.
+1. `python agents/pulse-orchestrator/pulse.py validate --mode portfolio`
+2. `python agents/pulse-orchestrator/pulse.py reports --mode portfolio`
 
 ## Step 5 - Review only what matters
 
@@ -114,16 +128,16 @@ After review, publish to your normal channels.
 
 Each week, repeat:
 
-1. Fill one intake file
+1. Save one transcript or intake input
 2. Run one orchestration prompt
-3. Run validate + reports
+3. Run validate + reports only if Copilot did not already run them for you
 4. Review deltas
 5. Publish
 
 ## Troubleshooting (quick)
 
-- **Validation fails:** run `python agents/pulse-orchestrator/pulse.py validate` again and fix missing required fields in `data/*.json`.
-- **No report output:** run `python agents/pulse-orchestrator/pulse.py reports` from repo root.
+- **Validation fails:** run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` again and fix missing required fields.
+- **No report output:** run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>` from repo root.
 - **Confusing prompt behavior:** use the exact prompts in `agents/pulse-orchestrator/playbooks/`.
 - **Unclear ownership or dates:** use `TBD` instead of guessing.
 

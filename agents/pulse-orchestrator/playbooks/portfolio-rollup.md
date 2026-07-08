@@ -16,9 +16,9 @@ Week ending: <YYYY-MM-DD>
 Portfolio owner: <owner name>
 
 Source inputs:
-- Current program data: data/sample-weekly-status.json
-- Existing portfolio: data/sample-portfolio-health.json
-- Radar: data/sample-executive-portfolio-radar.json
+- Current program data: data/programs/<program-slug>/... across active programs
+- Existing portfolio: data/portfolio/portfolio-health.json
+- Radar: data/portfolio/executive-portfolio-radar.json
 
 Steps:
 1. Read all active program data and produce a portfolio-level view:
@@ -27,7 +27,7 @@ Steps:
    - Whether a decision is pending per program
    - Top 2 leadership asks for the portfolio
 
-2. Update data/sample-portfolio-health.json preserving this exact schema:
+2. Update data/portfolio/portfolio-health.json preserving this exact schema:
    {
      "weekEnding": "YYYY-MM-DD",
      "green": number,
@@ -45,11 +45,11 @@ Steps:
      "leadershipAsks": ["string"]
    }
 
-3. Update data/sample-executive-briefing.json with a fresh executive summary.
+3. Update data/portfolio/executive-briefing.json with a fresh executive summary.
 
-4. Run python agents/pulse-orchestrator/validate.py to verify all schemas.
+4. Run `python agents/pulse-orchestrator/pulse.py validate --mode portfolio` to verify all schemas.
 
-5. Run python agents/pulse-orchestrator/pulse.py reports to regenerate HTML outputs.
+5. Run `python agents/pulse-orchestrator/pulse.py reports --mode portfolio` to regenerate HTML outputs.
 
 6. Return a Pulse Summary following the format in the system prompt.
 
@@ -66,10 +66,10 @@ Constraints:
 
 | Output | Location |
 |---|---|
-| Updated portfolio JSON | `data/sample-portfolio-health.json` |
-| Updated executive briefing | `data/sample-executive-briefing.json` |
-| HTML portfolio chat | `output/portfolio-health-chat.html` |
-| HTML executive briefing | `output/executive-briefing.html` |
+| Updated portfolio JSON | `data/portfolio/portfolio-health.json` |
+| Updated executive briefing | `data/portfolio/executive-briefing.json` |
+| HTML portfolio chat | `output/portfolio/YYYY-MM-DD/portfolio-health-chat.html` |
+| HTML executive briefing | `output/portfolio/YYYY-MM-DD/executive-briefing.html` |
 | Terminal summary | Copilot Chat response |
 
 ## Human approval checklist

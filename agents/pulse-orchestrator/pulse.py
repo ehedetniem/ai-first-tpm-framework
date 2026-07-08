@@ -38,6 +38,37 @@ DATA_DIR = REPO_ROOT / "data"
 TEMPLATES_DIR = REPO_ROOT / "templates"
 SCRIPTS_DIR = REPO_ROOT / "scripts"
 ADR_DRAFTS_DIR = DATA_DIR / "adrs"
+TODAY = date.today().isoformat()
+
+PROGRAM_FILE_MAP = {
+    "weekly": "weekly-status.json",
+    "executive": "executive-briefing.json",
+    "raid": "raid-digest.json",
+    "adr": "adr-log.json",
+    "daily_ops": "daily-ops-pulse.json",
+    "dependency": "dependency-critical-path.json",
+    "capacity": "capacity-milestone-confidence.json",
+    "adoption": "adoption-change-readout.json",
+}
+
+PORTFOLIO_FILE_MAP = {
+    "portfolio": "portfolio-health.json",
+    "executive": "executive-briefing.json",
+    "executive_portfolio_radar": "executive-portfolio-radar.json",
+}
+
+SAMPLE_FILE_MAP = {
+    "weekly": "sample-weekly-status.json",
+    "portfolio": "sample-portfolio-health.json",
+    "executive": "sample-executive-briefing.json",
+    "raid": "sample-raid-digest.json",
+    "adr": "sample-adr-log.json",
+    "daily_ops": "sample-daily-ops-pulse.json",
+    "dependency": "sample-dependency-critical-path.json",
+    "capacity": "sample-capacity-milestone-confidence.json",
+    "adoption": "sample-adoption-change-readout.json",
+    "executive_portfolio_radar": "sample-executive-portfolio-radar.json",
+}
 
 
 # ---------------------------------------------------------------------------
@@ -76,12 +107,53 @@ def slugify(text: str) -> str:
     return text[:60]
 
 
+def repo_relative(path: Path) -> str:
+    try:
+        return str(path.relative_to(REPO_ROOT))
+    except ValueError:
+        return str(path)
+
+
+def resolve_input_path(mode: str, logical_name: str, program_slug: str | None = None) -> Path:
+    if mode == "program" and program_slug and logical_name in PROGRAM_FILE_MAP:
+        candidate = DATA_DIR / "programs" / program_slug / PROGRAM_FILE_MAP[logical_name]
+        if candidate.exists():
+            return candidate
+    if mode == "portfolio" and logical_name in PORTFOLIO_FILE_MAP:
+        candidate = DATA_DIR / "portfolio" / PORTFOLIO_FILE_MAP[logical_name]
+        if candidate.exists():
+            return candidate
+    return DATA_DIR / SAMPLE_FILE_MAP[logical_name]
+
+
+def resolve_data_path(explicit_path: str | None, default_path: Path) -> Path:
+    if not explicit_path:
+        return default_path
+    path = Path(explicit_path)
+    if path.is_absolute():
+        return path
+    repo_candidate = REPO_ROOT / path
+    if repo_candidate.exists():
+        return repo_candidate
+    data_candidate = DATA_DIR / path
+    return data_candidate
+
+
+def default_output_dir(mode: str, program_slug: str | None = None) -> str | None:
+    if mode == "program" and program_slug:
+        return f"output/{program_slug}/{TODAY}"
+    if mode == "portfolio":
+        return f"output/portfolio/{TODAY}"
+    return None
+
+
 # ---------------------------------------------------------------------------
 # status command
 # ---------------------------------------------------------------------------
 
 def cmd_status(args):
-    path = DATA_DIR / args.json
+    default_path = resolve_input_path("program", "weekly", args.program_slug)
+    path = resolve_data_path(args.json, default_path)
     if not path.exists():
         print(f"Error: {path} not found.", file=sys.stderr)
         sys.exit(1)
@@ -131,7 +203,8 @@ def cmd_status(args):
 # ---------------------------------------------------------------------------
 
 def cmd_portfolio(args):
-    path = DATA_DIR / args.json
+    default_path = resolve_input_path("portfolio", "portfolio")
+    path = resolve_data_path(args.json, default_path)
     if not path.exists():
         print(f"Error: {path} not found.", file=sys.stderr)
         sys.exit(1)
@@ -224,7 +297,8 @@ def cmd_adr(args):
 # ---------------------------------------------------------------------------
 
 def cmd_risks(args):
-    path = DATA_DIR / args.json
+    default_path = resolve_input_path("program", "raid", args.program_slug)
+    path = resolve_data_path(args.json, default_path)
     if not path.exists():
         print(f"Error: {path} not found.", file=sys.stderr)
         sys.exit(1)
@@ -260,11 +334,43 @@ def cmd_risks(args):
 
 def cmd_validate(args):
     validate_script = Path(__file__).resolve().parent / "validate.py"
-    cmd = [sys.executable, str(validate_script)]
     if args.data_dir:
-        cmd += ["--data-dir", args.data_dir]
-    result = subprocess.run(cmd)
-    sys.exit(result.returncode)
+        cmd = [sys.executable, str(validate_script), "--data-dir", args.data_dir]
+        result = subprocess.run(cmd)
+        sys.exit(result.returncode)
+
+    files_to_validate: list[Path] = []
+    if args.mode == "program":
+        if not args.program_slug:
+            print("Error: --program-slug is required when --mode program", file=sys.stderr)
+            sys.exit(1)
+        logical_names = ["weekly", "raid", "adr", "daily_ops", "dependency", "capacity", "adoption"]
+        for logical_name in logical_names:
+            candidate = resolve_input_path("program", logical_name, args.program_slug)
+            if candidate.exists() and candidate not in files_to_validate:
+                files_to_validate.append(candidate)
+    elif args.mode == "portfolio":
+        logical_names = ["portfolio", "executive", "executive_portfolio_radar"]
+        for logical_name in logical_names:
+            candidate = resolve_input_path("portfolio", logical_name)
+            if candidate.exists() and candidate not in files_to_validate:
+                files_to_validate.append(candidate)
+    else:
+        cmd = [sys.executable, str(validate_script)]
+        result = subprocess.run(cmd)
+        sys.exit(result.returncode)
+
+    if not files_to_validate:
+        print("Error: no input files found for validation in the selected mode", file=sys.stderr)
+        sys.exit(1)
+
+    exit_code = 0
+    for file_path in files_to_validate:
+        cmd = [sys.executable, str(validate_script), "--file", repo_relative(file_path)]
+        result = subprocess.run(cmd, cwd=str(REPO_ROOT))
+        if result.returncode != 0:
+            exit_code = result.returncode
+    sys.exit(exit_code)
 
 
 # ---------------------------------------------------------------------------
@@ -279,13 +385,33 @@ def cmd_reports(args):
 
     print("Running report generation…")
     cmd = [sys.executable, str(generate_script)]
-    if args.output_dir:
-        cmd += ["--output-dir", args.output_dir]
+
+    mode = args.mode
+    program_slug = args.program_slug
+    resolved_output_dir = args.output_dir or default_output_dir(mode, program_slug)
+    if resolved_output_dir:
+        cmd += ["--output-dir", resolved_output_dir]
+
+    input_map = {
+        "--weekly-json": resolve_input_path(mode if mode == "program" else "all", "weekly", program_slug),
+        "--portfolio-json": resolve_input_path(mode, "portfolio", program_slug),
+        "--executive-json": resolve_input_path(mode, "executive", program_slug),
+        "--raid-json": resolve_input_path(mode if mode == "program" else "all", "raid", program_slug),
+        "--adr-json": resolve_input_path(mode if mode == "program" else "all", "adr", program_slug),
+        "--daily-ops-json": resolve_input_path(mode if mode == "program" else "all", "daily_ops", program_slug),
+        "--dependency-json": resolve_input_path(mode if mode == "program" else "all", "dependency", program_slug),
+        "--capacity-json": resolve_input_path(mode if mode == "program" else "all", "capacity", program_slug),
+        "--adoption-json": resolve_input_path(mode if mode == "program" else "all", "adoption", program_slug),
+        "--executive-portfolio-radar-json": resolve_input_path(mode, "executive_portfolio_radar", program_slug),
+    }
+    for flag, path in input_map.items():
+        cmd += [flag, repo_relative(path)]
 
     result = subprocess.run(cmd, cwd=str(REPO_ROOT))
     if result.returncode == 0:
         print()
-        print("Reports generated. Review outputs in output/ before sharing.")
+        final_output = resolved_output_dir or "output/"
+        print(f"Reports generated. Review outputs in {final_output} before sharing.")
         print("Human approval required before external distribution.")
     sys.exit(result.returncode)
 
@@ -308,19 +434,20 @@ def main():
     p_status = subparsers.add_parser("status", help="Show weekly status summary")
     p_status.add_argument(
         "--json",
-        default="sample-weekly-status.json",
+        default=None,
         metavar="FILE",
-        help="Weekly status JSON file under data/ (default: sample-weekly-status.json)",
+        help="Weekly status JSON file path (program-scoped or explicit override)",
     )
+    p_status.add_argument("--program-slug", default=None, help="Program slug for program-scoped status")
     p_status.set_defaults(func=cmd_status)
 
     # portfolio
     p_portfolio = subparsers.add_parser("portfolio", help="Show portfolio health summary")
     p_portfolio.add_argument(
         "--json",
-        default="sample-portfolio-health.json",
+        default=None,
         metavar="FILE",
-        help="Portfolio health JSON file under data/ (default: sample-portfolio-health.json)",
+        help="Portfolio health JSON file path (portfolio-scoped or explicit override)",
     )
     p_portfolio.set_defaults(func=cmd_portfolio)
 
@@ -335,10 +462,11 @@ def main():
     p_risks = subparsers.add_parser("risks", help="Show open risks and blockers")
     p_risks.add_argument(
         "--json",
-        default="sample-raid-digest.json",
+        default=None,
         metavar="FILE",
-        help="RAID digest JSON file under data/ (default: sample-raid-digest.json)",
+        help="RAID digest JSON file path (program-scoped or explicit override)",
     )
+    p_risks.add_argument("--program-slug", default=None, help="Program slug for program-scoped RAID")
     p_risks.set_defaults(func=cmd_risks)
 
     # validate
@@ -350,6 +478,17 @@ def main():
         default=None,
         help="Override data directory path",
     )
+    p_validate.add_argument(
+        "--mode",
+        choices=["all", "program", "portfolio"],
+        default="all",
+        help="Validation mode (default: all)",
+    )
+    p_validate.add_argument(
+        "--program-slug",
+        default=None,
+        help="Program slug for program-scoped validation",
+    )
     p_validate.set_defaults(func=cmd_validate)
 
     # reports
@@ -358,6 +497,17 @@ def main():
         "--output-dir",
         default=None,
         help="Override output directory",
+    )
+    p_reports.add_argument(
+        "--mode",
+        choices=["all", "program", "portfolio"],
+        default="all",
+        help="Report generation mode (default: all)",
+    )
+    p_reports.add_argument(
+        "--program-slug",
+        default=None,
+        help="Program slug for program-scoped report generation",
     )
     p_reports.set_defaults(func=cmd_reports)
 

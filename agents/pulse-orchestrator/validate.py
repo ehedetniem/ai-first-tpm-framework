@@ -94,6 +94,19 @@ SCHEMAS: dict[str, list[tuple[str, bool, str]]] = {
     ],
 }
 
+SCHEMA_ALIASES = {
+    "weekly-status.json": "sample-weekly-status.json",
+    "portfolio-health.json": "sample-portfolio-health.json",
+    "executive-briefing.json": "sample-executive-briefing.json",
+    "raid-digest.json": "sample-raid-digest.json",
+    "adr-log.json": "sample-adr-log.json",
+    "daily-ops-pulse.json": "sample-daily-ops-pulse.json",
+    "dependency-critical-path.json": "sample-dependency-critical-path.json",
+    "capacity-milestone-confidence.json": "sample-capacity-milestone-confidence.json",
+    "adoption-change-readout.json": "sample-adoption-change-readout.json",
+    "executive-portfolio-radar.json": "sample-executive-portfolio-radar.json",
+}
+
 # RAID entry required sub-fields
 RAID_ENTRY_FIELDS = ["type", "title", "severity", "owner", "nextAction"]
 # ADR decision required sub-fields
@@ -144,7 +157,7 @@ def validate_file(path: Path, schema: list[tuple[str, bool, str]]) -> list[str]:
                 errors.append(f"  OPTIONAL {field_path}: {description} (not present)")
 
     # Deep validation for specific files
-    filename = path.name
+    filename = SCHEMA_ALIASES.get(path.name, path.name)
     if filename == "sample-raid-digest.json":
         entries = data.get("entries", [])
         for i, entry in enumerate(entries):
@@ -174,7 +187,8 @@ def run_validation(data_dir: Path, single_file: Path | None = None) -> int:
     exit_code = 0
 
     if single_file is not None:
-        files_to_check = [(single_file, SCHEMAS.get(single_file.name))]
+        schema_name = SCHEMA_ALIASES.get(single_file.name, single_file.name)
+        files_to_check = [(single_file, SCHEMAS.get(schema_name))]
     else:
         files_to_check = []
         for filename, schema in SCHEMAS.items():

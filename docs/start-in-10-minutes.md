@@ -15,9 +15,9 @@ If you are new to AI tools, this page gets you from zero to first report in abou
 - [ ] Open this repo in VS Code
 - [ ] Open Copilot Chat
 - [ ] Add one intake file under `data/intake/<program-slug>/`
-- [ ] Run `python agents/pulse-orchestrator/pulse.py validate`
-- [ ] Run `python agents/pulse-orchestrator/pulse.py reports`
-- [ ] Open `output/*.html` and review risks, decision asks, and KPI deltas
+- [ ] Run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
+- [ ] Run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>`
+- [ ] Open `output/<program-slug>/YYYY-MM-DD/*.html` and review risks, decision asks, and KPI deltas
 - [ ] Publish only after human review
 
 ## Step-by-step
@@ -46,7 +46,7 @@ Keep one intake stream per program for traceability.
 From repo root:
 
 ```bash
-python agents/pulse-orchestrator/pulse.py validate
+python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>
 ```
 
 If validation fails, fix missing required fields in `data/*.json` and run again.
@@ -54,10 +54,10 @@ If validation fails, fix missing required fields in `data/*.json` and run again.
 ### 4) Generate reports
 
 ```bash
-python agents/pulse-orchestrator/pulse.py reports
+python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>
 ```
 
-Generated files are in `output/`.
+Generated files are in `output/<program-slug>/YYYY-MM-DD/`.
 
 ### 5) Review and publish
 
@@ -74,7 +74,7 @@ Then publish with human approval.
 - Run status summary:
 
 ```bash
-python agents/pulse-orchestrator/pulse.py status
+python agents/pulse-orchestrator/pulse.py status --program-slug <program-slug>
 ```
 
 - Read the weekly SOP:

@@ -10,17 +10,19 @@ Run from the repository root. Requires Python 3.10+ and `pip install -r requirem
 
 | Command | What it does |
 |---|---|
-| `python agents/pulse-orchestrator/pulse.py status` | Print weekly status summary from `data/sample-weekly-status.json` |
+| `python agents/pulse-orchestrator/pulse.py status --program-slug <program-slug>` | Print weekly status summary for one program |
 | `python agents/pulse-orchestrator/pulse.py portfolio` | Print portfolio health table |
-| `python agents/pulse-orchestrator/pulse.py risks` | Print open risks and blockers from RAID digest |
+| `python agents/pulse-orchestrator/pulse.py risks --program-slug <program-slug>` | Print open risks and blockers for one program |
 | `python agents/pulse-orchestrator/pulse.py adr "<title>"` | Generate a new ADR draft file in `data/adrs/` |
-| `python agents/pulse-orchestrator/pulse.py validate` | Validate all JSON data files against expected schemas |
-| `python agents/pulse-orchestrator/pulse.py reports` | Run full HTML report generation |
+| `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` | Validate program-scoped JSON data files |
+| `python agents/pulse-orchestrator/pulse.py validate --mode portfolio` | Validate portfolio-scoped JSON data files |
+| `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>` | Run program-scoped HTML report generation |
+| `python agents/pulse-orchestrator/pulse.py reports --mode portfolio` | Run portfolio aggregation HTML report generation |
 
 ### `status` options
 
 ```bash
-python agents/pulse-orchestrator/pulse.py status --json my-program-weekly.json
+python agents/pulse-orchestrator/pulse.py status --program-slug my-program
 ```
 
 ### `adr` options
@@ -34,7 +36,7 @@ python agents/pulse-orchestrator/pulse.py adr "Decision title" \
 ### `reports` options
 
 ```bash
-python agents/pulse-orchestrator/pulse.py reports --output-dir custom-output/
+python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug my-program --output-dir custom-output/
 ```
 
 ---
@@ -85,7 +87,7 @@ Run the adr-draft playbook from agents/pulse-orchestrator/playbooks/adr-draft.md
 Act as Pulse Orchestrator for this repo. See agents/pulse-orchestrator/system-prompt.md for your behavior rules.
 
 Task: risk review
-Source: data/sample-raid-digest.json
+Source: data/programs/<program-slug>/raid-digest.json
 Program: <program-slug>
 
 Run the risk-review playbook from agents/pulse-orchestrator/playbooks/risk-review.md.
@@ -98,7 +100,7 @@ Act as Pulse Orchestrator for this repo. See agents/pulse-orchestrator/system-pr
 
 Task: stakeholder update
 Audience: <executive | engineering | external>
-Source: data/sample-weekly-status.json, data/sample-portfolio-health.json
+Source: program-scoped or portfolio-scoped JSON inputs, depending on request
 Program: <program-slug or "Portfolio">
 
 Run the stakeholder-update playbook from agents/pulse-orchestrator/playbooks/stakeholder-update.md.
@@ -115,11 +117,11 @@ Run the stakeholder-update playbook from agents/pulse-orchestrator/playbooks/sta
 | `risks` | Terminal summary (read-only) |
 | `adr <title>` | `data/adrs/ADR-YYYY-MM-DD-<slug>.md` |
 | `validate` | Terminal validation report |
-| `reports` | `output/*.html` (10 HTML files) |
-| @pulse status (Copilot) | `data/sample-weekly-status.json`, `data/sample-portfolio-health.json`, `output/*.html` |
-| @pulse portfolio (Copilot) | `data/sample-portfolio-health.json`, `data/sample-executive-portfolio-radar.json`, `output/*.html` |
-| @pulse adr (Copilot) | `data/adrs/ADR-YYYY-MM-DD-<slug>.md`, `data/sample-adr-log.json` (if accepted) |
-| @pulse risks (Copilot) | `data/sample-raid-digest.json`, `output/raid-digest.html` |
+| `reports` | `output/<program-slug>/YYYY-MM-DD/*.html` or `output/portfolio/YYYY-MM-DD/*.html` |
+| @pulse status (Copilot) | `data/programs/<program-slug>/weekly-status.json`, related outputs |
+| @pulse portfolio (Copilot) | `data/portfolio/*.json`, `output/portfolio/YYYY-MM-DD/*.html` |
+| @pulse adr (Copilot) | `data/adrs/ADR-YYYY-MM-DD-<slug>.md`, `data/programs/<program-slug>/adr-log.json` (if accepted) |
+| @pulse risks (Copilot) | `data/programs/<program-slug>/raid-digest.json`, related outputs |
 | @pulse stakeholder-update (Copilot) | Draft text for human review |
 
 ---

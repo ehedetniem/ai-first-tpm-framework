@@ -8,6 +8,21 @@ This repo includes a Python generator for a leadership-ready HTML reporting pack
 - This public repo focuses on the rendering layer: JSON inputs in `data/` to HTML outputs in `output/`.
 - If your team uses YAML upstream, add a mapping/export step that writes the report JSON files before running the generator.
 
+## Public data lanes
+
+Use two separate data lanes:
+
+1. Program-scoped inputs
+- `data/programs/<program-slug>/...`
+
+2. Portfolio-scoped inputs
+- `data/portfolio/...`
+
+Use separate output directories as well:
+
+- `output/<program-slug>/YYYY-MM-DD/`
+- `output/portfolio/YYYY-MM-DD/`
+
 ## Bridge handoff contract example (YAML -> JSON)
 
 Use this as a lightweight contract between the bridge owner and report owner.

@@ -16,7 +16,7 @@ Program: <program-slug or "Portfolio">
 Week ending: <YYYY-MM-DD>
 
 Source inputs:
-- RAID digest: data/sample-raid-digest.json
+- RAID digest: data/programs/<program-slug>/raid-digest.json
 - Meeting transcript (optional): data/intake/<program-slug>/meeting-transcript-<YYYY-MM-DD>.md
 
 Steps:
@@ -33,7 +33,7 @@ Steps:
 
 3. If the transcript contains new risks or issues not in the RAID digest, add them.
 
-4. Update data/sample-raid-digest.json preserving this exact schema:
+4. Update data/programs/<program-slug>/raid-digest.json preserving this exact schema:
    {
      "weekEnding": "YYYY-MM-DD",
      "entries": [
@@ -47,9 +47,9 @@ Steps:
      ]
    }
 
-5. Run python agents/pulse-orchestrator/validate.py to verify schema.
+5. Run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` to verify schema.
 
-6. Run python agents/pulse-orchestrator/pulse.py reports to regenerate the RAID digest HTML.
+6. Run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>` to regenerate the RAID digest HTML.
 
 7. Return a Pulse Summary with:
    - Count of High / Medium / Low items
@@ -68,10 +68,10 @@ Constraints:
 ## Quick CLI risk summary (read-only)
 
 ```bash
-python agents/pulse-orchestrator/pulse.py risks
+python agents/pulse-orchestrator/pulse.py risks --program-slug <program-slug>
 ```
 
-This prints current risks from `data/sample-raid-digest.json` without modifying any files.
+This prints current risks from the program-scoped RAID digest without modifying any files.
 
 ---
 
@@ -79,8 +79,8 @@ This prints current risks from `data/sample-raid-digest.json` without modifying 
 
 | Output | Location |
 |---|---|
-| Updated RAID JSON | `data/sample-raid-digest.json` |
-| HTML RAID digest | `output/raid-digest.html` |
+| Updated RAID JSON | `data/programs/<program-slug>/raid-digest.json` |
+| HTML RAID digest | `output/<program-slug>/YYYY-MM-DD/raid-digest.html` |
 | Terminal summary | Copilot Chat response |
 
 ## Human approval checklist

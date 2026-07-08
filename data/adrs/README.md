@@ -15,8 +15,8 @@ Example: `ADR-2026-07-07-adopt-shared-api-contract-standard.md`
 1. Draft created here (status: Proposed)
 2. TPM fills in Decision, Options, Rationale, Consequences
 3. Reviewed and approved by the appropriate stakeholder
-4. Status updated to Accepted; entry added to `data/sample-adr-log.json`
-5. Reports regenerated: `python agents/pulse-orchestrator/pulse.py reports`
+4. Status updated to Accepted; entry added to the program-scoped ADR log JSON
+5. Reports regenerated: `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>`
 
 ## How to create a new ADR draft
 

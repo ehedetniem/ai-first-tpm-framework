@@ -15,6 +15,11 @@ It runs in two modes:
 
 Both modes enforce the same governance rules: no fabricated facts, human approval before sharing, and scoped to one program per run.
 
+It also supports two operating lanes:
+
+1. Per-program execution
+2. Portfolio aggregation
+
 ---
 
 ## Quick start
@@ -22,26 +27,38 @@ Both modes enforce the same governance rules: no fabricated facts, human approva
 ### 1. Run a status summary (30 seconds)
 
 ```bash
-python agents/pulse-orchestrator/pulse.py status
+python agents/pulse-orchestrator/pulse.py status --program-slug my-program
 ```
 
-Shows health, highlights, risks, and next actions from `data/sample-weekly-status.json`.
+Shows health, highlights, risks, and next actions from a program-scoped weekly status file when available.
 
 ### 2. Validate all data files before generating reports
 
 ```bash
-python agents/pulse-orchestrator/pulse.py validate
+python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug my-program
 ```
 
 Run this before every report generation to catch missing fields early.
 
+For portfolio aggregation:
+
+```bash
+python agents/pulse-orchestrator/pulse.py validate --mode portfolio
+```
+
 ### 3. Generate all HTML reports
 
 ```bash
-python agents/pulse-orchestrator/pulse.py reports
+python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug my-program
 ```
 
-Runs `scripts/generate_reports.py` and produces 10 HTML files in `output/`.
+Runs `scripts/generate_reports.py` and writes HTML files to a mode-aware output folder.
+
+For portfolio aggregation:
+
+```bash
+python agents/pulse-orchestrator/pulse.py reports --mode portfolio
+```
 
 ---
 
@@ -49,11 +66,11 @@ Runs `scripts/generate_reports.py` and produces 10 HTML files in `output/`.
 
 ### Weekly status update
 
-**What it does:** Extracts signals from a meeting transcript or intake file and updates `data/sample-weekly-status.json`. Generates weekly status HTML.
+**What it does:** Extracts signals from a meeting transcript or intake file and updates program-scoped JSON files under `data/programs/<program-slug>/`. Generates weekly status HTML.
 
 **CLI:**
 ```bash
-python agents/pulse-orchestrator/pulse.py status
+python agents/pulse-orchestrator/pulse.py status --program-slug my-program
 ```
 
 **Copilot Chat:** See `agents/pulse-orchestrator/playbooks/weekly-status.md`.
@@ -64,7 +81,7 @@ python agents/pulse-orchestrator/pulse.py status
 
 ### Portfolio rollup
 
-**What it does:** Synthesizes cross-program health into portfolio and executive briefing JSON files. Generates portfolio and executive HTML reports.
+**What it does:** Synthesizes cross-program health into portfolio-scoped JSON files under `data/portfolio/`. Generates portfolio and executive HTML reports.
 
 **CLI:**
 ```bash
@@ -100,7 +117,7 @@ python agents/pulse-orchestrator/pulse.py adr "Decision title" \
 
 **CLI (read-only summary):**
 ```bash
-python agents/pulse-orchestrator/pulse.py risks
+python agents/pulse-orchestrator/pulse.py risks --program-slug my-program
 ```
 
 **Copilot Chat:** See `agents/pulse-orchestrator/playbooks/risk-review.md`.
@@ -163,19 +180,20 @@ intake input
     ▼
 Pulse Orchestrator (Copilot Chat or CLI)
     │
-    ├─ updates data/*.json
+  ├─ updates data/programs/<program-slug>/*.json
+  ├─ or updates data/portfolio/*.json
     │
     ▼
-python agents/pulse-orchestrator/validate.py   ← check schemas
+python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug my-program   ← check schemas
     │
     ▼
-python agents/pulse-orchestrator/pulse.py reports
+python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug my-program
     │
     ▼
-output/*.html   ← review before sharing
+output/<program-slug>/YYYY-MM-DD/*.html or output/portfolio/YYYY-MM-DD/*.html   ← review before sharing
 ```
 
-The orchestrator sits between raw intake and the HTML renderer. It does not modify templates. It only updates data JSON files.
+The orchestrator sits between raw intake and the HTML renderer. It does not modify templates. It only updates structured data JSON files.
 
 ---
 
@@ -197,19 +215,19 @@ See `agents/pulse-orchestrator/commands.md` for the complete command reference i
    agents/pulse-orchestrator/playbooks/weekly-status.md
    ```
 
-3. Copilot updates `data/sample-weekly-status.json` and runs validation.
+3. Copilot updates program-scoped JSON files and runs validation.
 
 4. Validate manually:
    ```bash
-   python agents/pulse-orchestrator/pulse.py validate
+  python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug my-program
    ```
 
 5. Generate reports:
    ```bash
-   python agents/pulse-orchestrator/pulse.py reports
+  python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug my-program
    ```
 
-6. Review outputs in `output/` and approve before sharing.
+6. Review outputs in `output/my-program/YYYY-MM-DD/` and approve before sharing.
 
 Total time for a well-prepared TPM: under 10 minutes per weekly cycle.
 

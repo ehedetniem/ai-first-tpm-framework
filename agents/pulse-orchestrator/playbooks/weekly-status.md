@@ -27,7 +27,7 @@ Steps:
    - Decisions needed with owners and due dates
    - Next 7 days actions
 
-2. Update data/sample-weekly-status.json preserving this exact schema:
+2. Update data/programs/<program-slug>/weekly-status.json preserving this exact schema:
    {
      "program": "string",
      "weekEnding": "YYYY-MM-DD",
@@ -39,11 +39,11 @@ Steps:
      "next7Days": ["string"]
    }
 
-3. Update data/sample-portfolio-health.json to reflect the latest health for this program.
+3. Optionally update a portfolio rollup input only if this run is part of a portfolio process.
 
-4. Run python agents/pulse-orchestrator/validate.py to check schema before generating reports.
+4. Run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` to check schema before generating reports.
 
-5. Run python agents/pulse-orchestrator/pulse.py reports to regenerate HTML outputs.
+5. Run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>` to regenerate HTML outputs.
 
 6. Return a Pulse Summary following the format in the system prompt.
 
@@ -60,10 +60,8 @@ Constraints:
 
 | Output | Location |
 |---|---|
-| Updated JSON | `data/sample-weekly-status.json` |
-| Updated portfolio row | `data/sample-portfolio-health.json` |
-| HTML report | `output/weekly-status-email.html` |
-| HTML portfolio | `output/portfolio-health-chat.html` |
+| Updated JSON | `data/programs/<program-slug>/weekly-status.json` |
+| HTML report | `output/<program-slug>/YYYY-MM-DD/weekly-status-email.html` |
 | Terminal summary | Copilot Chat response |
 
 ## Human approval checklist

@@ -74,8 +74,8 @@ The draft is saved to `data/adrs/ADR-<YYYY-MM-DD>-<slug>.md`.
 
 1. Open the draft and fill in Decision, Options, Rationale, and Consequences.
 2. Share with relevant stakeholders for review.
-3. Once approved, update status to `Accepted` and add to `data/sample-adr-log.json`.
-4. Run `python agents/pulse-orchestrator/pulse.py reports` to regenerate the ADR log HTML.
+3. Once approved, update status to `Accepted` and add to `data/programs/<program-slug>/adr-log.json`.
+4. Run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>` to regenerate the ADR log HTML.
 
 ## Human approval checklist
 

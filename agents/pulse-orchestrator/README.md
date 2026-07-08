@@ -6,9 +6,14 @@ Pulse Orchestrator is the in-repo TPM agent for the AI-First TPM Framework. It r
 
 - Routes TPM requests (status update, portfolio rollup, ADR drafting, risk review, stakeholder update) to the right artifact flow
 - Extracts signals from meeting transcripts and intake files
-- Updates JSON data files while preserving schema
+- Updates program-scoped or portfolio-scoped JSON data files while preserving schema
 - Validates JSON before report generation
 - Generates first-draft artifacts with human-in-the-loop governance enforced
+
+It supports two public operating lanes:
+
+1. Per-program execution
+2. Portfolio aggregation
 
 ## How to use it
 
@@ -16,22 +21,25 @@ Pulse Orchestrator is the in-repo TPM agent for the AI-First TPM Framework. It r
 
 ```bash
 # Weekly status summary
-python agents/pulse-orchestrator/pulse.py status
+python agents/pulse-orchestrator/pulse.py status --program-slug my-program
 
 # Portfolio health summary
 python agents/pulse-orchestrator/pulse.py portfolio
 
 # Open risks and blockers
-python agents/pulse-orchestrator/pulse.py risks
+python agents/pulse-orchestrator/pulse.py risks --program-slug my-program
 
 # Generate a new ADR draft
 python agents/pulse-orchestrator/pulse.py adr "Decision title" --program "My Program"
 
 # Validate all data JSON files
-python agents/pulse-orchestrator/pulse.py validate
+python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug my-program
 
-# Generate all HTML reports
-python agents/pulse-orchestrator/pulse.py reports
+# Generate program HTML reports
+python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug my-program
+
+# Generate portfolio aggregation HTML reports
+python agents/pulse-orchestrator/pulse.py reports --mode portfolio
 ```
 
 ### Option B — GitHub Copilot Chat

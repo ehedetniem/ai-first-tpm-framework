@@ -2,6 +2,11 @@
 
 A practical operating system for Technical Program Management teams moving from manual reporting to AI-enabled execution.
 
+The intended experience is language-first:
+- TPMs bring transcripts, notes, and decisions into GitHub Copilot Chat
+- Copilot drafts artifacts, updates structured inputs, and runs report generation
+- CLI commands remain available as a backup path, not the primary user experience
+
 This framework helps teams:
 - Standardize stakeholder artifacts across programs
 - Preserve decision context with ADRs
@@ -16,8 +21,8 @@ If you are new to AI tools, follow this exact order:
 2. **Quick onboarding (30-45 min):** `docs/getting-started.md`
 3. **First weekly run SOP:** `docs/tpm-weekly-sop.md`
 4. **Orchestration agent workflows:** `docs/orchestration-agent.md`
-5. **Run the CLI status check:** `python agents/pulse-orchestrator/pulse.py status`
-6. **Validate data before report generation:** `python agents/pulse-orchestrator/pulse.py validate`
+5. **Run the CLI status check:** `python agents/pulse-orchestrator/pulse.py status --program-slug <program-slug>`
+6. **Validate data before report generation:** `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
 
 If you do only one thing today: complete the **10-minute checklist** in `docs/start-in-10-minutes.md`.
 
@@ -46,17 +51,31 @@ Recommended setup for this repo is VS Code with GitHub Copilot Chat enabled.
 2. Open `docs/start-in-10-minutes.md` for your first successful run.
 3. Open `docs/getting-started.md` for full Day 1 onboarding.
 4. Open `docs/tpm-weekly-sop.md` to understand the repeatable weekly flow.
-5. Run `python agents/pulse-orchestrator/pulse.py status` to see the current program status.
+5. Run `python agents/pulse-orchestrator/pulse.py status --program-slug <program-slug>` to see the current program status.
 6. Use a playbook from `agents/pulse-orchestrator/playbooks/` in Copilot Chat.
-7. Run `python agents/pulse-orchestrator/pulse.py validate` before report generation.
-8. Review rendered outputs in `output/` and optional samples in `reports/`.
+7. Run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` before report generation.
+8. Review rendered outputs in `output/<program-slug>/YYYY-MM-DD/` and optional samples in `reports/`.
 
 Important:
 - The in-repo orchestration agent is `agents/pulse-orchestrator/`.
-- Use `python agents/pulse-orchestrator/pulse.py validate` before every report run.
-- You can run the full framework today without Copilot by using templates, scripts, and the CLI directly.
+- Use `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` before every program report run.
+- This repo does not include an `XPO` runtime agent.
+- CLI and scripts are available as backup when Copilot orchestration is not available.
+- You can run the full framework without Copilot by using Pulse CLI, templates, and scripts directly.
 
-## Fast report generation
+## Two Public Modes
+
+1. Per-program mode
+- One TPM run for one `<program-slug>`
+- Inputs live under `data/programs/<program-slug>/`
+- Outputs should be written to a program/date-specific folder
+
+2. Portfolio aggregation mode
+- One aggregation run across multiple programs
+- Inputs live under `data/portfolio/`
+- Outputs produce leadership rollups such as portfolio health and executive radar
+
+## CLI Backup
 
 From repo root:
 
@@ -96,8 +115,8 @@ Generated outputs:
 
 1. Start with `docs/start-in-10-minutes.md`.
 2. Continue with `docs/getting-started.md`.
-3. Use templates in `templates/` for one program.
-4. Run weekly cadence for 4 weeks.
+3. Use transcript-first orchestration for one program.
+4. Review generated artifacts and approve.
 5. Add ADR discipline and risk review.
 
 ### Path B: Portfolio-scale TPM team
@@ -110,14 +129,11 @@ Generated outputs:
 
 ## Quickstart
 
-1. Read `lifecycle/program-lifecycle.md`.
-2. Read `governance/hitl-governance.md`.
-3. Copy templates in `templates/` into your program workspace.
-4. Run a weekly cycle:
-   - Update program status template
-   - Capture decisions in ADR template
-   - Refresh risk log and portfolio rollup
-5. Start AI enablement with `automation/maturity-model.md`.
+1. Open VS Code with GitHub Copilot Chat.
+2. Start with `docs/getting-started.md`.
+3. Use transcript-first or intake orchestration to generate artifacts.
+4. Review only exceptions, decisions, and deltas.
+5. Use CLI backup only if Copilot orchestration is unavailable.
 
 For a practical onboarding flow, use `docs/getting-started.md`.
 

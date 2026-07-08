@@ -2,6 +2,11 @@
 
 This SOP is the standard weekly operating procedure for non-technical TPMs using this public repo.
 
+It supports two distinct lanes:
+
+1. Per-program execution
+2. Portfolio aggregation
+
 ## Purpose
 
 Create leadership-ready updates with a consistent, low-friction process:
@@ -18,6 +23,8 @@ Create leadership-ready updates with a consistent, low-friction process:
 - One source input per run
 - One approval step before external sharing
 
+Portfolio aggregation is a separate run and should not reuse a program-scoped working folder.
+
 ## Inputs and paths
 
 Per program input files:
@@ -27,7 +34,8 @@ Per program input files:
 
 Generated outputs:
 
-- `output/*.html` (latest run)
+- `output/<program-slug>/YYYY-MM-DD/` for per-program runs
+- `output/portfolio/YYYY-MM-DD/` for portfolio aggregation runs
 
 Recommended archive location:
 
@@ -49,8 +57,8 @@ Recommended archive location:
 
 Run from repo root:
 
-1. `python agents/pulse-orchestrator/pulse.py validate`
-2. `python agents/pulse-orchestrator/pulse.py reports`
+1. `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
+2. `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>`
 
 Quality checks:
 
@@ -71,6 +79,23 @@ Review only high-signal deltas:
 
 - Publish only after human review.
 - Archive outputs to dated program folder for traceability.
+
+## Portfolio aggregation cadence
+
+1. Collect inputs from multiple program runs
+- Use program-scoped outputs or structured rollup inputs in `data/portfolio/`.
+
+2. Run portfolio orchestration
+- Use portfolio prompt from `docs/copilot-orchestrated-mode.md`.
+
+3. Validate and generate
+- Write outputs to `output/portfolio/YYYY-MM-DD/`.
+
+4. Review leadership narrative
+- Focus on cross-program risks, trends, and decision asks.
+
+5. Approve and publish
+- Publish only after human review.
 
 ## ADR handling
 
