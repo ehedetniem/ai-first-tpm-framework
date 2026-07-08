@@ -9,9 +9,8 @@ The goal is simple: start from the work you already do, not from a technical too
 By the end of Day 1, you should be able to:
 
 1. Add one intake artifact for one program
-2. Run validation successfully
-3. Generate HTML reports
-4. Review and publish with human approval
+2. Ask Copilot to validate and generate successfully
+3. Review and publish with human approval
 
 If you only follow one document today, follow this one end-to-end.
 
@@ -54,9 +53,9 @@ For a concrete field mapping contract, see `docs/report-generation.md` under "Br
 - [ ] Open this repo in VS Code
 - [ ] Open Copilot Chat
 - [ ] Create one intake file for one program slug
-- [ ] Run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
-- [ ] Run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>`
-- [ ] Open files in `output/` and review deltas
+- [ ] Ask Copilot to validate the program inputs
+- [ ] Ask Copilot to generate the program reports
+- [ ] Open files in `output/<program-slug>/YYYY-MM-DD/` and review deltas
 - [ ] Publish only after human approval
 
 ## Step 1 - Open the repo in VS Code
@@ -107,7 +106,11 @@ Copilot will:
 4. Return a short review summary
 5. (Transcript mode) Draft ADR(s) from decisions discussed
 
-CLI is backup only. In the normal flow, Copilot should run generation for you.
+CLI is backup only. In the normal flow, Copilot should run validation and generation for you.
+
+For example, you can say:
+
+- "Use the transcript for <program-slug>, validate the program inputs, generate the reports, and tell me what changed."
 
 If you need to run the backup commands yourself:
 
@@ -137,7 +140,7 @@ Each week, repeat:
 
 1. Save one transcript or intake input
 2. Run one orchestration prompt
-3. Run validate + reports only if Copilot did not already run them for you
+3. Let Copilot validate and generate; use CLI only if Copilot did not already run them for you
 4. Review deltas
 5. Publish
 
@@ -145,8 +148,8 @@ Over time, the motion should feel lighter: fewer manual rewrites, faster status 
 
 ## Troubleshooting (quick)
 
-- **Validation fails:** run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` again and fix missing required fields.
-- **No report output:** run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>` from repo root.
+- **Validation fails:** ask Copilot to explain which required fields are missing and fix them.
+- **No report output:** ask Copilot to rerun report generation and tell you where outputs were written.
 - **Confusing prompt behavior:** use the exact prompts in `agents/pulse-orchestrator/playbooks/`.
 - **Unclear ownership or dates:** use `TBD` instead of guessing.
 

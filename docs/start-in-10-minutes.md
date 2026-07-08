@@ -7,10 +7,9 @@ You do not need to learn a new system before you get value. Start with one progr
 ## What you will do
 
 1. Open the repo in VS Code
-2. Add one intake file for one program
-3. Run validation
-4. Generate reports
-5. Review and publish with human approval
+2. Add one transcript or intake file for one program
+3. Ask Copilot to validate and generate
+4. Review and publish with human approval
 
 This first run is meant to build confidence, not perfection.
 
@@ -19,8 +18,8 @@ This first run is meant to build confidence, not perfection.
 - [ ] Open this repo in VS Code
 - [ ] Open Copilot Chat
 - [ ] Add one intake file under `data/intake/<program-slug>/`
-- [ ] Run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
-- [ ] Run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>`
+- [ ] Ask Copilot to validate the program inputs
+- [ ] Ask Copilot to generate the program reports
 - [ ] Open `output/<program-slug>/YYYY-MM-DD/*.html` and review risks, decision asks, and KPI deltas
 - [ ] Publish only after human review
 
@@ -45,25 +44,29 @@ This first run is meant to build confidence, not perfection.
 
 Keep one intake stream per program for traceability.
 
-### 3) Run validate
+### 3) Ask Copilot to validate and generate
 
-From repo root:
+Paste this into Copilot Chat:
 
-```bash
-python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>
+```text
+Act as Pulse Orchestrator for this repo.
+
+Program: <program-slug>
+Source input:
+- data/intake/<program-slug>/meeting-transcript-YYYY-MM-DD.md
+
+Tasks:
+1. Validate the program-scoped inputs for <program-slug>.
+2. Generate the program reports.
+3. Tell me:
+  - what files were updated
+  - where the output was written
+  - any missing owners, dates, or blockers marked TBD
 ```
 
-If validation fails, fix missing required fields in `data/*.json` and run again.
+Generated files should appear in `output/<program-slug>/YYYY-MM-DD/`.
 
-### 4) Generate reports
-
-```bash
-python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>
-```
-
-Generated files are in `output/<program-slug>/YYYY-MM-DD/`.
-
-### 5) Review and publish
+### 4) Review and publish
 
 Review only high-signal deltas:
 
@@ -75,14 +78,16 @@ Then publish with human approval.
 
 ## If you have 5 more minutes
 
-- Run status summary:
-
-```bash
-python agents/pulse-orchestrator/pulse.py status --program-slug <program-slug>
-```
-
+- Ask Copilot: "Show me the current status for <program-slug> in plain English."
 - Read the weekly SOP:
   - `docs/tpm-weekly-sop.md`
+
+## Backup path
+
+If Copilot orchestration is unavailable, use the CLI backup commands documented in:
+
+- `docs/getting-started.md`
+- `docs/orchestration-agent.md`
 
 ## Where to go next
 

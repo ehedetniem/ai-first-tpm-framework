@@ -25,8 +25,8 @@ If you are new to AI tools, follow this exact order:
 2. **Quick onboarding (30-45 min):** `docs/getting-started.md`
 3. **First weekly run SOP:** `docs/tpm-weekly-sop.md`
 4. **Orchestration agent workflows:** `docs/orchestration-agent.md`
-5. **Run the CLI status check:** `python agents/pulse-orchestrator/pulse.py status --program-slug <program-slug>`
-6. **Validate data before report generation:** `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
+5. **Ask Copilot for current status:** "Show me the current status for <program-slug> in plain English."
+6. **Ask Copilot to validate and generate:** "Validate this program and generate the reports for <program-slug>."
 
 If you do only one thing today, complete the **10-minute checklist** in `docs/start-in-10-minutes.md`.
 
@@ -60,9 +60,9 @@ Think of this as a transition path:
 2. Open `docs/start-in-10-minutes.md` for your first successful run.
 3. Open `docs/getting-started.md` for full Day 1 onboarding.
 4. Open `docs/tpm-weekly-sop.md` to understand the repeatable weekly flow.
-5. Run `python agents/pulse-orchestrator/pulse.py status --program-slug <program-slug>` to see the current program status.
+5. Ask Copilot for the current status of `<program-slug>`.
 6. Use a playbook from `agents/pulse-orchestrator/playbooks/` in Copilot Chat.
-7. Run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` before report generation.
+7. Ask Copilot to validate and generate before report review.
 8. Review rendered outputs in `output/<program-slug>/YYYY-MM-DD/` and optional samples in `reports/`.
 
 Important:
