@@ -1,6 +1,6 @@
 # Start in 10 Minutes (Copilot-Native Quickstart)
 
-If you are new to AI tools, this page gets you from zero to first report in about 10 minutes.
+If you are new to this repository workflow, this page gets you from zero to first report in about 10 minutes.
 
 ## What you will do
 

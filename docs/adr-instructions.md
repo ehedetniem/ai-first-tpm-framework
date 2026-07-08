@@ -22,7 +22,7 @@ Create an ADR when a decision:
 
 ## Step-by-step process
 
-1. Copy `templates/adr-template.md` to `data/adrs/` (shared ADR directory in this repo).
+1. Copy `templates/adr-template.md` (included in this repo) to `data/adrs/` (shared ADR directory in this repo).
 2. Name file with a stable pattern, for example:
    - `ADR-2026-07-06-rollout-cadence.md`
 3. Fill sections in this order:
@@ -50,6 +50,7 @@ Before publishing an ADR, confirm:
 ## Sample naming and indexing pattern
 
 - Keep ADRs in `data/adrs/`
+- If you previously stored ADRs under `docs/adrs/`, move active ADRs to `data/adrs/` and update links.
 - Prefix with date for sortability
 - Include program slug in title text when helpful for traceability
 - Add a simple index file mapping ADR titles to status
