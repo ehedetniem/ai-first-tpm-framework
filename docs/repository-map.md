@@ -10,9 +10,9 @@
 
 ## Reporting stack
 
-- `scripts/generate_reports.py` - Jinja-based HTML report generator
-- `scripts/run_reports.ps1` - Windows runner for full report pack
-- `scripts/run_reports.sh` - macOS/Linux runner for full report pack
+- `scripts/generate_reports.py` - HTML report generation engine used by the repo workflow
+- `scripts/run_reports.ps1` - Windows implementation runner behind the scenes
+- `scripts/run_reports.sh` - macOS/Linux implementation runner behind the scenes
 - `templates/reports/` - Source report templates and shared CSS
 - `data/` - JSON input data for each report
 - `output/` - Generated HTML outputs
@@ -33,4 +33,4 @@
 
 Notes:
 - There is no built-in `XPO` runtime agent in this repository.
-- Teams can use templates and scripts directly, then add an orchestrator later if needed.
+- Teams are expected to work through Copilot and the orchestration flow; implementation runners exist behind the scenes.

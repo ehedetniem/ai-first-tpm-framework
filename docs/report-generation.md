@@ -94,36 +94,26 @@ Suggested Copilot prompt for validation:
 - `templates/reports/executive-portfolio-radar-template.html`
 - `templates/reports/_theme.css`
 
-## Setup
+## Copilot-first execution
 
-1. Install Python 3.10+.
-2. Install dependencies:
-   - `pip install -r requirements.txt`
+Ask Copilot to:
 
-## One-command runners
+1. Validate the structured inputs for the program or portfolio run
+2. Run the repo's report generation workflow
+3. Tell you where outputs were written
+4. Summarize any missing fields, TBD owners, or validation gaps
 
-- Windows PowerShell:
-   - `./scripts/run_reports.ps1`
-- macOS/Linux:
-   - `bash ./scripts/run_reports.sh`
+Suggested Copilot prompt:
 
-## Run
+- "Validate the current inputs, run report generation, and tell me which output files were created."
 
-From repo root:
-- `python scripts/generate_reports.py`
+## Implementation note
 
-Optional custom input paths:
-- `python scripts/generate_reports.py --weekly-json data/my-weekly.json --portfolio-json data/my-portfolio.json --executive-json data/my-exec.json --raid-json data/my-raid.json --adr-json data/my-adr.json --daily-ops-json data/my-daily-ops.json --dependency-json data/my-dependencies.json --capacity-json data/my-capacity.json --adoption-json data/my-adoption.json --executive-portfolio-radar-json data/my-exec-portfolio-radar.json --output-dir output`
-
-PowerShell with custom inputs:
-- `./scripts/run_reports.ps1 -WeeklyJson data/my-weekly.json -PortfolioJson data/my-portfolio.json -ExecutiveJson data/my-exec.json -RaidJson data/my-raid.json -AdrJson data/my-adr.json -DailyOpsJson data/my-daily-ops.json -DependencyJson data/my-dependencies.json -CapacityJson data/my-capacity.json -AdoptionJson data/my-adoption.json -ExecutivePortfolioRadarJson data/my-exec-portfolio-radar.json -OutputDir output`
-
-Shell with custom inputs:
-- `bash ./scripts/run_reports.sh data/my-weekly.json data/my-portfolio.json data/my-exec.json data/my-raid.json data/my-adr.json data/my-daily-ops.json data/my-dependencies.json data/my-capacity.json data/my-adoption.json data/my-exec-portfolio-radar.json output`
+This repo includes scripts and runners behind the scenes, but TPMs should use Copilot Chat as the primary interaction layer.
 
 ## Workflow recommendation
 
-1. Update JSON inputs from your weekly program data.
-2. Generate HTML pack.
+1. Ask Copilot to update structured inputs from your weekly program data.
+2. Ask Copilot to generate the HTML pack.
 3. Review outputs with a human approver.
 4. Publish to email/chat/executive review channels.

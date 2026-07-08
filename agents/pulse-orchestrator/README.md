@@ -16,33 +16,7 @@ It supports two public operating lanes:
 2. Portfolio aggregation
 
 ## How to use it
-
-### Option A — CLI (fastest path)
-
-```bash
-# Weekly status summary
-python agents/pulse-orchestrator/pulse.py status --program-slug my-program
-
-# Portfolio health summary
-python agents/pulse-orchestrator/pulse.py portfolio
-
-# Open risks and blockers
-python agents/pulse-orchestrator/pulse.py risks --program-slug my-program
-
-# Generate a new ADR draft
-python agents/pulse-orchestrator/pulse.py adr "Decision title" --program "My Program"
-
-# Validate all data JSON files
-python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug my-program
-
-# Generate program HTML reports
-python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug my-program
-
-# Generate portfolio aggregation HTML reports
-python agents/pulse-orchestrator/pulse.py reports --mode portfolio
-```
-
-### Option B — GitHub Copilot Chat
+### GitHub Copilot Chat (primary)
 
 1. Open this repo in VS Code with GitHub Copilot Chat.
 2. Start your prompt with:
@@ -52,14 +26,24 @@ python agents/pulse-orchestrator/pulse.py reports --mode portfolio
    ```
 3. Choose a task playbook from `agents/pulse-orchestrator/playbooks/` and paste the prompt.
 
+Typical TPM asks:
+- "Show me the current status for my-program in plain English."
+- "Validate the program inputs for my-program and generate the reports."
+- "Draft an ADR for this decision on my-program."
+- "Generate the portfolio reports for this week."
+
+### Implementation note
+
+Pulse also includes implementation utilities behind the scenes, but TPMs do not need to operate them directly in the intended public workflow.
+
 ## Files in this package
 
 | File | Purpose |
 |---|---|
 | `system-prompt.md` | Agent behavior spec — use as Copilot system prompt |
-| `commands.md` | Full command reference card |
-| `pulse.py` | CLI entrypoint |
-| `validate.py` | JSON schema validation utility |
+| `commands.md` | Prompt and workflow reference card |
+| `pulse.py` | Orchestration engine entrypoint |
+| `validate.py` | Validation utility used by the orchestration flow |
 | `playbooks/weekly-status.md` | Prompt playbook: weekly status update |
 | `playbooks/portfolio-rollup.md` | Prompt playbook: portfolio rollup |
 | `playbooks/adr-draft.md` | Prompt playbook: ADR draft creation |

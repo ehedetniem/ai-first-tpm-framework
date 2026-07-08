@@ -1,53 +1,27 @@
-# Pulse Orchestrator — Command Reference
+# Pulse Orchestrator — Prompt Reference
 
-Quick reference for every command and prompt available to TPMs.
+Quick reference for the natural-language prompts TPMs can use with GitHub Copilot Chat.
 
----
+## Quick prompts
 
-## CLI commands
-
-Run from the repository root. Requires Python 3.10+ and `pip install -r requirements.txt`.
-
-| Command | What it does |
+| Prompt pattern | What it does |
 |---|---|
-| `python agents/pulse-orchestrator/pulse.py status --program-slug <program-slug>` | Print weekly status summary for one program |
-| `python agents/pulse-orchestrator/pulse.py portfolio` | Print portfolio health table |
-| `python agents/pulse-orchestrator/pulse.py risks --program-slug <program-slug>` | Print open risks and blockers for one program |
-| `python agents/pulse-orchestrator/pulse.py adr "<title>"` | Generate a new ADR draft file in `data/adrs/` |
-| `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` | Validate program-scoped JSON data files |
-| `python agents/pulse-orchestrator/pulse.py validate --mode portfolio` | Validate portfolio-scoped JSON data files |
-| `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>` | Run program-scoped HTML report generation |
-| `python agents/pulse-orchestrator/pulse.py reports --mode portfolio` | Run portfolio aggregation HTML report generation |
+| `Show me the current status for <program-slug>.` | Summarize weekly status for one program |
+| `Show me the portfolio view for this week.` | Summarize cross-program health |
+| `Review open risks for <program-slug>.` | Summarize and assess open risks and blockers |
+| `Draft an ADR for this decision on <program-slug>.` | Create a new ADR draft |
+| `Validate the program inputs for <program-slug>.` | Check program-scoped structured inputs |
+| `Validate the portfolio inputs.` | Check portfolio-scoped structured inputs |
+| `Generate the reports for <program-slug>.` | Run program-scoped report generation |
+| `Generate the portfolio reports.` | Run portfolio aggregation report generation |
 
-### `status` options
+## Structured prompts
 
-```bash
-python agents/pulse-orchestrator/pulse.py status --program-slug my-program
-```
+Paste these into GitHub Copilot Chat with this repo open. Each maps to a specific playbook in `agents/pulse-orchestrator/playbooks/`.
 
-### `adr` options
+### Weekly status
 
-```bash
-python agents/pulse-orchestrator/pulse.py adr "Decision title" \
-  --program "My Program" \
-  --context "One sentence describing the problem"
-```
-
-### `reports` options
-
-```bash
-python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug my-program --output-dir custom-output/
-```
-
----
-
-## Copilot Chat prompts
-
-Paste these prompts into GitHub Copilot Chat with this repo open. Each prompt maps to a specific playbook in `agents/pulse-orchestrator/playbooks/`.
-
-### @pulse status
-
-```
+```text
 Act as Pulse Orchestrator for this repo. See agents/pulse-orchestrator/system-prompt.md for your behavior rules.
 
 Task: weekly status update
@@ -57,20 +31,20 @@ Program: <program-slug>
 Run the weekly-status playbook from agents/pulse-orchestrator/playbooks/weekly-status.md.
 ```
 
-### @pulse portfolio
+### Portfolio rollup
 
-```
+```text
 Act as Pulse Orchestrator for this repo. See agents/pulse-orchestrator/system-prompt.md for your behavior rules.
 
 Task: portfolio rollup
-Source: all active program data in data/
+Source: active program inputs and portfolio rollup files
 
 Run the portfolio-rollup playbook from agents/pulse-orchestrator/playbooks/portfolio-rollup.md.
 ```
 
-### @pulse adr
+### ADR draft
 
-```
+```text
 Act as Pulse Orchestrator for this repo. See agents/pulse-orchestrator/system-prompt.md for your behavior rules.
 
 Task: ADR draft
@@ -81,9 +55,9 @@ Context: <one sentence problem description>
 Run the adr-draft playbook from agents/pulse-orchestrator/playbooks/adr-draft.md.
 ```
 
-### @pulse risks
+### Risk review
 
-```
+```text
 Act as Pulse Orchestrator for this repo. See agents/pulse-orchestrator/system-prompt.md for your behavior rules.
 
 Task: risk review
@@ -93,9 +67,9 @@ Program: <program-slug>
 Run the risk-review playbook from agents/pulse-orchestrator/playbooks/risk-review.md.
 ```
 
-### @pulse stakeholder-update
+### Stakeholder update
 
-```
+```text
 Act as Pulse Orchestrator for this repo. See agents/pulse-orchestrator/system-prompt.md for your behavior rules.
 
 Task: stakeholder update
@@ -106,29 +80,25 @@ Program: <program-slug or "Portfolio">
 Run the stakeholder-update playbook from agents/pulse-orchestrator/playbooks/stakeholder-update.md.
 ```
 
----
+## Artifacts created
 
-## Artifacts created per command
-
-| Command | Artifacts created or updated |
+| Prompt | Artifacts created or updated |
 |---|---|
-| `status` | Terminal summary (read-only) |
-| `portfolio` | Terminal summary (read-only) |
-| `risks` | Terminal summary (read-only) |
-| `adr <title>` | `data/adrs/ADR-YYYY-MM-DD-<slug>.md` |
-| `validate` | Terminal validation report |
-| `reports` | `output/<program-slug>/YYYY-MM-DD/*.html` or `output/portfolio/YYYY-MM-DD/*.html` |
-| @pulse status (Copilot) | `data/programs/<program-slug>/weekly-status.json`, related outputs |
-| @pulse portfolio (Copilot) | `data/portfolio/*.json`, `output/portfolio/YYYY-MM-DD/*.html` |
-| @pulse adr (Copilot) | `data/adrs/ADR-YYYY-MM-DD-<slug>.md`, `data/programs/<program-slug>/adr-log.json` (if accepted) |
-| @pulse risks (Copilot) | `data/programs/<program-slug>/raid-digest.json`, related outputs |
-| @pulse stakeholder-update (Copilot) | Draft text for human review |
-
----
+| status | Copilot summary (read-only) |
+| portfolio | Copilot summary (read-only) |
+| risks | Copilot summary (read-only) |
+| ADR draft | `data/adrs/ADR-YYYY-MM-DD-<slug>.md` |
+| validate | Validation summary |
+| reports | `output/<program-slug>/YYYY-MM-DD/*.html` or `output/portfolio/YYYY-MM-DD/*.html` |
+| weekly status playbook | `data/programs/<program-slug>/weekly-status.json`, related outputs |
+| portfolio playbook | `data/portfolio/*.json`, `output/portfolio/YYYY-MM-DD/*.html` |
+| ADR playbook | `data/adrs/ADR-YYYY-MM-DD-<slug>.md`, program ADR log when approved |
+| risk playbook | `data/programs/<program-slug>/raid-digest.json`, related outputs |
+| stakeholder update | Draft text for human review |
 
 ## Human approval gates
 
-The following outputs **always require human review** before sharing:
+The following outputs always require human review before sharing:
 
 - Executive briefings
 - Portfolio radar reports

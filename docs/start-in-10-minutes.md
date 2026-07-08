@@ -17,7 +17,7 @@ This first run is meant to build confidence, not perfection.
 
 - [ ] Open this repo in VS Code
 - [ ] Open Copilot Chat
-- [ ] Add one intake file under `data/intake/<program-slug>/`
+- [ ] Paste one transcript or one set of notes into Copilot for `<program-slug>`
 - [ ] Ask Copilot to validate the program inputs
 - [ ] Ask Copilot to generate the program reports
 - [ ] Open `output/<program-slug>/YYYY-MM-DD/*.html` and review risks, decision asks, and KPI deltas
@@ -35,12 +35,11 @@ This first run is meant to build confidence, not perfection.
 
 **Option A (recommended): transcript-first**
 
-- Create: `data/intake/<program-slug>/meeting-transcript-YYYY-MM-DD.md`
+- Ask Copilot to create `data/intake/<program-slug>/meeting-transcript-YYYY-MM-DD.md` from the transcript you paste into chat.
 
 **Option B: weekly intake**
 
-- Copy `data/intake/weekly-intake-template.md`
-- Save as `data/intake/<program-slug>/weekly-intake-YYYY-MM-DD.md`
+- Ask Copilot to create `data/intake/<program-slug>/weekly-intake-YYYY-MM-DD.md` using `data/intake/weekly-intake-template.md` as the structure.
 
 Keep one intake stream per program for traceability.
 
@@ -84,7 +83,7 @@ Then publish with human approval.
 
 ## Backup path
 
-If Copilot orchestration is unavailable, use the CLI backup commands documented in:
+If Copilot needs more structure, use the prompts and runbooks in:
 
 - `docs/getting-started.md`
 - `docs/orchestration-agent.md`
@@ -95,4 +94,4 @@ If Copilot orchestration is unavailable, use the CLI backup commands documented 
 - Weekly SOP: `docs/tpm-weekly-sop.md`
 - Orchestration agent guide: `docs/orchestration-agent.md`
 - Copilot no-code prompts: `docs/copilot-orchestrated-mode.md`
-- Pulse CLI + playbooks: `agents/pulse-orchestrator/README.md`
+- Pulse Orchestrator prompts + playbooks: `agents/pulse-orchestrator/README.md`

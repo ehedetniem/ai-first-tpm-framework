@@ -47,9 +47,9 @@ Steps:
 
 3. Update data/portfolio/executive-briefing.json with a fresh executive summary.
 
-4. Run `python agents/pulse-orchestrator/pulse.py validate --mode portfolio` to verify all schemas.
+4. Validate the portfolio-scoped inputs.
 
-5. Run `python agents/pulse-orchestrator/pulse.py reports --mode portfolio` to regenerate HTML outputs.
+5. Generate the portfolio HTML outputs.
 
 6. Return a Pulse Summary following the format in the system prompt.
 
@@ -70,7 +70,7 @@ Constraints:
 | Updated executive briefing | `data/portfolio/executive-briefing.json` |
 | HTML portfolio chat | `output/portfolio/YYYY-MM-DD/portfolio-health-chat.html` |
 | HTML executive briefing | `output/portfolio/YYYY-MM-DD/executive-briefing.html` |
-| Terminal summary | Copilot Chat response |
+| Summary | Copilot Chat response |
 
 ## Human approval checklist
 

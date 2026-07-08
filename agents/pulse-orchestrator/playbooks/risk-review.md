@@ -47,9 +47,9 @@ Steps:
      ]
    }
 
-5. Run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` to verify schema.
+5. Validate the updated RAID inputs for `<program-slug>`.
 
-6. Run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>` to regenerate the RAID digest HTML.
+6. Generate the updated RAID digest HTML for `<program-slug>`.
 
 7. Return a Pulse Summary with:
    - Count of High / Medium / Low items
@@ -65,13 +65,13 @@ Constraints:
 
 ---
 
-## Quick CLI risk summary (read-only)
+## Quick Copilot risk summary
 
-```bash
-python agents/pulse-orchestrator/pulse.py risks --program-slug <program-slug>
+Ask Copilot:
+
+```text
+Review the current open risks for <program-slug> and summarize the escalation items.
 ```
-
-This prints current risks from the program-scoped RAID digest without modifying any files.
 
 ---
 
@@ -81,7 +81,7 @@ This prints current risks from the program-scoped RAID digest without modifying 
 |---|---|
 | Updated RAID JSON | `data/programs/<program-slug>/raid-digest.json` |
 | HTML RAID digest | `output/<program-slug>/YYYY-MM-DD/raid-digest.html` |
-| Terminal summary | Copilot Chat response |
+| Summary | Copilot Chat response |
 
 ## Human approval checklist
 

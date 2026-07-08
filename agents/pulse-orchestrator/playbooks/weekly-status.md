@@ -41,9 +41,9 @@ Steps:
 
 3. Optionally update a portfolio rollup input only if this run is part of a portfolio process.
 
-4. Run `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` to check schema before generating reports.
+4. Validate the updated inputs for `<program-slug>`.
 
-5. Run `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>` to regenerate HTML outputs.
+5. Generate the updated HTML outputs for `<program-slug>`.
 
 6. Return a Pulse Summary following the format in the system prompt.
 
@@ -62,7 +62,7 @@ Constraints:
 |---|---|
 | Updated JSON | `data/programs/<program-slug>/weekly-status.json` |
 | HTML report | `output/<program-slug>/YYYY-MM-DD/weekly-status-email.html` |
-| Terminal summary | Copilot Chat response |
+| Summary | Copilot Chat response |
 
 ## Human approval checklist
 

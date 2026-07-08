@@ -22,7 +22,7 @@ In both cases Copilot should:
 
 If you have a meeting transcript (or WorkIQ-exported notes), you do not need to fill intake manually.
 
-1. Save transcript or notes to:
+1. Ask Copilot to save transcript or notes to:
    - `data/intake/<program-slug>/meeting-transcript-YYYY-MM-DD.md`
 2. Paste this Copilot prompt:
 
@@ -40,7 +40,7 @@ Tasks:
 2) Draft one ADR from the most significant decision and save it using templates/adr-template.md conventions.
 3) Update program-scoped structured inputs under `data/programs/<program-slug>/`.
 4) Validate updated JSON files against template usage in templates/reports/.
-5) Run report generation using scripts/run_reports.ps1 with program-specific input paths and `-OutputDir output/<program-slug>/YYYY-MM-DD`.
+5) Run the repo's report generation workflow for this program and write output to `output/<program-slug>/YYYY-MM-DD`.
 6) Return a short summary:
    - top 3 wins
    - top 3 risks/blockers
@@ -59,11 +59,7 @@ Use this when transcript quality is poor or unavailable.
 
 ## Step 1 - Fill intake
 
-Copy or edit:
-
-- `data/intake/weekly-intake-template.md`
-
-Save as:
+Ask Copilot to use `data/intake/weekly-intake-template.md` as the structure and turn your notes into:
 
 - `data/intake/<program-slug>/weekly-intake-YYYY-MM-DD.md`
 
@@ -82,7 +78,7 @@ Scope:
 Tasks:
 1) Update program-scoped structured inputs under `data/programs/<program-slug>/`.
 2) Validate all updated JSON files against template usage in templates/reports/.
-3) Run report generation using scripts/run_reports.ps1 with program-specific input paths and `-OutputDir output/<program-slug>/YYYY-MM-DD`.
+3) Run the repo's report generation workflow for this program and write output to `output/<program-slug>/YYYY-MM-DD`.
 4) Provide a short review summary:
    - top 3 wins
    - top 3 risks/blockers
@@ -117,7 +113,7 @@ Tasks:
    - data/portfolio/executive-portfolio-radar.json
    - data/portfolio/executive-briefing.json
 2) Validate updated files against template usage in templates/reports/.
-3) Run report generation using scripts/run_reports.ps1 with portfolio input paths and `-OutputDir output/portfolio/YYYY-MM-DD`.
+3) Run the repo's report generation workflow for the portfolio and write output to `output/portfolio/YYYY-MM-DD`.
 4) Return a short summary:
    - portfolio wins
    - portfolio risks/blockers

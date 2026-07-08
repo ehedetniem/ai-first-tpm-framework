@@ -18,7 +18,7 @@ Source templates and shared CSS used by `scripts/generate_reports.py` are in `te
 - `../templates/reports/_theme.css`
 
 These `*-template.html` files are Jinja templates and will show placeholders such as `{{ ... }}` and `{% ... %}` when opened directly.
-Render them first with `python scripts/generate_reports.py`.
+Ask Copilot to render them through the repo's report generation workflow before reviewing them.
 
 ## Optional static examples
 

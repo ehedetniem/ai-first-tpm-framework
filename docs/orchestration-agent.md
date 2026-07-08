@@ -1,251 +1,149 @@
 # Orchestration Agent Guide
 
-This guide explains how to use the Pulse Orchestrator — the in-repo TPM agent — to manage programs and produce AI-assisted artifacts.
+This guide explains how to use Pulse Orchestrator, the in-repo TPM agent, through GitHub Copilot Chat.
 
-## What is Pulse Orchestrator?
+## What Pulse Orchestrator does
 
-Pulse Orchestrator is the orchestration agent for this framework. It routes TPM requests to the right artifact flow, extracts signals from meeting transcripts and intake files, generates first-draft artifacts, and connects to the HTML report generation pipeline.
+Pulse Orchestrator helps TPMs turn raw working signals into structured artifacts.
 
-It runs in two modes:
+It:
+- reads transcripts and intake notes
+- drafts first-pass artifacts
+- updates structured program or portfolio inputs
+- validates those inputs
+- generates leadership-ready report outputs
 
-| Mode | How to use |
-|---|---|
-| **CLI mode** | Run `python agents/pulse-orchestrator/pulse.py <command>` from repo root |
-| **Copilot Chat mode** | Paste a playbook prompt into GitHub Copilot Chat with this repo open |
+The intended TPM experience is language-first. You describe what happened, what changed, or what decision matters. Copilot and the orchestration flow do the structural work.
 
-Both modes enforce the same governance rules: no fabricated facts, human approval before sharing, and scoped to one program per run.
-
-It also supports two operating lanes:
+## Two operating lanes
 
 1. Per-program execution
 2. Portfolio aggregation
 
----
-
 ## Quick start
 
-### 1. Run a status summary (30 seconds)
+### 1. Ask for current status
 
-```bash
-python agents/pulse-orchestrator/pulse.py status --program-slug my-program
+Example:
+
+```text
+Show me the current status for my-program in plain English.
 ```
 
-Shows health, highlights, risks, and next actions from a program-scoped weekly status file when available.
+### 2. Ask Copilot to validate and generate
 
-### 2. Validate all data files before generating reports
+Example:
 
-```bash
-python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug my-program
+```text
+Validate the program inputs for my-program and generate the reports.
 ```
 
-Run this before every report generation to catch missing fields early.
+### 3. Review the high-signal deltas
 
-For portfolio aggregation:
-
-```bash
-python agents/pulse-orchestrator/pulse.py validate --mode portfolio
-```
-
-### 3. Generate all HTML reports
-
-```bash
-python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug my-program
-```
-
-Runs `scripts/generate_reports.py` and writes HTML files to a mode-aware output folder.
-
-For portfolio aggregation:
-
-```bash
-python agents/pulse-orchestrator/pulse.py reports --mode portfolio
-```
-
----
+Focus on:
+- risks and blockers
+- decision asks
+- changed KPI meaning
+- any owner or due date marked TBD
 
 ## Supported workflows
 
 ### Weekly status update
 
-**What it does:** Extracts signals from a meeting transcript or intake file and updates program-scoped JSON files under `data/programs/<program-slug>/`. Generates weekly status HTML.
+What it does:
+- reads transcript or intake inputs for one program
+- updates program-scoped structured inputs
+- generates program report outputs
 
-**CLI:**
-```bash
-python agents/pulse-orchestrator/pulse.py status --program-slug my-program
-```
-
-**Copilot Chat:** See `agents/pulse-orchestrator/playbooks/weekly-status.md`.
-
-**Full playbook:** `agents/pulse-orchestrator/playbooks/weekly-status.md`
-
----
+Use playbook:
+- `agents/pulse-orchestrator/playbooks/weekly-status.md`
 
 ### Portfolio rollup
 
-**What it does:** Synthesizes cross-program health into portfolio-scoped JSON files under `data/portfolio/`. Generates portfolio and executive HTML reports.
+What it does:
+- reads cross-program inputs
+- updates portfolio-scoped structured inputs
+- generates portfolio leadership outputs
 
-**CLI:**
-```bash
-python agents/pulse-orchestrator/pulse.py portfolio
-```
-
-**Copilot Chat:** See `agents/pulse-orchestrator/playbooks/portfolio-rollup.md`.
-
-**Full playbook:** `agents/pulse-orchestrator/playbooks/portfolio-rollup.md`
-
----
+Use playbook:
+- `agents/pulse-orchestrator/playbooks/portfolio-rollup.md`
 
 ### ADR draft creation
 
-**What it does:** Generates a structured Architecture Decision Record draft from a described decision and saves it to `data/adrs/`.
+What it does:
+- drafts a structured ADR from a decision discussion
+- saves it into the ADR drafts area for review
 
-**CLI:**
-```bash
-python agents/pulse-orchestrator/pulse.py adr "Decision title" \
-  --program "Program Name" \
-  --context "One sentence problem description"
-```
-
-**Copilot Chat:** See `agents/pulse-orchestrator/playbooks/adr-draft.md`.
-
-**Full playbook:** `agents/pulse-orchestrator/playbooks/adr-draft.md`
-
----
+Use playbook:
+- `agents/pulse-orchestrator/playbooks/adr-draft.md`
 
 ### Risk review
 
-**What it does:** Reviews open risks from the RAID digest, validates owners and next actions, and updates severity where needed.
+What it does:
+- reviews open risks and blockers
+- checks owner/action quality
+- flags escalation items
 
-**CLI (read-only summary):**
-```bash
-python agents/pulse-orchestrator/pulse.py risks --program-slug my-program
-```
-
-**Copilot Chat:** See `agents/pulse-orchestrator/playbooks/risk-review.md`.
-
-**Full playbook:** `agents/pulse-orchestrator/playbooks/risk-review.md`
-
----
+Use playbook:
+- `agents/pulse-orchestrator/playbooks/risk-review.md`
 
 ### Stakeholder update
 
-**What it does:** Generates a tailored draft communication for a specific audience (executive, engineering leadership, or external partner).
+What it does:
+- drafts audience-specific communications
+- tailors tone for executive, engineering, or external audiences
 
-**CLI:** Not available (Copilot Chat only — no files are modified).
+Use playbook:
+- `agents/pulse-orchestrator/playbooks/stakeholder-update.md`
 
-**Copilot Chat:** See `agents/pulse-orchestrator/playbooks/stakeholder-update.md`.
+## Intake model
 
-**Full playbook:** `agents/pulse-orchestrator/playbooks/stakeholder-update.md`
+Pulse Orchestrator reads from `data/intake/<program-slug>/`.
 
----
+Preferred input:
+- `meeting-transcript-YYYY-MM-DD.md`
 
-## How it uses intake inputs
+Fallback input:
+- `weekly-intake-YYYY-MM-DD.md`
 
-The orchestrator reads from `data/intake/<program-slug>/`:
+Ask Copilot to create or update these files for you.
 
-- `meeting-transcript-YYYY-MM-DD.md` — preferred input; raw or edited meeting transcript
-- `weekly-intake-YYYY-MM-DD.md` — fallback structured form if no transcript is available
+## Governance
 
-**To add intake for your program:**
+Pulse Orchestrator follows these rules:
 
+1. No fabricated facts
+2. Unknown owners or dates become `TBD`
+3. Human approval is required before external sharing
+4. Each run stays scoped to one program unless portfolio mode is explicitly requested
+5. Templates are preserved; structured inputs are updated
+
+See `governance/hitl-governance.md` for the full policy.
+
+## End-to-end flow
+
+```text
+transcript or intake
+        ↓
+Copilot + Pulse Orchestrator
+        ↓
+structured program or portfolio inputs
+        ↓
+validation
+        ↓
+HTML report generation
+        ↓
+human review and publish
 ```
-data/intake/
-  my-program/
-    meeting-transcript-2026-07-07.md   ← save transcript here
-    weekly-intake-2026-07-07.md        ← or intake form here
-```
-
-See `data/intake/sample-program/meeting-transcript-2026-07-07.md` for a working example.
-
----
-
-## How it respects governance
-
-Pulse Orchestrator enforces these rules on every run:
-
-1. **No fabricated facts.** Missing owners and dates are marked `TBD`.
-2. **Draft outputs only.** All Copilot Chat artifacts are labeled as drafts for human review.
-3. **Human approval required** before sharing executive communications, portfolio reports, or ADRs.
-4. **Scope control.** Each run is scoped to one program unless portfolio mode is explicitly requested.
-5. **Schema preservation.** JSON files are only updated with valid, schema-conforming changes.
-
-Full policy: `governance/hitl-governance.md`.
-
----
-
-## How it connects to report generation
-
-```
-intake input
-    │
-    ▼
-Pulse Orchestrator (Copilot Chat or CLI)
-    │
-  ├─ updates data/programs/<program-slug>/*.json
-  ├─ or updates data/portfolio/*.json
-    │
-    ▼
-python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug my-program   ← check schemas
-    │
-    ▼
-python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug my-program
-    │
-    ▼
-output/<program-slug>/YYYY-MM-DD/*.html or output/portfolio/YYYY-MM-DD/*.html   ← review before sharing
-```
-
-The orchestrator sits between raw intake and the HTML renderer. It does not modify templates. It only updates structured data JSON files.
-
----
-
-## All available commands
-
-See `agents/pulse-orchestrator/commands.md` for the complete command reference including CLI options and Copilot Chat prompt templates.
-
----
 
 ## Example end-to-end run
 
-1. Save your meeting transcript:
-   ```
-   data/intake/my-program/meeting-transcript-2026-07-07.md
-   ```
+1. Paste a transcript for `my-program` into Copilot.
+2. Ask Copilot to save it under `data/intake/my-program/meeting-transcript-YYYY-MM-DD.md`.
+3. Ask Copilot to validate inputs and generate reports.
+4. Review outputs in `output/my-program/YYYY-MM-DD/`.
+5. Approve and publish.
 
-2. Open Copilot Chat and paste the weekly-status playbook prompt from:
-   ```
-   agents/pulse-orchestrator/playbooks/weekly-status.md
-   ```
+## Prompt reference
 
-3. Copilot updates program-scoped JSON files and runs validation.
-
-4. Validate manually:
-   ```bash
-  python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug my-program
-   ```
-
-5. Generate reports:
-   ```bash
-  python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug my-program
-   ```
-
-6. Review outputs in `output/my-program/YYYY-MM-DD/` and approve before sharing.
-
-Total time for a well-prepared TPM: under 10 minutes per weekly cycle.
-
----
-
-## File layout for this agent
-
-```
-agents/pulse-orchestrator/
-  README.md              ← entry point
-  system-prompt.md       ← agent behavior spec (use as Copilot system prompt)
-  commands.md            ← command reference card
-  pulse.py               ← CLI entrypoint
-  validate.py            ← JSON schema validator
-  playbooks/
-    weekly-status.md     ← copy-paste prompt for weekly status
-    portfolio-rollup.md  ← copy-paste prompt for portfolio rollup
-    adr-draft.md         ← copy-paste prompt for ADR drafting
-    risk-review.md       ← copy-paste prompt for risk review
-    stakeholder-update.md← copy-paste prompt for stakeholder updates
-```
+See `agents/pulse-orchestrator/commands.md` for short prompts and `agents/pulse-orchestrator/playbooks/` for longer structured prompts.

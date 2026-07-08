@@ -66,6 +66,6 @@ Ensure every accepted decision has approver and approval date.
 ## Suggested operating loop
 
 1. Gather notes from meetings, mail, and tracker.
-2. Run prompt 1/2/3 to produce JSON files in `data/`.
-3. Run `python scripts/generate_reports.py`.
+2. Ask Copilot to use prompt 1/2/3 to produce JSON files in `data/`.
+3. Ask Copilot to run the repo's report generation workflow.
 4. Review outputs with a human approver before publish.

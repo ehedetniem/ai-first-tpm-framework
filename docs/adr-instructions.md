@@ -22,10 +22,10 @@ Create an ADR when a decision:
 
 ## Step-by-step process
 
-1. Copy `templates/adr-template.md` to your program folder.
-2. Name file with a stable pattern, for example:
+1. Ask Copilot to use `templates/adr-template.md` for the ADR structure.
+2. Ask Copilot to save the draft with a stable pattern, for example:
    - `ADR-2026-07-06-rollout-cadence.md`
-3. Fill sections in this order:
+3. Review sections in this order:
    - Context
    - Options considered
    - Decision
@@ -66,7 +66,7 @@ AI can draft a first ADR version, but humans should verify:
 If you have a meeting transcript, use this prompt to draft an ADR quickly:
 
 ```text
-Use data/intake/meeting-transcript-YYYY-MM-DD.md as source.
+Use `data/intake/<program-slug>/meeting-transcript-YYYY-MM-DD.md` as source.
 
 Draft an ADR using templates/adr-template.md style.
 

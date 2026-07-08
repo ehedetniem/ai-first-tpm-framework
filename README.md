@@ -9,7 +9,7 @@ Instead of starting with spreadsheets, status-chasing, or manual report writing,
 From there:
 - TPMs bring transcripts, notes, and decisions into GitHub Copilot Chat
 - Copilot drafts artifacts, updates structured inputs, and runs report generation
-- CLI commands remain available as a backup path, not the primary user experience
+- TPMs stay in natural language instead of switching into scripts or commands
 
 This framework helps teams:
 - Standardize stakeholder artifacts across programs
@@ -34,7 +34,7 @@ If you do only one thing today, complete the **10-minute checklist** in `docs/st
 
 - **Start in 10 minutes:** `docs/start-in-10-minutes.md`
 - **Orchestration agent (primary):** `docs/orchestration-agent.md`
-- **Pulse Orchestrator CLI + playbooks:** `agents/pulse-orchestrator/README.md`
+- **Pulse Orchestrator prompts + playbooks:** `agents/pulse-orchestrator/README.md`
 - **Quick onboarding:** `docs/getting-started.md`
 - **TPM Weekly SOP (per-program workflow):** `docs/tpm-weekly-sop.md`
 - **Copilot orchestrated no-code mode:** `docs/copilot-orchestrated-mode.md`
@@ -54,7 +54,7 @@ Recommended setup for this repo is VS Code with GitHub Copilot Chat enabled.
 Think of this as a transition path:
 - first, learn the weekly rhythm
 - next, let Copilot do the first pass
-- finally, use CLI only when you need verification or backup
+- finally, stay in Copilot for the full operating loop
 
 1. Open this folder in VS Code.
 2. Open `docs/start-in-10-minutes.md` for your first successful run.
@@ -67,10 +67,8 @@ Think of this as a transition path:
 
 Important:
 - The in-repo orchestration agent is `agents/pulse-orchestrator/`.
-- Use `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>` before every program report run.
 - This repo does not include an `XPO` runtime agent.
-- CLI and scripts are available as backup when Copilot orchestration is not available.
-- You can run the full framework without Copilot by using Pulse CLI, templates, and scripts directly.
+- The intended TPM experience is to talk to Copilot, not operate the repo through commands.
 
 ## Two Public Modes
 
@@ -84,16 +82,10 @@ Important:
 - Inputs live under `data/portfolio/`
 - Outputs produce leadership rollups such as portfolio health and executive radar
 
-## CLI Backup
+## Generated Outputs
 
-From repo root:
+Copilot writes generated outputs into the appropriate output folder. Typical outputs include:
 
-- Windows PowerShell:
-   - `./scripts/run_reports.ps1`
-- macOS/Linux:
-   - `bash ./scripts/run_reports.sh`
-
-Generated outputs:
 - `output/weekly-status-email.html`
 - `output/portfolio-health-chat.html`
 - `output/executive-briefing.html`
@@ -142,7 +134,7 @@ Generated outputs:
 2. Start with `docs/getting-started.md`.
 3. Use transcript-first or intake orchestration to generate artifacts.
 4. Review only exceptions, decisions, and deltas.
-5. Use CLI backup only if Copilot orchestration is unavailable.
+5. Let Copilot carry the operating flow end to end.
 
 For a practical onboarding flow, use `docs/getting-started.md`.
 

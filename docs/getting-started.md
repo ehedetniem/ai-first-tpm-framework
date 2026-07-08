@@ -52,7 +52,7 @@ For a concrete field mapping contract, see `docs/report-generation.md` under "Br
 
 - [ ] Open this repo in VS Code
 - [ ] Open Copilot Chat
-- [ ] Create one intake file for one program slug
+- [ ] Paste one transcript or one set of notes for one program slug
 - [ ] Ask Copilot to validate the program inputs
 - [ ] Ask Copilot to generate the program reports
 - [ ] Open files in `output/<program-slug>/YYYY-MM-DD/` and review deltas
@@ -68,14 +68,14 @@ For a concrete field mapping contract, see `docs/report-generation.md` under "Br
 
 Option A (recommended): Transcript-first
 
-1. Save meeting transcript or notes as `data/intake/<program-slug>/meeting-transcript-YYYY-MM-DD.md`.
+1. Ask Copilot to save meeting transcript or notes as `data/intake/<program-slug>/meeting-transcript-YYYY-MM-DD.md`.
 2. Use transcript orchestration prompt from `docs/copilot-orchestrated-mode.md`.
 
 Option B: Intake file
 
-1. Open `data/intake/weekly-intake-template.md`.
-2. Save a copy as `data/intake/<program-slug>/weekly-intake-YYYY-MM-DD.md`.
-3. Fill sections in plain language.
+1. Ask Copilot to use `data/intake/weekly-intake-template.md` as the structure.
+2. Ask Copilot to create `data/intake/<program-slug>/weekly-intake-YYYY-MM-DD.md`.
+3. Fill sections in plain language through chat.
 
 Use one intake or transcript stream per program so decisions, risks, and owners remain traceable.
 
@@ -106,23 +106,13 @@ Copilot will:
 4. Return a short review summary
 5. (Transcript mode) Draft ADR(s) from decisions discussed
 
-CLI is backup only. In the normal flow, Copilot should run validation and generation for you.
+In the normal flow, Copilot should run validation and generation for you.
 
 For example, you can say:
 
 - "Use the transcript for <program-slug>, validate the program inputs, generate the reports, and tell me what changed."
 
-If you need to run the backup commands yourself:
-
-Per-program mode:
-
-1. `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
-2. `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>`
-
-Portfolio mode:
-
-1. `python agents/pulse-orchestrator/pulse.py validate --mode portfolio`
-2. `python agents/pulse-orchestrator/pulse.py reports --mode portfolio`
+If Copilot needs more structure, point it to `docs/copilot-orchestrated-mode.md` and `docs/orchestration-agent.md`.
 
 ## Step 5 - Review only what matters
 
@@ -140,7 +130,7 @@ Each week, repeat:
 
 1. Save one transcript or intake input
 2. Run one orchestration prompt
-3. Let Copilot validate and generate; use CLI only if Copilot did not already run them for you
+3. Let Copilot validate and generate
 4. Review deltas
 5. Publish
 

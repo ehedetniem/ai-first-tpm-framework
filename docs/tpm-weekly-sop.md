@@ -47,7 +47,7 @@ Recommended archive location:
 
 ### 1) Collect source input
 
-- Export meeting transcript or notes and save under the program slug path.
+- Bring the meeting transcript or notes into Copilot and have it save them under the program slug path.
 - Keep one intake stream per program to preserve traceability.
 
 ### 2) Run Copilot orchestration
@@ -57,10 +57,7 @@ Recommended archive location:
 
 ### 3) Validate and generate
 
-Run from repo root:
-
-1. `python agents/pulse-orchestrator/pulse.py validate --mode program --program-slug <program-slug>`
-2. `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>`
+Ask Copilot to validate the program inputs and generate the reports for `<program-slug>`.
 
 Quality checks:
 
@@ -93,7 +90,7 @@ If nothing material changed, the review should be fast. If something important c
 - Use portfolio prompt from `docs/copilot-orchestrated-mode.md`.
 
 3. Validate and generate
-- Write outputs to `output/portfolio/YYYY-MM-DD/`.
+- Ask Copilot to validate the portfolio inputs and write outputs to `output/portfolio/YYYY-MM-DD/`.
 
 4. Review leadership narrative
 - Focus on cross-program risks, trends, and decision asks.

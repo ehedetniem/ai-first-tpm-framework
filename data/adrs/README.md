@@ -16,17 +16,13 @@ Example: `ADR-2026-07-07-adopt-shared-api-contract-standard.md`
 2. TPM fills in Decision, Options, Rationale, Consequences
 3. Reviewed and approved by the appropriate stakeholder
 4. Status updated to Accepted; entry added to the program-scoped ADR log JSON
-5. Reports regenerated: `python agents/pulse-orchestrator/pulse.py reports --mode program --program-slug <program-slug>`
+5. Copilot regenerates the ADR-related report outputs for the program.
 
 ## How to create a new ADR draft
 
-```bash
-python agents/pulse-orchestrator/pulse.py adr "Decision title" \
-  --program "Program Name" \
-  --context "One sentence problem description"
-```
+Ask Copilot to draft the ADR from your meeting notes or decision context.
 
-Or use the Copilot Chat playbook: `agents/pulse-orchestrator/playbooks/adr-draft.md`.
+Use the Copilot Chat playbook: `agents/pulse-orchestrator/playbooks/adr-draft.md`.
 
 ## Governance
 
