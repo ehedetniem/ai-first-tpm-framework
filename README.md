@@ -12,16 +12,18 @@ This framework helps teams:
 
 If you are new to AI tools, follow this exact order:
 
-1. **Quick onboarding (30-45 min):** `docs/getting-started.md`
-2. **First weekly run SOP:** `docs/tpm-weekly-sop.md`
-3. **Orchestration agent workflows:** `docs/orchestration-agent.md`
-4. **Run the CLI status check:** `python agents/pulse-orchestrator/pulse.py status`
-5. **Validate data before report generation:** `python agents/pulse-orchestrator/pulse.py validate`
+1. **Start in 10 minutes (fastest path):** `docs/start-in-10-minutes.md`
+2. **Quick onboarding (30-45 min):** `docs/getting-started.md`
+3. **First weekly run SOP:** `docs/tpm-weekly-sop.md`
+4. **Orchestration agent workflows:** `docs/orchestration-agent.md`
+5. **Run the CLI status check:** `python agents/pulse-orchestrator/pulse.py status`
+6. **Validate data before report generation:** `python agents/pulse-orchestrator/pulse.py validate`
 
-If you do only one thing today: complete the **Day 1 checklist** in `docs/getting-started.md`.
+If you do only one thing today: complete the **10-minute checklist** in `docs/start-in-10-minutes.md`.
 
 ## Core docs and workflows
 
+- **Start in 10 minutes:** `docs/start-in-10-minutes.md`
 - **Orchestration agent (primary):** `docs/orchestration-agent.md`
 - **Pulse Orchestrator CLI + playbooks:** `agents/pulse-orchestrator/README.md`
 - **Quick onboarding:** `docs/getting-started.md`
@@ -41,12 +43,13 @@ If you do only one thing today: complete the **Day 1 checklist** in `docs/gettin
 Recommended setup for this repo is VS Code with GitHub Copilot Chat enabled.
 
 1. Open this folder in VS Code.
-2. Open `docs/getting-started.md` and complete the Day 1 checklist.
-3. Open `docs/tpm-weekly-sop.md` to understand the repeatable weekly flow.
-4. Run `python agents/pulse-orchestrator/pulse.py status` to see the current program status.
-5. Use a playbook from `agents/pulse-orchestrator/playbooks/` in Copilot Chat.
-6. Run `python agents/pulse-orchestrator/pulse.py validate` before report generation.
-7. Review rendered outputs in `output/` and optional samples in `reports/`.
+2. Open `docs/start-in-10-minutes.md` for your first successful run.
+3. Open `docs/getting-started.md` for full Day 1 onboarding.
+4. Open `docs/tpm-weekly-sop.md` to understand the repeatable weekly flow.
+5. Run `python agents/pulse-orchestrator/pulse.py status` to see the current program status.
+6. Use a playbook from `agents/pulse-orchestrator/playbooks/` in Copilot Chat.
+7. Run `python agents/pulse-orchestrator/pulse.py validate` before report generation.
+8. Review rendered outputs in `output/` and optional samples in `reports/`.
 
 Important:
 - The in-repo orchestration agent is `agents/pulse-orchestrator/`.
@@ -91,10 +94,11 @@ Generated outputs:
 
 ### Path A: Individual TPM or small team
 
-1. Start with `docs/getting-started.md`.
-2. Use templates in `templates/` for one program.
-3. Run weekly cadence for 4 weeks.
-4. Add ADR discipline and risk review.
+1. Start with `docs/start-in-10-minutes.md`.
+2. Continue with `docs/getting-started.md`.
+3. Use templates in `templates/` for one program.
+4. Run weekly cadence for 4 weeks.
+5. Add ADR discipline and risk review.
 
 ### Path B: Portfolio-scale TPM team
 
