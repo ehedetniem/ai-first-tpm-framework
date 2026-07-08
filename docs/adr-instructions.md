@@ -22,7 +22,7 @@ Create an ADR when a decision:
 
 ## Step-by-step process
 
-1. Copy `templates/adr-template.md` to your program folder.
+1. Copy `templates/adr-template.md` to `data/adrs/` for this repository.
 2. Name file with a stable pattern, for example:
    - `ADR-2026-07-06-rollout-cadence.md`
 3. Fill sections in this order:
@@ -80,4 +80,4 @@ Requirements:
 
 CLI fallback:
 
-- `python agents/pulse-orchestrator/pulse.py adr "<Decision title>" --program "<program-slug>"`
+- `python agents/pulse-orchestrator/pulse.py adr "<Decision title>" --program "<program-slug>" --context "<one sentence problem description>"`

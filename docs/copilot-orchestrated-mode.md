@@ -38,7 +38,7 @@ Tasks:
    - data/sample-portfolio-health.json
    - data/sample-executive-portfolio-radar.json
 4) Validate updated JSON files against template usage in templates/reports/.
-5) Run report generation using `python agents/pulse-orchestrator/pulse.py reports`.
+5) Run report generation in the workspace using `python agents/pulse-orchestrator/pulse.py reports`.
 6) Return a short summary:
    - top 3 wins
    - top 3 risks/blockers
@@ -83,7 +83,7 @@ Tasks:
    - data/sample-portfolio-health.json
    - data/sample-executive-portfolio-radar.json
 2) Validate all updated JSON files against template usage in templates/reports/.
-3) Run report generation using `python agents/pulse-orchestrator/pulse.py reports`.
+3) Run report generation in the workspace using `python agents/pulse-orchestrator/pulse.py reports`.
 4) Provide a short review summary:
    - top 3 wins
    - top 3 risks/blockers
