@@ -17,11 +17,11 @@ This framework helps teams:
 - Shift TPM time from manual synthesis to judgment and alignment
 - Introduce AI safely with human approval gates
 
-## Start here (non-AI TPM quick path)
+## Start Here
 
 If you are new to AI tools, follow this exact order:
 
-1. **Start in 10 minutes (fastest path):** `docs/start-in-10-minutes.md`
+1. **First win in 10 minutes:** `docs/start-in-10-minutes.md`
 2. **Quick onboarding (30-45 min):** `docs/getting-started.md`
 3. **First weekly run SOP:** `docs/tpm-weekly-sop.md`
 4. **Orchestration agent workflows:** `docs/orchestration-agent.md`
@@ -32,7 +32,7 @@ If you do only one thing today, complete the **10-minute checklist** in `docs/st
 
 ## Core docs and workflows
 
-- **Start in 10 minutes:** `docs/start-in-10-minutes.md`
+- **First win in 10 minutes:** `docs/start-in-10-minutes.md`
 - **Orchestration agent (primary):** `docs/orchestration-agent.md`
 - **Pulse Orchestrator prompts + playbooks:** `agents/pulse-orchestrator/README.md`
 - **Quick onboarding:** `docs/getting-started.md`

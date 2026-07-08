@@ -14,6 +14,8 @@ By the end of Day 1, you should be able to:
 
 If you only follow one document today, follow this one end-to-end.
 
+If you want the fastest path to a first successful run, start with `docs/start-in-10-minutes.md`.
+
 ## What is true today
 
 - You should use VS Code with GitHub Copilot Chat.
