@@ -1,4 +1,4 @@
-# First Win in 10 Minutes
+# AI-First Quickstart in 10 Minutes
 
 If you are new to AI tools, this page gets you from zero to first report in about 10 minutes.
 

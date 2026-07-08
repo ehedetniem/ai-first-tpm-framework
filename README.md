@@ -21,7 +21,7 @@ This framework helps teams:
 
 If you are new to AI tools, follow this exact order:
 
-1. **First win in 10 minutes:** `docs/start-in-10-minutes.md`
+1. **AI-first quickstart in 10 minutes:** `docs/start-in-10-minutes.md`
 2. **Quick onboarding (30-45 min):** `docs/getting-started.md`
 3. **First weekly run SOP:** `docs/tpm-weekly-sop.md`
 4. **Orchestration agent workflows:** `docs/orchestration-agent.md`
@@ -32,7 +32,7 @@ If you do only one thing today, complete the **10-minute checklist** in `docs/st
 
 ## Core docs and workflows
 
-- **First win in 10 minutes:** `docs/start-in-10-minutes.md`
+- **AI-first quickstart in 10 minutes:** `docs/start-in-10-minutes.md`
 - **Orchestration agent (primary):** `docs/orchestration-agent.md`
 - **Pulse Orchestrator prompts + playbooks:** `agents/pulse-orchestrator/README.md`
 - **Quick onboarding:** `docs/getting-started.md`
