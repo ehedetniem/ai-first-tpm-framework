@@ -2,8 +2,6 @@
 
 Quick reference for every prompt and command available to AI-first TPMs.
 
----
-
 ## Copilot Chat prompts (primary)
 
 Paste these prompts into GitHub Copilot Chat with this repo open. Each prompt maps to a specific playbook in `agents/pulse-orchestrator/playbooks/`.

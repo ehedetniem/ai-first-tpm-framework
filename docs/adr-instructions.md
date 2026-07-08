@@ -22,7 +22,7 @@ Create an ADR when a decision:
 
 ## Step-by-step process
 
-1. Copy `templates/adr-template.md` to `data/adrs/` for this repository.
+1. Copy `templates/adr-template.md` to `data/adrs/`.
 2. Name file with a stable pattern, for example:
    - `ADR-2026-07-06-rollout-cadence.md`
 3. Fill sections in this order:
