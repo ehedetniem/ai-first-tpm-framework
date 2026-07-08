@@ -2,6 +2,8 @@
 
 If you are new to this repository workflow, this page gets you from zero to first report in about 10 minutes.
 
+The 10-minute target is for the prompt-first primary path; fallback CLI checks are optional verification steps.
+
 ## What you will do
 
 1. Open the repo in VS Code

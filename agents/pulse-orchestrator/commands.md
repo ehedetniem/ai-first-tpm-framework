@@ -1,6 +1,6 @@
 # Pulse Orchestrator — Command Reference
 
-Quick reference for every prompt and command available to AI-first TPMs.
+Quick reference for every prompt and command available to Copilot-native TPMs.
 
 ## Copilot Chat prompts (primary)
 
