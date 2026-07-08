@@ -12,7 +12,17 @@ Pulse Orchestrator is the in-repo TPM agent for the AI-First TPM Framework. It r
 
 ## How to use it
 
-### Option A — CLI (fastest path)
+### Option A — GitHub Copilot Chat (primary)
+
+1. Open this repo in VS Code with GitHub Copilot Chat.
+2. Start your prompt with:
+   ```
+   Act as Pulse Orchestrator for this repo.
+   See agents/pulse-orchestrator/system-prompt.md for behavior rules.
+   ```
+3. Choose a task playbook from `agents/pulse-orchestrator/playbooks/` and paste the prompt.
+
+### Option B — CLI (fallback)
 
 ```bash
 # Weekly status summary
@@ -33,16 +43,6 @@ python agents/pulse-orchestrator/pulse.py validate
 # Generate all HTML reports
 python agents/pulse-orchestrator/pulse.py reports
 ```
-
-### Option B — GitHub Copilot Chat
-
-1. Open this repo in VS Code with GitHub Copilot Chat.
-2. Start your prompt with:
-   ```
-   Act as Pulse Orchestrator for this repo.
-   See agents/pulse-orchestrator/system-prompt.md for behavior rules.
-   ```
-3. Choose a task playbook from `agents/pulse-orchestrator/playbooks/` and paste the prompt.
 
 ## Files in this package
 

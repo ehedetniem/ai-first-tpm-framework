@@ -10,8 +10,8 @@ It runs in two modes:
 
 | Mode | How to use |
 |---|---|
-| **CLI mode** | Run `python agents/pulse-orchestrator/pulse.py <command>` from repo root |
-| **Copilot Chat mode** | Paste a playbook prompt into GitHub Copilot Chat with this repo open |
+| **Copilot Chat mode (primary)** | Paste a playbook prompt into GitHub Copilot Chat with this repo open |
+| **CLI mode (fallback)** | Run `python agents/pulse-orchestrator/pulse.py <command>` from repo root |
 
 Both modes enforce the same governance rules: no fabricated facts, human approval before sharing, and scoped to one program per run.
 
@@ -19,7 +19,11 @@ Both modes enforce the same governance rules: no fabricated facts, human approva
 
 ## Quick start
 
-### 1. Run a status summary (30 seconds)
+### 1. Run a prompt-first weekly orchestration
+
+Use `agents/pulse-orchestrator/playbooks/weekly-status.md` in GitHub Copilot Chat to update JSON, validate, and generate reports in one guided flow.
+
+### 2. Run a status summary (optional CLI check)
 
 ```bash
 python agents/pulse-orchestrator/pulse.py status
@@ -27,7 +31,7 @@ python agents/pulse-orchestrator/pulse.py status
 
 Shows health, highlights, risks, and next actions from `data/sample-weekly-status.json`.
 
-### 2. Validate all data files before generating reports
+### 3. Validate all data files before generating reports
 
 ```bash
 python agents/pulse-orchestrator/pulse.py validate
@@ -35,7 +39,7 @@ python agents/pulse-orchestrator/pulse.py validate
 
 Run this before every report generation to catch missing fields early.
 
-### 3. Generate all HTML reports
+### 4. Generate all HTML reports
 
 ```bash
 python agents/pulse-orchestrator/pulse.py reports
@@ -185,7 +189,7 @@ See `agents/pulse-orchestrator/commands.md` for the complete command reference i
 
 ---
 
-## Example end-to-end run
+## Example end-to-end run (prompt-first)
 
 1. Save your meeting transcript:
    ```

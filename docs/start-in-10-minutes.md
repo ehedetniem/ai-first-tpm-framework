@@ -1,4 +1,4 @@
-# Start in 10 Minutes (Non-AI TPM Quickstart)
+# Start in 10 Minutes (Copilot-Native Quickstart)
 
 If you are new to AI tools, this page gets you from zero to first report in about 10 minutes.
 
@@ -6,8 +6,8 @@ If you are new to AI tools, this page gets you from zero to first report in abou
 
 1. Open the repo in VS Code
 2. Add one intake file for one program
-3. Run validation
-4. Generate reports
+3. Run one Copilot orchestration prompt
+4. Validate and generate reports
 5. Review and publish with human approval
 
 ## 10-minute checklist
@@ -15,8 +15,9 @@ If you are new to AI tools, this page gets you from zero to first report in abou
 - [ ] Open this repo in VS Code
 - [ ] Open Copilot Chat
 - [ ] Add one intake file under `data/intake/<program-slug>/`
-- [ ] Run `python agents/pulse-orchestrator/pulse.py validate`
-- [ ] Run `python agents/pulse-orchestrator/pulse.py reports`
+- [ ] Run one prompt from `docs/copilot-orchestrated-mode.md`
+- [ ] Run `python agents/pulse-orchestrator/pulse.py validate` (fallback check)
+- [ ] Run `python agents/pulse-orchestrator/pulse.py reports` (fallback run)
 - [ ] Open `output/*.html` and review risks, decision asks, and KPI deltas
 - [ ] Publish only after human review
 
@@ -41,7 +42,15 @@ If you are new to AI tools, this page gets you from zero to first report in abou
 
 Keep one intake stream per program for traceability.
 
-### 3) Run validate
+### 3) Run one Copilot orchestration prompt
+
+Use the prompt pack in:
+
+- `docs/copilot-orchestrated-mode.md`
+
+Ask Copilot to update JSON inputs, validate, and run report generation in one workflow.
+
+### 4) Run validate (fallback or verification)
 
 From repo root:
 
@@ -51,7 +60,7 @@ python agents/pulse-orchestrator/pulse.py validate
 
 If validation fails, fix missing required fields in `data/*.json` and run again.
 
-### 4) Generate reports
+### 5) Generate reports (fallback)
 
 ```bash
 python agents/pulse-orchestrator/pulse.py reports
@@ -59,7 +68,7 @@ python agents/pulse-orchestrator/pulse.py reports
 
 Generated files are in `output/`.
 
-### 5) Review and publish
+### 6) Review and publish
 
 Review only high-signal deltas:
 

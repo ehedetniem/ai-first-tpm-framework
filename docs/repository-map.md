@@ -32,5 +32,7 @@
 - `agents/pulse-orchestrator/` - Starter orchestration pattern included in this repo
 
 Notes:
+- Recommended operating mode is Copilot prompt-first using playbooks in `agents/pulse-orchestrator/playbooks/`.
+- CLI/scripts remain available as optional fallback.
 - There is no built-in `XPO` runtime agent in this repository.
 - Teams can use templates and scripts directly, then add an orchestrator later if needed.

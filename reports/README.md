@@ -35,6 +35,8 @@ Render them first with `python scripts/generate_reports.py`.
 
 ## Notes
 
+- Recommended workflow is Copilot prompt-first orchestration, then human review.
+- CLI/script report generation remains an optional fallback path.
 - Use `docs/report-generation.md` for setup and run instructions.
 - Keep sensitive or confidential data out of externally shared reports.
 - Maintain human-in-the-loop approval before sending.

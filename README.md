@@ -8,23 +8,24 @@ This framework helps teams:
 - Shift TPM time from manual synthesis to judgment and alignment
 - Introduce AI safely with human approval gates
 
-## Start here (non-AI TPM quick path)
+## Start here (Copilot-native prompt-first path)
 
-If you are new to AI tools, follow this exact order:
+If you are new to this repository, follow this exact order:
 
 1. **Start in 10 minutes (fastest path):** `docs/start-in-10-minutes.md`
-2. **Quick onboarding (30-45 min):** `docs/getting-started.md`
-3. **First weekly run SOP:** `docs/tpm-weekly-sop.md`
-4. **Orchestration agent workflows:** `docs/orchestration-agent.md`
-5. **Run the CLI status check:** `python agents/pulse-orchestrator/pulse.py status`
-6. **Validate data before report generation:** `python agents/pulse-orchestrator/pulse.py validate`
+2. **Run Copilot-orchestrated mode (primary):** `docs/copilot-orchestrated-mode.md`
+3. **Quick onboarding (30-45 min):** `docs/getting-started.md`
+4. **First weekly run SOP:** `docs/tpm-weekly-sop.md`
+5. **Orchestration agent workflows:** `docs/orchestration-agent.md`
+6. **Use CLI checks as optional fallback:** `python agents/pulse-orchestrator/pulse.py validate`
 
 If you do only one thing today: complete the **10-minute checklist** in `docs/start-in-10-minutes.md`.
 
 ## Core docs and workflows
 
 - **Start in 10 minutes:** `docs/start-in-10-minutes.md`
-- **Orchestration agent (primary):** `docs/orchestration-agent.md`
+- **Copilot orchestrated no-code mode (primary):** `docs/copilot-orchestrated-mode.md`
+- **Orchestration agent workflows:** `docs/orchestration-agent.md`
 - **Pulse Orchestrator CLI + playbooks:** `agents/pulse-orchestrator/README.md`
 - **Quick onboarding:** `docs/getting-started.md`
 - **TPM Weekly SOP (per-program workflow):** `docs/tpm-weekly-sop.md`
@@ -46,15 +47,16 @@ Recommended setup for this repo is VS Code with GitHub Copilot Chat enabled.
 2. Open `docs/start-in-10-minutes.md` for your first successful run.
 3. Open `docs/getting-started.md` for full Day 1 onboarding.
 4. Open `docs/tpm-weekly-sop.md` to understand the repeatable weekly flow.
-5. Run `python agents/pulse-orchestrator/pulse.py status` to see the current program status.
-6. Use a playbook from `agents/pulse-orchestrator/playbooks/` in Copilot Chat.
-7. Run `python agents/pulse-orchestrator/pulse.py validate` before report generation.
+5. Use a playbook from `agents/pulse-orchestrator/playbooks/` in Copilot Chat.
+6. Ask Copilot to run validation and report generation in-repo.
+7. Use `python agents/pulse-orchestrator/pulse.py validate` as fallback verification.
 8. Review rendered outputs in `output/` and optional samples in `reports/`.
 
 Important:
 - The in-repo orchestration agent is `agents/pulse-orchestrator/`.
-- Use `python agents/pulse-orchestrator/pulse.py validate` before every report run.
-- You can run the full framework today without Copilot by using templates, scripts, and the CLI directly.
+- Prompt-first usage in Copilot Chat is the recommended operating mode.
+- Use `python agents/pulse-orchestrator/pulse.py validate` before every report run (directly or via Copilot).
+- You can run the full framework without Copilot by using templates, scripts, and the CLI directly.
 
 ## Fast report generation
 

@@ -8,6 +8,11 @@ This repo includes a Python generator for a leadership-ready HTML reporting pack
 - This public repo focuses on the rendering layer: JSON inputs in `data/` to HTML outputs in `output/`.
 - If your team uses YAML upstream, add a mapping/export step that writes the report JSON files before running the generator.
 
+## Recommended operating mode
+
+- Prompt-first (primary): use Copilot orchestration prompts from `docs/copilot-orchestrated-mode.md` to update JSON, validate, and run reports in one guided loop.
+- CLI/script mode (fallback): run the commands in this document directly when needed.
+
 ## Bridge handoff contract example (YAML -> JSON)
 
 Use this as a lightweight contract between the bridge owner and report owner.
@@ -91,6 +96,13 @@ Suggested Copilot prompt for validation:
    - `./scripts/run_reports.ps1`
 - macOS/Linux:
    - `bash ./scripts/run_reports.sh`
+
+## Pulse Orchestrator fallback commands
+
+From repo root:
+
+- `python agents/pulse-orchestrator/pulse.py validate`
+- `python agents/pulse-orchestrator/pulse.py reports`
 
 ## Run
 

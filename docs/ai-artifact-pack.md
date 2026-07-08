@@ -2,6 +2,8 @@
 
 Use these prompts with your AI assistant to convert raw program notes into structured JSON that the report generator can consume.
 
+Recommended mode is GitHub Copilot Chat with this repository open; direct script execution is the fallback path.
+
 ## 1) Executive briefing JSON prompt
 
 Copy and paste:
@@ -69,3 +71,8 @@ Ensure every accepted decision has approver and approval date.
 2. Run prompt 1/2/3 to produce JSON files in `data/`.
 3. Run `python scripts/generate_reports.py`.
 4. Review outputs with a human approver before publish.
+
+CLI fallback via orchestrator:
+
+- `python agents/pulse-orchestrator/pulse.py validate`
+- `python agents/pulse-orchestrator/pulse.py reports`

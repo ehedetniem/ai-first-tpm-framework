@@ -8,7 +8,7 @@ Create leadership-ready updates with a consistent, low-friction process:
 
 1. Use transcript or intake notes as source input
 2. Orchestrate updates with Copilot
-3. Validate and generate reports
+3. Run validate + reports (via Copilot first, CLI fallback)
 4. Review deltas
 5. Publish with human approval
 
@@ -47,7 +47,11 @@ Recommended archive location:
 
 ### 3) Validate and generate
 
-Run from repo root:
+Copilot-native path (recommended):
+
+- Ask Copilot to run validation and report generation after JSON updates.
+
+CLI fallback from repo root:
 
 1. `python agents/pulse-orchestrator/pulse.py validate`
 2. `python agents/pulse-orchestrator/pulse.py reports`
@@ -88,6 +92,7 @@ Do:
 - Keep owner/date fields explicit
 - Keep language concise and executive
 - Run validate before every report generation
+- Keep prompt execution scoped to one program per run
 
 Don't:
 

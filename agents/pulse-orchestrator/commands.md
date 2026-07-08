@@ -1,45 +1,10 @@
 # Pulse Orchestrator — Command Reference
 
-Quick reference for every command and prompt available to TPMs.
+Quick reference for every prompt and command available to AI-first TPMs.
 
 ---
 
-## CLI commands
-
-Run from the repository root. Requires Python 3.10+ and `pip install -r requirements.txt`.
-
-| Command | What it does |
-|---|---|
-| `python agents/pulse-orchestrator/pulse.py status` | Print weekly status summary from `data/sample-weekly-status.json` |
-| `python agents/pulse-orchestrator/pulse.py portfolio` | Print portfolio health table |
-| `python agents/pulse-orchestrator/pulse.py risks` | Print open risks and blockers from RAID digest |
-| `python agents/pulse-orchestrator/pulse.py adr "<title>"` | Generate a new ADR draft file in `data/adrs/` |
-| `python agents/pulse-orchestrator/pulse.py validate` | Validate all JSON data files against expected schemas |
-| `python agents/pulse-orchestrator/pulse.py reports` | Run full HTML report generation |
-
-### `status` options
-
-```bash
-python agents/pulse-orchestrator/pulse.py status --json my-program-weekly.json
-```
-
-### `adr` options
-
-```bash
-python agents/pulse-orchestrator/pulse.py adr "Decision title" \
-  --program "My Program" \
-  --context "One sentence describing the problem"
-```
-
-### `reports` options
-
-```bash
-python agents/pulse-orchestrator/pulse.py reports --output-dir custom-output/
-```
-
----
-
-## Copilot Chat prompts
+## Copilot Chat prompts (primary)
 
 Paste these prompts into GitHub Copilot Chat with this repo open. Each prompt maps to a specific playbook in `agents/pulse-orchestrator/playbooks/`.
 
@@ -102,6 +67,41 @@ Source: data/sample-weekly-status.json, data/sample-portfolio-health.json
 Program: <program-slug or "Portfolio">
 
 Run the stakeholder-update playbook from agents/pulse-orchestrator/playbooks/stakeholder-update.md.
+```
+
+---
+
+## CLI commands (fallback)
+
+Run from the repository root. Requires Python 3.10+ and `pip install -r requirements.txt`.
+
+| Command | What it does |
+|---|---|
+| `python agents/pulse-orchestrator/pulse.py status` | Print weekly status summary from `data/sample-weekly-status.json` |
+| `python agents/pulse-orchestrator/pulse.py portfolio` | Print portfolio health table |
+| `python agents/pulse-orchestrator/pulse.py risks` | Print open risks and blockers from RAID digest |
+| `python agents/pulse-orchestrator/pulse.py adr "<title>"` | Generate a new ADR draft file in `data/adrs/` |
+| `python agents/pulse-orchestrator/pulse.py validate` | Validate all JSON data files against expected schemas |
+| `python agents/pulse-orchestrator/pulse.py reports` | Run full HTML report generation |
+
+### `status` options
+
+```bash
+python agents/pulse-orchestrator/pulse.py status --json my-program-weekly.json
+```
+
+### `adr` options
+
+```bash
+python agents/pulse-orchestrator/pulse.py adr "Decision title" \
+  --program "My Program" \
+  --context "One sentence describing the problem"
+```
+
+### `reports` options
+
+```bash
+python agents/pulse-orchestrator/pulse.py reports --output-dir custom-output/
 ```
 
 ---

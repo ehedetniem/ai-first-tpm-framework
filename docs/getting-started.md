@@ -46,6 +46,7 @@ For a concrete field mapping contract, see `docs/report-generation.md` under "Br
 - [ ] Open this repo in VS Code
 - [ ] Open Copilot Chat
 - [ ] Create one intake file for one program slug
+- [ ] Run one orchestration prompt from `docs/copilot-orchestrated-mode.md`
 - [ ] Run `python agents/pulse-orchestrator/pulse.py validate`
 - [ ] Run `python agents/pulse-orchestrator/pulse.py reports`
 - [ ] Open files in `output/` and review deltas
@@ -88,7 +89,12 @@ Copilot will:
 
 ## Step 4 - Run validation and generate reports
 
-Run one at a time from repo root:
+Copilot-native path (recommended):
+
+1. Ask Copilot to run validation and report generation after it updates the JSON files.
+2. Use the CLI commands below as direct fallback or explicit verification.
+
+CLI fallback (run one at a time from repo root):
 
 1. `python agents/pulse-orchestrator/pulse.py validate`
 2. `python agents/pulse-orchestrator/pulse.py reports`

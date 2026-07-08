@@ -11,6 +11,8 @@ Use one source input and one Copilot prompt to:
 3. Run report generation
 4. Summarize key deltas for review
 
+CLI commands remain available as optional fallback when you want to run steps manually.
+
 ## Option A (recommended) - Transcript-first orchestration
 
 If you have a meeting transcript (or WorkIQ-exported notes), you do not need to fill intake manually.
@@ -36,7 +38,7 @@ Tasks:
    - data/sample-portfolio-health.json
    - data/sample-executive-portfolio-radar.json
 4) Validate updated JSON files against template usage in templates/reports/.
-5) Run report generation using scripts/run_reports.ps1.
+5) Run report generation using `python agents/pulse-orchestrator/pulse.py reports`.
 6) Return a short summary:
    - top 3 wins
    - top 3 risks/blockers
@@ -81,7 +83,7 @@ Tasks:
    - data/sample-portfolio-health.json
    - data/sample-executive-portfolio-radar.json
 2) Validate all updated JSON files against template usage in templates/reports/.
-3) Run report generation using scripts/run_reports.ps1.
+3) Run report generation using `python agents/pulse-orchestrator/pulse.py reports`.
 4) Provide a short review summary:
    - top 3 wins
    - top 3 risks/blockers
@@ -103,6 +105,11 @@ Review outputs in:
 Optional distribution-ready samples in:
 
 - `reports/`
+
+Optional manual fallback commands:
+
+- `python agents/pulse-orchestrator/pulse.py validate`
+- `python agents/pulse-orchestrator/pulse.py reports`
 
 Recommended for per-program traceability:
 

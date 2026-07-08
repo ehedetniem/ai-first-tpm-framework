@@ -27,6 +27,7 @@ Useful contributions include:
 - Avoid references to internal/private systems.
 - Prefer reusable guidance over organization-specific patterns.
 - Preserve the human-in-the-loop governance stance.
+- Keep guidance Copilot-native and prompt-first; position direct CLI steps as fallback when both paths exist.
 
 ## Style guidelines
 
