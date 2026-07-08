@@ -50,7 +50,7 @@ Before publishing an ADR, confirm:
 ## Sample naming and indexing pattern
 
 - Keep ADRs in `data/adrs/`
-- Rationale: this keeps ADRs with other report input artifacts under `data/`.
+- Repository convention: Pulse Orchestrator writes ADR drafts to `data/adrs/`, so this guide follows the implemented workflow.
 - If you previously stored ADRs under `docs/adrs/`, move active ADRs to `data/adrs/` and update links.
 - Prefix with date for sortability
 - Include program slug in title text when helpful for traceability
